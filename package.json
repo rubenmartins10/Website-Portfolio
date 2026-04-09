@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:types": "npx supabase gen types typescript --project-id rmqkiclsynxcwovkteqj > types/supabase.ts"
   },
   "dependencies": {
     "next": "16.2.3",

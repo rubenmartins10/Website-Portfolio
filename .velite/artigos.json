@@ -1,0 +1,13 @@
+[
+  {
+    "titulo": "O meu primeiro artigo",
+    "data": "2026-04-09T00:00:00.000Z",
+    "resumo": "Este é um artigo de teste para verificar se o Velite está a ler e a validar o MDX corretamente.",
+    "tags": [
+      "nextjs",
+      "teste",
+      "velite"
+    ],
+    "publicado": true
+  }
+]

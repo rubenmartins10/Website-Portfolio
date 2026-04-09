@@ -15,6 +15,7 @@ class VeliteWebpackPlugin {
 }
 
 const nextConfig: NextConfig = {
+  // 1. Configuração de imagens do Supabase (já tinhas feito)
   images: {
     remotePatterns: [
       {
@@ -25,6 +26,23 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  
+  // 2. Cabeçalhos de Segurança (O que faltava na checklist!)
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=()" },
+        ],
+      },
+    ];
+  },
+
+  // 3. Plugin do Velite (já tinhas feito)
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
     return config;

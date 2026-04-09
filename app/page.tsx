@@ -1,34 +1,50 @@
-import { createClient } from '@/lib/supabase/server'
+import Link from "next/link";
 
-export default async function HomePage() {
-  // 1. Inicializa o cliente do lado do servidor
-  const supabase = await createClient()
-
-  // 2. Faz uma query super simples à tabela de projetos (como passaste os tipos, vais ver que tens autocomplete!)
-  const { data: projetos, error } = await supabase
-    .from('projetos')
-    .select('*')
-    .limit(2)
-
+export default function Home() {
   return (
-    <main className="min-h-screen p-8 bg-zinc-950 text-white">
-      <h1 className="text-2xl font-bold mb-4">Teste de Ligação ao Supabase</h1>
+    <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl mx-auto px-6 py-20 text-center">
       
-      <div className="bg-zinc-900 p-4 rounded-lg overflow-auto">
-        <h2 className="text-zinc-400 mb-2">Resultado da Query:</h2>
-        
-        {/* Se houver erro de ligação, mostra aqui */}
-        {error && (
-          <p className="text-red-500">Erro: {error.message}</p>
-        )}
-
-        {/* Se a ligação funcionar, mostra os dados (mesmo que seja um array vazio se não tiveres lá nada) */}
-        {!error && (
-          <pre className="text-sm text-green-400">
-            {JSON.stringify(projetos, null, 2)}
-          </pre>
-        )}
+      {/* Etiqueta de Status */}
+      <div className="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm text-zinc-400">
+        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        Disponível para novos projetos
       </div>
-    </main>
-  )
+
+      {/* Título Principal */}
+      <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
+        Olá, eu sou o Rúben.
+      </h1>
+      
+      {/* Subtítulo */}
+      <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-10 leading-relaxed">
+        Bem-vindo ao meu espaço na internet. Aqui partilho o meu portefólio, as minhas aprendizagens e os projetos que vou construindo.
+      </p>
+
+      {/* Botões de Ação */}
+      <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
+        <Link 
+          href="/projetos" 
+          className="px-6 py-3 rounded-lg bg-white text-zinc-950 font-medium hover:bg-zinc-200 transition-colors"
+        >
+          Projetos
+        </Link>
+        
+        <Link 
+          href="/artigos" 
+          className="px-6 py-3 rounded-lg bg-zinc-900 text-white font-medium border border-zinc-800 hover:bg-zinc-800 transition-colors"
+        >
+          Artigos
+        </Link>
+
+        {/* NOVO BOTÃO DE CERTIFICAÇÕES */}
+        <Link 
+          href="/certificados" 
+          className="px-6 py-3 rounded-lg bg-zinc-900 text-white font-medium border border-zinc-800 hover:bg-zinc-800 transition-colors"
+        >
+          Certificações
+        </Link>
+      </div>
+
+    </div>
+  );
 }
