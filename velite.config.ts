@@ -8,7 +8,9 @@ const artigos = defineCollection({
     data: s.isodate(),
     resumo: s.string().max(999),
     tags: s.array(s.string()).optional(),
-    publicado: s.boolean().default(true)
+    publicado: s.boolean().default(true),
+    slug: s.path(),      
+    conteudo: s.mdx()    
   })
 })
 

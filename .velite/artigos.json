@@ -8,6 +8,8 @@
       "teste",
       "velite"
     ],
-    "publicado": true
+    "publicado": true,
+    "slug": "artigos/teste",
+    "conteudo": "const{Fragment:e,jsx:n,jsxs:r}=arguments[0];function _createMdxContent(o){const t={h1:\"h1\",p:\"p\",strong:\"strong\",...o.components};return r(e,{children:[n(t.h1,{children:\"Olá Mundo!\"}),\"\\n\",r(t.p,{children:[\"Se estiveres a ver isto, significa que a configuração do \",n(t.strong,{children:\"Velite\"}),\" e do \",n(t.strong,{children:\"MDX\"}),\" funcionou na perfeição! Aqui vou poder escrever sobre os meus projetos e aprendizagens.\"]})]})}return{default:function(e={}){const{wrapper:r}=e.components||{};return r?n(r,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   }
 ]

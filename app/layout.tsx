@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "../components/layout/Navbar";
+// Update the import path if Footer is located elsewhere, for example:
+import Footer from "../components/layout/Footer";
+// Or, if the file is named Footer.tsx/jsx and is in the correct folder, ensure it exists at 'website-pessoal/components/Footer.tsx'
 
 const inter = Inter({ subsets: ["latin"] });
 
