@@ -32,7 +32,6 @@ export default async function Home() {
           
           {/* FOTOGRAFIA DE PERFIL REDONDA */}
           <div className="relative w-32 h-32 sm:w-40 sm:h-40 shrink-0 overflow-hidden rounded-full border-4 border-zinc-800">
-            {/* Tiramos a div cinzenta e ativamos a tua foto! */}
             <Image src="/perfil.jpg" alt="Rúben Martins" fill className="object-cover" />
           </div>
 
@@ -95,13 +94,28 @@ export default async function Home() {
 
           <div className="flex flex-col gap-4">
             {artigos && artigos.length > 0 ? (
-              artigos.map((artigo, idx) => (
-                <div key={idx} className="p-6 border border-zinc-800 rounded-lg bg-zinc-900/30">
-                  <h3 className="text-lg font-semibold text-white mb-2">{artigo.titulo}</h3>
-                  <p className="text-zinc-400 text-sm mb-2">{artigo.resumo}</p>
-                  <time className="text-xs text-zinc-500">{new Date(artigo.data).toLocaleDateString('pt-PT')}</time>
-                </div>
-              ))
+              artigos.map((artigo, idx) => {
+                
+                // PROTEÇÃO EXTRA AQUI: Se o artigo não tiver slug por algum motivo, não rebenta o site
+                if (!artigo.slug) return null;
+
+                // Limpar o link tal como fizemos na outra página
+                const urlSlug = artigo.slug.replace('artigos/', '');
+                
+                return (
+                  <Link 
+                    href={`/artigos/${urlSlug}`} 
+                    key={idx} 
+                    className="block p-6 border border-zinc-800 rounded-lg bg-zinc-900/30 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all group"
+                  >
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                      {artigo.titulo}
+                    </h3>
+                    <p className="text-zinc-400 text-sm mb-2">{artigo.resumo}</p>
+                    <time className="text-xs text-zinc-500">{new Date(artigo.data).toLocaleDateString('pt-PT')}</time>
+                  </Link>
+                )
+              })
             ) : (
               <p className="text-zinc-500 text-sm">Ainda não há artigos publicados.</p>
             )}

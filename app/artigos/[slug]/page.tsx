@@ -1,18 +1,30 @@
 import { getArtigosPublicados } from "@/lib/velite";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
-export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
-  // 1. A NOVA FORMA OBRIGATÓRIA DO NEXT.JS LER OS LINKS (usando await)
+// 1. GERAR METADADOS DINÂMICOS
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  
-  // 2. Ir buscar todos os artigos
   const artigos = getArtigosPublicados();
-  
-  // 3. Encontrar o artigo exato. 
-  // O Velite às vezes guarda o path como "artigos/teste", por isso verificamos os dois casos!
   const artigo = artigos.find((a) => a.slug === slug || a.slug === `artigos/${slug}`);
 
-  // Se o artigo não existir, manda o utilizador para uma página 404
+  if (!artigo) {
+    return { title: 'Artigo não encontrado | Rúben Martins' };
+  }
+
+  return {
+    title: `${artigo.titulo} | Rúben Martins`,
+    description: artigo.resumo,
+  };
+}
+
+// 2. A PÁGINA DO ARTIGO
+export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  
+  const artigos = getArtigosPublicados();
+  const artigo = artigos.find((a) => a.slug === slug || a.slug === `artigos/${slug}`);
+
   if (!artigo) {
     notFound();
   }
@@ -28,8 +40,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
         </time>
       </header>
 
-      {/* Como o conteúdo MDX vem processado, no futuro vamos usar um componente MDX. 
-          Por agora, mostramos só o resumo e a confirmação que a página abriu! */}
+      {/* Por agora mostramos o resumo e a mensagem de sucesso. */}
       <div className="prose prose-invert max-w-none text-zinc-300">
         <p className="text-xl text-zinc-400 border-l-2 border-zinc-800 pl-4 italic">
           {artigo.resumo}
