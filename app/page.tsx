@@ -5,9 +5,11 @@ import { getArtigosPublicados } from "@/lib/velite";
 
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import PageTransition from "@/components/animations/PageTransition";
-// Importamos as nossas duas novas magias
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import ParallaxCard from "@/components/animations/ParallaxCard";
+
+// 1. IMPORTAR O NOSSO NOVO WRAPPER (NOVO)
+import SceneWrapper from "@/components/canvas/SceneWrapper";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -24,7 +26,11 @@ export default async function Home() {
 
   return (
     <PageTransition>
-      <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl mx-auto px-6 py-20">
+      {/* 2. ADICIONAR O BACKGROUND 3D COMO PRIMEIRO ELEMENTO (NOVO) */}
+      <SceneWrapper />
+      
+      {/* Adicionei 'relative z-10' aqui para garantir que o conteúdo fica sempre por cima das estrelas */}
+      <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl mx-auto px-6 py-20 relative z-10">
 
         <ScrollReveal direction="up" distance={40}>
           <div className="w-full text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-24">
@@ -39,7 +45,6 @@ export default async function Home() {
                 Disponível para novos projetos
               </div>
 
-              {/* O NOVO TÍTULO ANIMADO */}
               <AnimatedTitle 
                 text="Olá, eu sou o Rúben." 
                 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" 
@@ -64,6 +69,8 @@ export default async function Home() {
           </div>
         </ScrollReveal>
 
+        {/* ... (O RESTO DO CÓDIGO DE SCROLLREVEAL DOS PROJETOS E ARTIGOS FICA EXATAMENTE IGUAL) ... */}
+        
         <ScrollReveal direction="up" distance={50} stagger={0.15}>
           <div className="w-full mb-20">
             <div className="flex justify-between items-end mb-8 border-b border-zinc-800 pb-4">
@@ -74,7 +81,6 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projetos && projetos.length > 0 ? (
                 projetos.map((projeto) => (
-                  /* O NOVO CARTÃO PARALLAX */
                   <ParallaxCard key={projeto.id} className="stagger-item block h-full">
                     <div className="h-full p-6 border border-zinc-800 rounded-lg bg-zinc-900/30 hover:border-zinc-700 transition-colors flex flex-col">
                       <h3 className="text-xl font-semibold text-white mb-2">{projeto.titulo}</h3>
@@ -90,7 +96,7 @@ export default async function Home() {
           </div>
         </ScrollReveal>
 
-        {/* SECÇÃO DE ARTIGOS (Mantida igual, com ScrollReveal) */}
+        {/* SECÇÃO DE ARTIGOS */}
         <ScrollReveal direction="up" distance={50} stagger={0.15}>
           <div className="w-full">
             <div className="flex justify-between items-end mb-8 border-b border-zinc-800 pb-4">
