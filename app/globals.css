@@ -25,3 +25,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Esconde o cursor normal apenas em dispositivos com rato (ignora touchscreens) */
+@media (pointer: fine) {
+  body, a, button {
+    cursor: none;
+  }
+}
+

@@ -1,16 +1,26 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // A animação de entrada (exatamente igual ao que tinhas: opacity 0 -> 1, y 20 -> 0)
+    gsap.from(containerRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  }, { scope: containerRef });
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    >
+    // will-change-transform e will-change-opacity ajudam o browser a preparar a renderização
+    <div ref={containerRef} className="will-change-transform will-change-opacity">
       {children}
-    </motion.div>
+    </div>
   );
 }
