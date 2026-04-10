@@ -32,6 +32,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     ".velite"
-  ],
+, "next.config.mjs"  ],
   "exclude": ["node_modules"]
 }
