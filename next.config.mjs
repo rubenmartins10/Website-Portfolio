@@ -1,3 +1,4 @@
+//Importe
 import { build } from "velite";
 
 class VeliteWebpackPlugin {
@@ -41,7 +42,7 @@ const nextConfig = {
         ],
       },
     ];
-  },
+  },  
 
   // 3. Plugin do Velite
   /** @param {any} config */
