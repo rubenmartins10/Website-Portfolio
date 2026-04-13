@@ -3,6 +3,17 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+// 1. IMPORTAÇÃO DINÂMICA DO 3D (Sem SSR e com Loading Skeleton)
+const ProjectScreen3D = dynamic(() => import('@/components/canvas/ProjectScreen'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] bg-zinc-900/50 animate-pulse rounded-xl border border-zinc-800 flex items-center justify-center mb-12">
+      <span className="text-zinc-600 text-sm">A carregar visualização interativa...</span>
+    </div>
+  )
+});
 
 // Interface para garantir a segurança dos dados
 interface ProjetoDetalhe {
@@ -49,8 +60,6 @@ export default async function ProjetoDetalhePage({ params }: { params: Promise<{
     notFound();
   }
 
-  const imagemSegura = projeto.imagem_url || "/file.svg";
-
   return (
     <article className="max-w-4xl mx-auto px-6 py-20 w-full">
       <Link href="/projetos" className="text-sm text-zinc-400 hover:text-white mb-8 inline-flex items-center gap-2 transition-colors">
@@ -75,9 +84,19 @@ export default async function ProjetoDetalhePage({ params }: { params: Promise<{
         </p>
       </header>
 
-      <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-zinc-800 mb-12">
-        <Image src={imagemSegura} alt={projeto.titulo} fill className="object-cover" />
-      </div>
+      {/* 2. RENDERIZAÇÃO CONDICIONAL DA IMAGEM 3D VS IMAGEM ESTÁTICA */}
+      {projeto.imagem_url ? (
+        <div className="mb-12">
+          <ProjectScreen3D imageUrl={projeto.imagem_url} />
+          <p className="text-center text-xs text-zinc-500 mt-4 uppercase tracking-wider">
+            Podes arrastar o ecrã para rodar
+          </p>
+        </div>
+      ) : (
+        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-zinc-800 mb-12 bg-zinc-900/30 flex items-center justify-center">
+          <Image src="/file.svg" alt="Sem imagem" width={64} height={64} className="opacity-50" />
+        </div>
+      )}
 
       <div className="prose prose-invert max-w-none text-zinc-300">
         {projeto.conteudo ? (
