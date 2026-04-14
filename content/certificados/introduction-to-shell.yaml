@@ -1,0 +1,21 @@
+titulo: Introduction to Shell
+emissor: DataCamp
+imagem: /certificados/introduction-to-shell/imagem.png
+data: 2026-04-13
+aprendizado: >-
+  Adquiri conhecimentos sólidos sobre a utilização da linha de comandos (CLI) em
+  ambientes Unix. Aprendi a navegar no sistema de ficheiros, a manipular
+  ficheiros e diretórios de forma eficiente e a utilizar pipelines e
+  redirecionamento de output. Compreendi como automatizar tarefas repetitivas e
+  gerir processos diretamente através do terminal, otimizando o meu fluxo de
+  trabalho.
+skills:
+  - Unix
+  - CLI
+  - Task Automation
+  - Shell Scripting
+  - Cloud Computing
+  - Cluster Computing
+  - Process Automation
+ficheiro: /certificados/introduction-to-shell/ficheiro.pdf
+categoria: data-ai

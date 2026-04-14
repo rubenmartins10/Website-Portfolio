@@ -79,5 +79,118 @@
     "ficheiro": "/certificados/elements-of-ia/ficheiro.pdf",
     "categoria": "data-ai",
     "slug": "certificados/elements-of-ia"
+  },
+  {
+    "titulo": "IA Generative",
+    "emissor": "Santander",
+    "imagem": "/certificados/ia-generative/imagem.png",
+    "aprendizado": "Explorei o potencial transformador da Inteligência Artificial Generativa e os seus casos de uso atuais. Desenvolvi competências em Prompt Engineering, aprendendo a interagir de forma estruturada e eficaz com Modelos de Linguagem de Grande Escala (LLMs) para gerar conteúdos, código e automatizar processos. Analisei ainda o impacto destas ferramentas na produtividade e inovação digital.",
+    "skills": [
+      "GenAI",
+      "Prompt Engineering",
+      "LLMs",
+      "Natural Language Processing (NLP)",
+      "Process Automation"
+    ],
+    "data": "2024-11-23T00:00:00.000Z",
+    "ficheiro": "/certificados/ia-generative/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/ia-generative"
+  },
+  {
+    "titulo": "Introduction to Deep Learning with Keras",
+    "emissor": "DataCamp",
+    "imagem": "/certificados/introduction-to-deep-learning-with-keras/imagem.png",
+    "aprendizado": "Adquiri conhecimentos práticos na construção e treino de redes neurais artificiais utilizando a biblioteca Keras. Compreendi a arquitetura base de modelos de deep learning, explorando o funcionamento de camadas densas, funções de ativação e algoritmos de otimização. Testei a aplicação prática destas redes na resolução de problemas complexos de classificação e regressão.",
+    "skills": [
+      "Deep Learning",
+      "TensorFlow & Keras",
+      "Artificial Neural Networks",
+      "Python",
+      "Predictive Modeling"
+    ],
+    "data": "2026-03-26T00:00:00.000Z",
+    "ficheiro": "/certificados/introduction-to-deep-learning-with-keras/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/introduction-to-deep-learning-with-keras"
+  },
+  {
+    "titulo": "Introduction to Shell",
+    "emissor": "DataCamp",
+    "imagem": "/certificados/introduction-to-shell/imagem.png",
+    "aprendizado": "Adquiri conhecimentos sólidos sobre a utilização da linha de comandos (CLI) em ambientes Unix. Aprendi a navegar no sistema de ficheiros, a manipular ficheiros e diretórios de forma eficiente e a utilizar pipelines e redirecionamento de output. Compreendi como automatizar tarefas repetitivas e gerir processos diretamente através do terminal, otimizando o meu fluxo de trabalho.",
+    "skills": [
+      "Unix",
+      "CLI",
+      "Task Automation",
+      "Shell Scripting",
+      "Cloud Computing",
+      "Cluster Computing",
+      "Process Automation"
+    ],
+    "data": "2026-04-13T00:00:00.000Z",
+    "ficheiro": "/certificados/introduction-to-shell/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/introduction-to-shell"
+  },
+  {
+    "titulo": "Machine Learning with Python",
+    "emissor": "FreeCodeCamp",
+    "imagem": "/certificados/machine-learning-with-python/imagem.png",
+    "aprendizado": "Desenvolvi competências práticas em Machine Learning através da construção de projetos em Python. Apliquei na prática algoritmos como regressão linear, regressão logística, K-nearest neighbors (KNN) e redes neurais. Consolidei o processo de ponta a ponta: desde a recolha de dados e pré-processamento, até ao treino de modelos e avaliação de resultados com métricas reais.",
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "Deep Learning",
+      "TensorFlow & Keras",
+      "Data Analysis",
+      "Natural Language Processing (NLP)",
+      "Computer Vision",
+      "Predictive Modeling",
+      "Recommender Systems",
+      "Data Visualization"
+    ],
+    "data": "2026-03-19T00:00:00.000Z",
+    "ficheiro": "/certificados/machine-learning-with-python/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/machine-learning-with-python"
+  },
+  {
+    "titulo": "MLOps Concepts",
+    "emissor": "DataCamp",
+    "imagem": "/certificados/ml-ops-concepts/imagem.png",
+    "aprendizado": "Compreendi os fundamentos de MLOps (Machine Learning Operations) e o ciclo de vida completo de modelos de machine learning. Explorei conceitos de integração contínua (CI), entrega contínua (CD) e treino contínuo (CT) aplicados a projetos de IA. Aprendi a importância da monitorização, governança, versionamento de dados e manutenção de modelos quando colocados em produção.",
+    "skills": [
+      "MLOps",
+      "Machine Learning Lifecycle Management",
+      "Machine Learning Automation",
+      "Model Deployment",
+      "Machine Learning Scalability",
+      "CI/CD Pipelines",
+      "Feature Stores",
+      "Experiment Tracking",
+      "Microservices",
+      "Containerization"
+    ],
+    "data": "2026-04-13T00:00:00.000Z",
+    "ficheiro": "/certificados/ml-ops-concepts/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/ml-ops-concepts"
+  },
+  {
+    "titulo": "Python Basics Test",
+    "emissor": "HackerRank",
+    "imagem": "/certificados/python-basics-test/imagem.png",
+    "aprendizado": "Validei os meus conhecimentos fundamentais na linguagem de programação Python e em lógica de programação. Demonstrei capacidade na resolução de problemas algorítmicos, manipulação de estruturas de dados essenciais (como listas, dicionários e conjuntos) e utilização eficiente de funções, ciclos (loops) e estruturas condicionais.",
+    "skills": [
+      "Python",
+      "Logic Programming",
+      "Problem Solving",
+      "Python Programming"
+    ],
+    "data": "2026-03-17T00:00:00.000Z",
+    "ficheiro": "/certificados/python-basics-test/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/python-basics-test"
   }
 ]

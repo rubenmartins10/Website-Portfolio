@@ -1,0 +1,18 @@
+titulo: Introduction to Deep Learning with Keras
+emissor: DataCamp
+imagem: /certificados/introduction-to-deep-learning-with-keras/imagem.png
+data: 2026-03-26
+aprendizado: >-
+  Adquiri conhecimentos práticos na construção e treino de redes neurais
+  artificiais utilizando a biblioteca Keras. Compreendi a arquitetura base de
+  modelos de deep learning, explorando o funcionamento de camadas densas,
+  funções de ativação e algoritmos de otimização. Testei a aplicação prática
+  destas redes na resolução de problemas complexos de classificação e regressão.
+skills:
+  - Deep Learning
+  - TensorFlow & Keras
+  - Artificial Neural Networks
+  - Python
+  - Predictive Modeling
+ficheiro: /certificados/introduction-to-deep-learning-with-keras/ficheiro.pdf
+categoria: data-ai

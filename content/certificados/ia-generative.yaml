@@ -1,0 +1,19 @@
+titulo: IA Generative
+emissor: Santander
+imagem: /certificados/ia-generative/imagem.png
+data: 2024-11-23
+aprendizado: >-
+  Explorei o potencial transformador da Inteligência Artificial Generativa e os
+  seus casos de uso atuais. Desenvolvi competências em Prompt Engineering,
+  aprendendo a interagir de forma estruturada e eficaz com Modelos de Linguagem
+  de Grande Escala (LLMs) para gerar conteúdos, código e automatizar processos.
+  Analisei ainda o impacto destas ferramentas na produtividade e inovação
+  digital.
+skills:
+  - GenAI
+  - Prompt Engineering
+  - LLMs
+  - Natural Language Processing (NLP)
+  - Process Automation
+ficheiro: /certificados/ia-generative/ficheiro.pdf
+categoria: data-ai
