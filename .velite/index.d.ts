@@ -6,3 +6,9 @@ type Collections = typeof __vc.collections
 
 export type Artigo = Collections['artigos']['schema']['_output']
 export declare const artigos: Artigo[]
+
+export type Projeto = Collections['projetos']['schema']['_output']
+export declare const projetos: Projeto[]
+
+export type Certificado = Collections['certificados']['schema']['_output']
+export declare const certificados: Certificado[]
