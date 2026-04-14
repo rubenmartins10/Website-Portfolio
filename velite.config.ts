@@ -1,4 +1,3 @@
-// velite.config.ts
 import { defineConfig, defineCollection, s } from 'velite'
 
 const artigos = defineCollection({
@@ -23,6 +22,7 @@ const projetos = defineCollection({
     data: s.isodate(),
     url: s.string().optional(),
     imagem: s.string(),
+    galeria: s.array(s.string()).default([]), // NOVO CAMPO PARA A GALERIA
     tecnologias: s.array(s.string()).default([]),
     destaque: s.boolean().default(false),
     slug: s.path(),
@@ -38,7 +38,7 @@ const certificados = defineCollection({
     emissor: s.string(),
     imagem: s.string().optional(),
     aprendizado: s.string().optional(),
-    skills: s.array(s.string()).default([]), // NOVO
+    skills: s.array(s.string()).default([]),
     data: s.isodate(),
     link: s.string().optional(),
     ficheiro: s.string(),

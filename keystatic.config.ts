@@ -1,4 +1,3 @@
-// keystatic.config.ts
 import { config, fields, collection } from '@keystatic/core'
 
 export default config({
@@ -28,12 +27,28 @@ export default config({
       schema: {
         nome: fields.slug({ name: { label: 'Nome do Projeto' } }),
         data: fields.date({ label: 'Data de Conclusão' }),
-        url: fields.text({ label: 'Link do Projeto (Opcional)', defaultValue: '' }),
+        url: fields.text({ label: 'Link do GitHub (Repositório)', defaultValue: '' }),
+        
+        // IMAGEM DE CAPA PRINCIPAL
         imagem: fields.image({
-          label: 'Capa do Projeto',
+          label: 'Capa do Projeto (Principal)',
           directory: 'public/projetos',
           publicPath: '/projetos/',
         }),
+
+        // NOVO: GALERIA DE FOTOS EXTRA
+        galeria: fields.array(
+          fields.image({
+            label: 'Fotografia de Exposição',
+            directory: 'public/projetos',
+            publicPath: '/projetos/',
+          }),
+          {
+            label: 'Galeria de Fotos (Opcional)',
+            itemLabel: props => props.value ? 'Foto Adicionada' : 'Nova Foto'
+          }
+        ),
+
         tecnologias: fields.array(fields.text({ label: 'Tecnologia' }), { label: 'Stack Tecnológica' }),
         destaque: fields.checkbox({ label: 'Destaque na Home', defaultValue: false }),
         descricao: fields.mdx({ label: 'Descrição Detalhada' }),
@@ -52,12 +67,7 @@ export default config({
           publicPath: '/certificados/',
         }),
         data: fields.date({ label: 'Data de Emissão' }),
-        aprendizado: fields.text({ 
-          label: 'O que aprendi no curso', 
-          multiline: true, 
-          defaultValue: '' 
-        }),
-        // NOVO: Campo para Skills
+        aprendizado: fields.text({ label: 'O que aprendi no curso', multiline: true, defaultValue: '' }),
         skills: fields.array(fields.text({ label: 'Skill (ex: React, Python)' }), {
           label: 'Skills Adquiridas',
           itemLabel: props => props.value

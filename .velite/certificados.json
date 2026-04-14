@@ -16,6 +16,54 @@
     "slug": "certificados/ai-fundamentals-with-ibm-skills-build"
   },
   {
+    "titulo": "Artificial Intelligence Fundamentals",
+    "emissor": "IBM",
+    "imagem": "/certificados/artificial-intelligence-fundamentals/imagem.png",
+    "aprendizado": "Explorei as principais capacidades e o impacto da Inteligência Artificial no mundo corporativo. Aprofundei o conhecimento sobre como a IA está a transformar diferentes indústrias através de aplicações do mundo real. Compreendi fundamentos de processamento de linguagem natural, visão computacional e os desafios éticos associados à adoção de soluções de IA em ambientes empresariais.",
+    "skills": [
+      "AI Capabilities",
+      "AI Applications",
+      "AI Ethics",
+      "Artificial Intelligence (AI)",
+      "Artificial Neural Networks",
+      "Chatbots",
+      "Computer Vision",
+      "Deep Learning",
+      "Machine Learning",
+      "Natural Language Processing (NLP)",
+      "PWID-B0133500",
+      "Watson Studio"
+    ],
+    "data": "2026-03-25T00:00:00.000Z",
+    "ficheiro": "/certificados/artificial-intelligence-fundamentals/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/artificial-intelligence-fundamentals"
+  },
+  {
+    "titulo": "Data Science Job Simulation",
+    "emissor": "BCG X",
+    "imagem": "/certificados/data-science-job-simulation/imagem.png",
+    "aprendizado": "Participei numa simulação prática de um projeto de Data Science da BCG X. Desenvolvi capacidades cruciais de compreensão de negócio (business understanding) e de comunicação com o cliente. Realizei análises exploratórias de dados (EDA), feature engineering e desenvolvi modelos preditivos, focando-me em traduzir resultados técnicos em insights estratégicos acionáveis para o cliente.",
+    "skills": [
+      "Business Understanding",
+      "Client Communication",
+      "Communication",
+      "Creativity",
+      "Data Visualization",
+      "Exploratory Data Analysis",
+      "Mathematical Modeling",
+      "Model Analysis",
+      "Model Assessment",
+      "Programming",
+      "Hypothesis Development",
+      "Information Synthesis"
+    ],
+    "data": "2026-03-17T00:00:00.000Z",
+    "ficheiro": "/certificados/data-science-job-simulation/ficheiro.pdf",
+    "categoria": "data-ai",
+    "slug": "certificados/data-science-job-simulation"
+  },
+  {
     "titulo": "Elements of IA",
     "emissor": "Nova SBE",
     "imagem": "/certificados/elements-of-ia/imagem.png",
