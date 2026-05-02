@@ -207,39 +207,51 @@ export default function HomePage() {
       {/* ================================================
           CAREER IMPACT
       ================================================ */}
-      <section id="experience" className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">CAREER IMPACT</div>
-            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
-              WORK EXPERIENCE
-            </h2>
-          </div>
+      <section id="experience" className="relative z-10 py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          {/* Heading with left accent bar — same as reference */}
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-16 flex items-center gap-4 uppercase tracking-widest">
+            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+            CAREER IMPACT
+          </h2>
 
-          <div className="flex flex-col gap-8">
+          {/* Vertical timeline */}
+          <div className="relative border-l-2 border-zinc-800 ml-4 md:ml-8">
             {timeline.map((entry) => (
-              <div
-                key={entry.role}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 hover:border-emerald-400/20 transition-all duration-300"
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                  <div>
-                    <h3 className="font-mono font-bold text-xl text-white mb-1">{entry.role}</h3>
-                    <p className="font-mono text-sm text-emerald-400 tracking-[0.1em]">{entry.company}</p>
-                    <p className="font-mono text-xs text-zinc-500 mt-0.5">{entry.location}</p>
+              <div key={entry.role} className="mb-12 relative pl-8 md:pl-12">
+                {/* Glowing dot */}
+                <div
+                  className="absolute w-5 h-5 rounded-full z-10 -left-[11px] top-1"
+                  style={{
+                    backgroundColor: "rgb(52, 211, 153)",
+                    boxShadow: "rgba(52, 211, 153, 0.5) 0px 0px 15px, rgba(52, 211, 153, 0.25) 0px 0px 30px",
+                    border: "3px solid #08090c",
+                  }}
+                />
+
+                {/* Card */}
+                <div className="bg-zinc-900/50 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/5 hover:-translate-y-1 transition-transform duration-300">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1">{entry.role}</h3>
+                      <p className="font-mono text-sm font-semibold tracking-widest uppercase text-emerald-400">
+                        {entry.company}
+                      </p>
+                      <p className="font-mono text-xs text-zinc-500 mt-0.5">{entry.location}</p>
+                    </div>
+                    <span className="font-mono text-xs text-zinc-400 border border-white/10 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 mt-2 md:mt-0">
+                      {entry.period}
+                    </span>
                   </div>
-                  <span className="font-mono text-xs text-zinc-500 border border-zinc-800 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0">
-                    {entry.period}
-                  </span>
+                  <ul className="space-y-3 mt-4 text-zinc-300">
+                    {entry.highlights.map((h) => (
+                      <li key={h} className="flex gap-3 text-sm md:text-base">
+                        <span className="text-emerald-400 shrink-0 mt-1">✦</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="flex flex-col gap-3">
-                  {entry.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-3 text-sm text-zinc-400">
-                      <span className="text-emerald-400 mt-0.5 shrink-0">✦</span>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
