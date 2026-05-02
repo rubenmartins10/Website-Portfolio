@@ -22,7 +22,7 @@ export default async function ProjetoDetalhePage({ params }: { params: Promise<{
   if (!projeto) notFound();
 
   return (
-    <article className="max-w-4xl mx-auto px-6 py-16 w-full">
+    <article className="max-w-4xl mx-auto px-6 py-28 w-full">
       <Link href="/projetos" className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors mb-10">
         &larr; Back to Projects
       </Link>

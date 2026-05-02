@@ -14,8 +14,8 @@ export default function CertificadosPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 w-full">
-      <header className="mb-14">
+    <div className="max-w-6xl mx-auto px-6 py-28 w-full">
+      <header className="mb-20">
         <p className="section-label mb-2">Education</p>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Certifications</h1>
         <p className="text-zinc-400 text-lg leading-relaxed max-w-3xl">

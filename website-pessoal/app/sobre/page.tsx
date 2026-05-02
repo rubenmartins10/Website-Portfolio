@@ -21,10 +21,10 @@ const skills = [
 export default function SobrePage() {
   return (
     <PageTransition>
-      <div className="max-w-5xl mx-auto px-6 py-16 w-full">
+      <div className="max-w-5xl mx-auto px-6 py-28 w-full">
 
         {/* Header */}
-        <FadeIn className="mb-14">
+        <FadeIn className="mb-20">
           <p className="section-label mb-2">About me</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
             I build software that<br className="hidden md:block" /> <span className="text-gradient">makes a difference.</span>
@@ -33,25 +33,26 @@ export default function SobrePage() {
         </FadeIn>
 
         {/* Main Bio + Photo */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-16">
-          <FadeIn delay={0.15} className="md:col-span-3 space-y-5 text-zinc-400 leading-relaxed">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-24">
+          <FadeIn delay={0.15} className="md:col-span-3 space-y-6 text-zinc-400 leading-relaxed text-[1.0625rem]">
             <p>
-              Sou o <strong className="text-white font-medium">Rúben Martins</strong>, finalista de{" "}
-              <strong className="text-white font-medium">Engenharia Informática</strong> e atleta federado. A combinação
-              de desporto de alta competição com a engenharia moldou a minha forma de trabalhar: rigorosa, orientada
-              para resultados e com foco na excelência contínua.
+              I&apos;m <strong className="text-white font-medium">Rúben Martins</strong>, a{" "}
+              <strong className="text-white font-medium">Computer Engineering</strong> finalist based in Trofa,
+              Portugal. Highly self-driven, with a results-oriented mindset and a strong commitment to continuous
+              improvement.
             </p>
             <p>
-              A minha principal área de interesse é <span className="text-emerald-400 font-medium">Data, AI e Machine
-              Learning</span>, onde uso <strong className="text-white font-medium">Python</strong> para construir
-              pipelines de dados e modelos que resolvem problemas reais. Complemento com desenvolvimento web full-stack
-              em <strong className="text-white font-medium">React, Next.js e Node.js</strong>, garantindo que soluções
-              técnicas chegam ao utilizador de forma intuitiva.
+              My main area of interest is{" "}
+              <span className="text-emerald-400 font-medium">Data, AI &amp; Machine Learning</span>, where I use{" "}
+              <strong className="text-white font-medium">Python</strong> to build data pipelines and models that solve
+              real-world problems. I complement this with full-stack web development using{" "}
+              <strong className="text-white font-medium">React, Next.js and Node.js</strong>, making sure technical
+              solutions reach users in an intuitive way.
             </p>
             <p>
-              Quando não estou a escrever código ou a treinar, estou a explorar novas tecnologias, a ler sobre sistemas
-              distribuídos ou a contribuir para projectos open-source. O meu objetivo é crescer para uma função de
-              engenharia onde posso ter impacto real desde o primeiro dia.
+              When I&apos;m not writing code, I&apos;m exploring new technologies, reading about distributed systems
+              or contributing to open-source projects. My goal is to grow into an engineering role where I can have
+              real impact from day one.
             </p>
           </FadeIn>
 
@@ -69,7 +70,7 @@ export default function SobrePage() {
         </div>
 
         {/* Skills Grid */}
-        <FadeIn delay={0.4} className="mb-16">
+        <FadeIn delay={0.4} className="mb-24">
           <p className="section-label mb-4">Skills</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {skills.map(group => (
@@ -89,7 +90,7 @@ export default function SobrePage() {
         </FadeIn>
 
         {/* Timeline — Education */}
-        <FadeIn delay={0.5} className="mb-16">
+        <FadeIn delay={0.5} className="mb-24">
           <p className="section-label mb-4">Background</p>
           <div className="space-y-4">
             {[

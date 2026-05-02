@@ -13,9 +13,9 @@ export default function ProjetosPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 w-full">
+    <div className="max-w-6xl mx-auto px-6 py-28 w-full">
       {/* Header */}
-      <header className="mb-14">
+      <header className="mb-20">
         <p className="section-label mb-2">Portfolio</p>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Projects</h1>
         <p className="text-zinc-400 text-lg max-w-2xl leading-relaxed">

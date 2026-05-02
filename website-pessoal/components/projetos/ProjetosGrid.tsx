@@ -27,6 +27,7 @@ type Projeto = {
   destaque: boolean;
   slug: string;
   descricao: string;
+  resumo?: string;
 };
 
 export default function ProjetosGrid({ projetos }: { projetos: Projeto[] }) {
@@ -64,9 +65,13 @@ export default function ProjetosGrid({ projetos }: { projetos: Projeto[] }) {
               </h2>
 
               {/* Apenas um "bocadinho" de texto */}
-              <div className="line-clamp-3 text-sm text-zinc-400 mb-6 prose prose-invert prose-p:m-0">
-                <MDXContent code={projeto.descricao} />
-              </div>
+              {projeto.resumo ? (
+                <p className="line-clamp-3 text-sm text-zinc-400 mb-6 leading-relaxed">{projeto.resumo}</p>
+              ) : (
+                <div className="line-clamp-3 text-sm text-zinc-400 mb-6 prose prose-invert prose-p:m-0">
+                  <MDXContent code={projeto.descricao} />
+                </div>
+              )}
 
               {/* Tecnologias */}
               {projeto.tecnologias && projeto.tecnologias.length > 0 && (
