@@ -45,16 +45,18 @@ const skillGroups = [
 
 const timeline = [
   {
-    role: "BSc Computer Engineering",
-    company: "Universidade do Minho",
-    period: "2022 – Present",
+    role: "Freelance Full-Stack Developer",
+    company: "MeClinic — Urgências Dentárias 24h",
+    location: "Vila Nova de Gaia",
+    period: "Sep 2025 – Present",
     highlights: [
-      "Specializing in Data Engineering, AI & Machine Learning.",
-      "Final year project: full-stack SaaS inventory management platform (MeClinic).",
-      "Key modules: Algorithms, Networks, Database Systems, AI, Software Engineering.",
+      "Developed a full-stack SaaS platform currently in use for internal clinic operations — reducing average stock update time by ~60%.",
+      "Built inventory control with barcode scanner support, real-time low-stock alerts, appointment scheduling and patient management.",
+      "Integrated billing & checkout, automated consumption reports and RBAC with GDPR compliance.",
+      "Architecture: three-tier model with JWT authentication, ACID transactional integrity. Stack: React, Node.js, PostgreSQL, REST API.",
     ],
   },
-];
+] as const;
 
 export default function HomePage() {
   const projetosMostrar = projetos.filter((p) => p.destaque).slice(0, 4);
@@ -203,13 +205,16 @@ export default function HomePage() {
       </section>
 
       {/* ================================================
-          EDUCATION & EXPERIENCE
+          CAREER IMPACT
       ================================================ */}
       <section id="experience" className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-mono font-bold text-2xl md:text-3xl text-white tracking-[0.08em] text-center mb-16">
-            EDUCATION &amp; EXPERIENCE
-          </h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-16 text-center">
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">CAREER IMPACT</div>
+            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
+              WORK EXPERIENCE
+            </h2>
+          </div>
 
           <div className="flex flex-col gap-8">
             {timeline.map((entry) => (
@@ -217,16 +222,17 @@ export default function HomePage() {
                 key={entry.role}
                 className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 hover:border-emerald-400/20 transition-all duration-300"
               >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-5">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
                   <div>
-                    <h3 className="font-mono font-bold text-lg text-emerald-400">{entry.role}</h3>
-                    <p className="font-mono text-sm text-zinc-400">{entry.company}</p>
+                    <h3 className="font-mono font-bold text-xl text-white mb-1">{entry.role}</h3>
+                    <p className="font-mono text-sm text-emerald-400 tracking-[0.1em]">{entry.company}</p>
+                    <p className="font-mono text-xs text-zinc-500 mt-0.5">{entry.location}</p>
                   </div>
-                  <span className="font-mono text-xs text-zinc-600 border border-zinc-800 px-3 py-1.5 rounded-full self-start md:self-auto">
+                  <span className="font-mono text-xs text-zinc-500 border border-zinc-800 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0">
                     {entry.period}
                   </span>
                 </div>
-                <ul className="flex flex-col gap-2.5">
+                <ul className="flex flex-col gap-3">
                   {entry.highlights.map((h) => (
                     <li key={h} className="flex items-start gap-3 text-sm text-zinc-400">
                       <span className="text-emerald-400 mt-0.5 shrink-0">✦</span>
@@ -245,11 +251,11 @@ export default function HomePage() {
       ================================================ */}
       <section id="projects" className="relative z-10 py-28 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-mono font-bold text-2xl md:text-3xl text-white tracking-[0.08em] mb-3">
-              Featured Projects
+          <div className="mb-16 text-center">
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">FEATURED PROJECTS</div>
+            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
+              MY LATEST WORK
             </h2>
-            <p className="font-mono text-xs text-zinc-500 tracking-[0.2em]">My latest work</p>
           </div>
 
           <div className="flex flex-col gap-14">
@@ -340,12 +346,16 @@ export default function HomePage() {
           HIGHLIGHTS / CREDIBILITY
       ================================================ */}
       <section className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-mono font-bold text-2xl md:text-3xl text-white tracking-[0.08em] text-center mb-16">
-            HIGHLIGHTS
-          </h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-16 text-center">
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">CREDIBILITY</div>
+            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
+              HIGHLIGHTS
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
             {highlights.map((h) => (
               <div
                 key={h.label}
@@ -365,12 +375,15 @@ export default function HomePage() {
           SKILLS & EXPERTISE
       ================================================ */}
       <section id="skills" className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-mono font-bold text-2xl md:text-3xl text-white tracking-[0.08em] text-center mb-16">
-            Skills &amp; Expertise
-          </h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-16 text-center">
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">EXPERTISE</div>
+            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
+              SKILLS &amp; TOOLS
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {skillGroups.map((group) => (
               <div key={group.category}>
                 <h3 className="font-mono font-bold text-sm text-emerald-400 tracking-[0.15em] mb-6 pb-3 border-b border-emerald-400/20">
@@ -403,10 +416,13 @@ export default function HomePage() {
       ================================================ */}
       {artigosRecentes.length > 0 && (
         <section className="relative z-10 py-28 px-6 border-t border-white/5">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-mono font-bold text-2xl md:text-3xl text-white tracking-[0.08em] text-center mb-16">
-              Recent Articles
-            </h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-16 text-center">
+              <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">ARTICLES</div>
+              <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
+                RECENT WRITING
+              </h2>
+            </div>
 
             <div className="flex flex-col gap-px">
               {artigosRecentes.map((artigo, i) => (

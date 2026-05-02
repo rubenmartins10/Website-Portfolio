@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CustomCursor from "../components/animations/CustomCursor";
+import GreenTrail from "../components/animations/GreenTrail";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceMono = Space_Mono({
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceMono.variable} bg-[#08090c] text-zinc-100 min-h-screen flex flex-col`}>
         {/* Cursor importado normalmente. Como tem 'use client' lá dentro, o GSAP só corre no browser! */}
         <CustomCursor />
+        <GreenTrail />
         
         <Navbar />
         
