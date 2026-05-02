@@ -1,0 +1,23 @@
+titulo: Machine Learning with Python
+emissor: FreeCodeCamp
+imagem: /certificados/machine-learning-with-python/imagem.png
+data: 2026-03-19
+aprendizado: >-
+  Desenvolvi competências práticas em Machine Learning através da construção de
+  projetos em Python. Apliquei na prática algoritmos como regressão linear,
+  regressão logística, K-nearest neighbors (KNN) e redes neurais. Consolidei o
+  processo de ponta a ponta: desde a recolha de dados e pré-processamento, até
+  ao treino de modelos e avaliação de resultados com métricas reais.
+skills:
+  - Python
+  - Machine Learning
+  - Deep Learning
+  - TensorFlow & Keras
+  - Data Analysis
+  - Natural Language Processing (NLP)
+  - Computer Vision
+  - Predictive Modeling
+  - Recommender Systems
+  - Data Visualization
+ficheiro: /certificados/machine-learning-with-python/ficheiro.pdf
+categoria: data-ai

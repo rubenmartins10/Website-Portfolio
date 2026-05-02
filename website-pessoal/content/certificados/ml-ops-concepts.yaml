@@ -1,0 +1,23 @@
+titulo: MLOps Concepts
+emissor: DataCamp
+imagem: /certificados/ml-ops-concepts/imagem.png
+data: 2026-04-13
+aprendizado: >-
+  Compreendi os fundamentos de MLOps (Machine Learning Operations) e o ciclo de
+  vida completo de modelos de machine learning. Explorei conceitos de integração
+  contínua (CI), entrega contínua (CD) e treino contínuo (CT) aplicados a
+  projetos de IA. Aprendi a importância da monitorização, governança,
+  versionamento de dados e manutenção de modelos quando colocados em produção.
+skills:
+  - MLOps
+  - Machine Learning Lifecycle Management
+  - Machine Learning Automation
+  - Model Deployment
+  - Machine Learning Scalability
+  - CI/CD Pipelines
+  - Feature Stores
+  - Experiment Tracking
+  - Microservices
+  - Containerization
+ficheiro: /certificados/ml-ops-concepts/ficheiro.pdf
+categoria: data-ai
