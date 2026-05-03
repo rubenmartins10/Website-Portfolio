@@ -26,14 +26,14 @@ const PROJECT_METRICS: Record<
     stat: "~60%",
     label: "FASTER INVENTORY",
     sublabel: "Average stock update time reduced",
-    gradient: "from-emerald-600/30 via-emerald-900/60 to-zinc-950",
+    gradient: "from-emerald-500/50 via-emerald-800/70 to-emerald-950",
     icon: "📦",
   },
   "incorrupt-tamper-proof-evidence-auditing": {
     stat: "3",
     label: "ISOLATED AUDIT NODES",
     sublabel: "No single point of failure",
-    gradient: "from-violet-600/30 via-violet-900/60 to-zinc-950",
+    gradient: "from-violet-500/50 via-violet-800/70 to-emerald-950",
     icon: "🔒",
   },
 };
@@ -42,7 +42,7 @@ const DEFAULT_METRIC = {
   stat: "✦",
   label: "FEATURED PROJECT",
   sublabel: "Production ready",
-  gradient: "from-zinc-700/30 via-zinc-900/60 to-zinc-950",
+  gradient: "from-emerald-700/40 via-emerald-900/60 to-emerald-950",
   icon: "🚀",
 };
 
@@ -157,7 +157,7 @@ export default function ProjectsCarousel({
       </div>
 
       {/* Card */}
-      <div className="relative overflow-hidden rounded-2xl border border-zinc-700/40 bg-zinc-900/60 backdrop-blur-sm shadow-2xl min-h-[420px]">
+      <div className="relative overflow-hidden rounded-2xl border border-emerald-800/40 bg-emerald-950/80 backdrop-blur-sm shadow-2xl min-h-[420px]">
         <AnimatePresence custom={direction.current} mode="wait">
           <motion.div
             key={projeto.slug}

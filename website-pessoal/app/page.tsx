@@ -110,9 +110,7 @@ const timeline = [
 
 export default function HomePage() {
   const skillData = computeSkillScores();
-  const projetosMostrar = projetos.filter((p) => p.destaque).slice(0, 3);
-  const projetosFallback =
-    projetosMostrar.length > 0 ? projetosMostrar : projetos.slice(0, 3);
+  const projetosFallback = projetos.slice(0, 6);
   const artigosRecentes = [...artigos]
     .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
     .slice(0, 3);
