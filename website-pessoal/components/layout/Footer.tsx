@@ -63,7 +63,11 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="w-full border-t border-white/[0.06] mt-24">
+    <footer className="w-full border-t border-white/[0.06] mt-24 relative overflow-hidden">
+      {/* Ambient green glow — replicates the cursor trail feel */}
+      <div className="absolute -top-32 left-1/4 w-96 h-96 rounded-full bg-emerald-500/6 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full bg-emerald-400/5 blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-40 rounded-full bg-emerald-600/4 blur-[60px] pointer-events-none" />
       <div className="max-w-6xl mx-auto px-6 py-20">
 
         {/* Section Header */}

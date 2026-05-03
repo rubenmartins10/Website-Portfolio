@@ -6,6 +6,7 @@ import StarfieldCanvas from "@/components/home/StarfieldCanvas";
 import TypewriterText from "@/components/home/TypewriterText";
 import GlobeDome3D from "@/components/home/GlobeDome3D";
 import SkillCategoryCard from "@/components/ui/SkillBar";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Rúben Martins | Junior Engineer",
@@ -300,7 +301,10 @@ export default function HomePage() {
                   }}
                 />
 
-                <div className="bg-emerald-950/40 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-emerald-800/20 hover:-translate-y-1 transition-transform duration-300">
+                <div className="bg-emerald-950/40 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-emerald-800/20 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+                  {/* Green radial glow — like the blue comet in reference */}
+                  <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-emerald-400/8 blur-3xl pointer-events-none" />
+                  <div className="absolute top-1/2 right-8 w-28 h-28 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1">
@@ -578,6 +582,8 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      <Footer />
     </>
   );
 }

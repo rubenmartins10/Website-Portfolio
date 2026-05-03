@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
 import CustomCursor from "../components/animations/CustomCursor";
 import GreenTrail from "../components/animations/GreenTrail";
 
@@ -36,7 +35,6 @@ export default function RootLayout({
           {children}
         </main>
         
-        <Footer />
       </body>
     </html>
   );
