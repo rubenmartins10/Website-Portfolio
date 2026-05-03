@@ -1,6 +1,3 @@
 {
-  "buildCommand": "cd website-pessoal && npm install && npm run build",
-  "outputDirectory": "website-pessoal/.next",
-  "installCommand": "cd website-pessoal && npm install",
   "framework": "nextjs"
 }
