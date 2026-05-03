@@ -2,20 +2,89 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import StarfieldCanvas from "@/components/home/StarfieldCanvas";
+import SkillBar from "@/components/ui/SkillBar";
+import { projetos, certificados } from "#site/content";
 
 export const metadata: Metadata = {
   title: "About | Rúben Martins",
   description: "Learn more about my background and the technologies I work with.",
 };
 
-const skills = [
-  { category: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
-  { category: "Backend", items: ["Node.js", "Express", "Java", "PHP"] },
-  { category: "Data & AI", items: ["Python", "Machine Learning", "PostgreSQL", "SQL"] },
-  { category: "Tools", items: ["Git", "Figma", "Supabase", "Docker"] },
+// ── Skill categories: keywords for matching + fixed display tags ──────────────
+const SKILL_CATEGORIES = [
+  {
+    label: "AI & Machine Learning",
+    keywords: ["python", "machine learning", "deep learning", "keras", "tensorflow", "pytorch",
+      "scikit", "pandas", "numpy", "nlp", "natural language", "computer vision",
+      "neural", "data analysis", "predictive", "recommender", "mlops", "reinforcement",
+      "artificial intelligence", "generative", "llm", "model deployment",
+      "machine learning lifecycle", "experiment tracking", "feature stores", "ml"],
+    displaySkills: ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "Keras", "MLOps", "NLP", "Computer Vision"],
+  },
+  {
+    label: "Web Development",
+    keywords: ["react", "next.js", "typescript", "javascript", "node.js", "express",
+      "php", "java", "tailwind", "html", "css", "context api", "react router",
+      "redux", "graphql", "rest", "websocket", "web", "frontend", "backend"],
+    displaySkills: ["React", "Next.js", "TypeScript", "Node.js", "Express", "JavaScript", "Tailwind CSS"],
+  },
+  {
+    label: "Data & Analytics",
+    keywords: ["postgresql", "sql", "mongodb", "supabase", "mysql", "sqlite", "database",
+      "data visualization", "analytics", "data science", "data engineering",
+      "etl", "pipeline", "cloud computing", "cluster computing", "microservices"],
+    displaySkills: ["PostgreSQL", "SQL", "Python", "Data Science", "Pandas", "NumPy", "Data Visualization"],
+  },
+  {
+    label: "Tools & Technologies",
+    keywords: ["git", "docker", "figma", "jwt", "rbac", "helmet", "linux", "unix",
+      "bash", "nginx", "aws", "azure", "shell", "cli", "jspdf", "pdf",
+      "security", "ci/cd", "task automation", "shell scripting", "process automation",
+      "model deployment", "microservices", "nodemailer"],
+    displaySkills: ["Git", "Docker", "Unix / CLI", "JWT", "REST API", "CI/CD", "Figma"],
+  },
 ];
 
+function computeSkillScores() {
+  const scores: Record<string, number> = {};
+  for (const cat of SKILL_CATEGORIES) scores[cat.label] = 0;
+
+  // Project technologies — each match = 3 pts
+  for (const projeto of projetos) {
+    for (const tech of projeto.tecnologias ?? []) {
+      const t = tech.toLowerCase();
+      for (const cat of SKILL_CATEGORIES) {
+        if (cat.keywords.some((kw) => t.includes(kw))) {
+          scores[cat.label] += 3;
+        }
+      }
+    }
+  }
+
+  // Certification skills — each match = 1 pt
+  for (const cert of certificados) {
+    for (const skill of cert.skills ?? []) {
+      const s = skill.toLowerCase();
+      for (const cat of SKILL_CATEGORIES) {
+        if (cat.keywords.some((kw) => s.includes(kw))) {
+          scores[cat.label] += 1;
+        }
+      }
+    }
+  }
+
+  // Normalise: highest score → 95%, rest proportional, minimum 28%
+  const maxScore = Math.max(...Object.values(scores), 1);
+  const result: Record<string, number> = {};
+  for (const [label, score] of Object.entries(scores)) {
+    result[label] = Math.min(95, Math.round(28 + (score / maxScore) * 67));
+  }
+  return result;
+}
+
 export default function SobrePage() {
+  const scores = computeSkillScores();
+
   return (
     <>
       <StarfieldCanvas />
@@ -70,22 +139,20 @@ export default function SobrePage() {
           </div>
         </div>
 
-        {/* Skills Grid */}
+        {/* Skills & Expertise */}
         <section className="mb-24">
-          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-6">TECH STACK</div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {skills.map(group => (
-              <div key={group.category} className="rounded-2xl border border-white/5 bg-white/2 p-5 hover:border-emerald-400/20 transition-colors">
-                <h3 className="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-3">{group.category}</h3>
-                <ul className="space-y-1.5">
-                  {group.items.map(item => (
-                    <li key={item} className="font-mono text-xs text-zinc-300 flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full bg-emerald-400 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-2">SKILLS &amp; EXPERTISE</div>
+          <p className="font-mono text-zinc-600 text-[11px] tracking-wide mb-8">
+            Percentages computed from technologies used across projects and certifications.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {SKILL_CATEGORIES.map((cat) => (
+              <SkillBar
+                key={cat.label}
+                label={cat.label}
+                percent={scores[cat.label]}
+                skills={cat.displaySkills}
+              />
             ))}
           </div>
         </section>
