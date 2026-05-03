@@ -24,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${spaceMono.variable} bg-[#08090c] text-zinc-100 min-h-screen flex flex-col`}>
+    <html lang="en" className="dark overflow-x-hidden">
+      <body className={`${inter.variable} ${spaceMono.variable} bg-zinc-950 text-zinc-100 min-h-screen flex flex-col overflow-x-hidden`}>
         {/* Cursor importado normalmente. Como tem 'use client' lá dentro, o GSAP só corre no browser! */}
         <CustomCursor />
         <GreenTrail />

@@ -1,6 +1,7 @@
 ﻿import { projetos } from "#site/content";
 import { Metadata } from "next";
 import ProjetosGrid from "@/components/projetos/ProjetosGrid";
+import StarfieldCanvas from "@/components/home/StarfieldCanvas";
 
 export const metadata: Metadata = {
   title: "Projects | Rúben Martins",
@@ -13,30 +14,30 @@ export default function ProjetosPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-28 w-full">
-      {/* Header */}
-      <header className="mb-20">
-        <p className="section-label mb-2">Portfolio</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Projects</h1>
-        <p className="text-zinc-400 text-lg max-w-2xl leading-relaxed">
-          Real-world applications, full-stack systems and technical challenges. Click a project to see the gallery,
-          technologies and full details.
-        </p>
-        <div className="glow-line w-20 mt-6" />
-      </header>
+    <>
+      <StarfieldCanvas />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28 w-full">
+        {/* Header */}
+        <header className="mb-20">
+          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">PORTFOLIO</div>
+          <h1 className="font-mono font-black text-white text-3xl md:text-5xl uppercase tracking-widest mb-6 flex items-center gap-4">
+            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+            MY PROJECTS
+          </h1>
+          <p className="text-zinc-400 text-sm md:text-base max-w-2xl leading-relaxed font-mono">
+            Real-world applications, full-stack systems and technical challenges.
+            Click a project to see the gallery, technologies and full details.
+          </p>
+        </header>
 
-      {projetosOrdenados.length === 0 ? (
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-16 text-center">
-          <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-            </svg>
+        {projetosOrdenados.length === 0 ? (
+          <div className="rounded-2xl border border-white/5 bg-white/2 p-16 text-center">
+            <p className="font-mono text-zinc-500 text-xs tracking-widest">NO PROJECTS ADDED YET</p>
           </div>
-          <p className="text-zinc-500 text-sm">No projects added yet.</p>
-        </div>
-      ) : (
-        <ProjetosGrid projetos={projetosOrdenados} />
-      )}
-    </div>
+        ) : (
+          <ProjetosGrid projetos={projetosOrdenados} />
+        )}
+      </div>
+    </>
   );
 }

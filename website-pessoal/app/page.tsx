@@ -135,13 +135,12 @@ export default function HomePage() {
 
         {/* 3-D Globe dome — full-width, sits right below photo */}
         <div
-          className="relative w-screen pointer-events-none select-none z-0 overflow-hidden"
+          className="relative w-full pointer-events-none select-none z-0 overflow-hidden"
           style={{ height: "280px", marginTop: "-55px" }}
         >
           <div style={{ position: 'absolute', top: '-160px', left: 0, right: 0, height: '440px' }}>
             <GlobeDome3D />
           </div>
-          {/* Fade-out gradient so dome blends into bg */}
           <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-zinc-950 to-transparent" />
         </div>
 
