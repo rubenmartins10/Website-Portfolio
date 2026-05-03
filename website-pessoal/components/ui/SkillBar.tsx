@@ -23,23 +23,24 @@ function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
   }, []);
 
   return (
-    <div ref={ref} className="mb-10">
-      <h3 className="font-mono text-sm text-emerald-400 tracking-[0.25em] uppercase mb-5 pb-2 border-b border-white/6">
-        {category}
-      </h3>
+    <div
+      ref={ref}
+      className="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 hover:border-emerald-400/25 transition-colors"
+    >
+      <h3 className="font-mono text-sm font-bold text-emerald-400 mb-6">{category}</h3>
       <div className="space-y-4">
         {skills.map(({ name, percent }, idx) => (
           <div key={name}>
             <div className="flex items-center justify-between mb-1.5">
               <span className="font-mono text-xs text-zinc-300">{name}</span>
-              <span className="font-mono text-xs text-zinc-500 tabular-nums">{percent}%</span>
+              <span className="font-mono text-xs font-bold text-emerald-400 tabular-nums">{percent}%</span>
             </div>
-            <div className="h-px bg-white/8 rounded-full overflow-hidden">
+            <div className="h-0.5 bg-white/6 rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-700 ease-out"
                 style={{
                   width: animated ? `${percent}%` : "0%",
-                  transitionDelay: `${idx * 70}ms`,
+                  transitionDelay: `${idx * 60}ms`,
                   background: "linear-gradient(90deg, #34d399, #6ee7b7)",
                 }}
               />

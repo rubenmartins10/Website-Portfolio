@@ -149,25 +149,14 @@ export default function SobrePage() {
           <p className="font-mono text-zinc-600 text-[11px] tracking-wide mb-8">
             Percentages computed from technologies used across projects and certifications.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
-            <div>
-              {skillData.slice(0, 2).map((cat) => (
-                <SkillCategoryCard
-                  key={cat.category}
-                  category={cat.category}
-                  skills={cat.skills}
-                />
-              ))}
-            </div>
-            <div>
-              {skillData.slice(2, 4).map((cat) => (
-                <SkillCategoryCard
-                  key={cat.category}
-                  category={cat.category}
-                  skills={cat.skills}
-                />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {skillData.map((cat) => (
+              <SkillCategoryCard
+                key={cat.category}
+                category={cat.category}
+                skills={cat.skills}
+              />
+            ))}
           </div>
         </section>
 
