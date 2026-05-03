@@ -5,7 +5,7 @@ import { projetos, artigos, certificados } from "@/.velite";
 import StarfieldCanvas from "@/components/home/StarfieldCanvas";
 import TypewriterText from "@/components/home/TypewriterText";
 import GlobeDome3D from "@/components/home/GlobeDome3D";
-import ProjectsCarousel from "@/components/projetos/ProjectsCarousel";
+import SkillCategoryCard from "@/components/ui/SkillBar";
 
 export const metadata: Metadata = {
   title: "Rúben Martins | Junior Engineer",
@@ -13,38 +13,81 @@ export const metadata: Metadata = {
     "Rúben Martins' professional portfolio — Junior Engineer specializing in Data, AI & ML.",
 };
 
-const skillGroups = [
+const SKILL_CATEGORIES = [
   {
-    category: "Data & AI",
+    category: "AI & Machine Learning",
     skills: [
-      { name: "Python", level: 85 },
-      { name: "Machine Learning", level: 72 },
-      { name: "Data Analysis", level: 80 },
-      { name: "TensorFlow / Keras", level: 65 },
-      { name: "SQL / PostgreSQL", level: 80 },
+      { name: "Python",           keywords: ["python"] },
+      { name: "Machine Learning", keywords: ["machine learning", "ml", "predictive", "scikit", "regression", "classification"] },
+      { name: "Deep Learning",    keywords: ["deep learning", "neural", "keras", "tensorflow", "pytorch"] },
+      { name: "Data Analysis",    keywords: ["data analysis", "exploratory data analysis", "eda", "pandas", "numpy", "mathematical modeling"] },
+      { name: "NLP",              keywords: ["natural language processing", "nlp", "chatbot", "text"] },
+      { name: "Computer Vision",  keywords: ["computer vision", "image", "opencv"] },
+      { name: "MLOps",            keywords: ["mlops", "model deployment", "experiment tracking", "ci/cd", "machine learning lifecycle"] },
     ],
   },
   {
     category: "Web Development",
     skills: [
-      { name: "React / Next.js", level: 85 },
-      { name: "TypeScript", level: 80 },
-      { name: "Node.js / Express", level: 75 },
-      { name: "PHP", level: 60 },
-      { name: "Tailwind CSS", level: 90 },
+      { name: "React / Next.js",  keywords: ["react", "next.js", "nextjs"] },
+      { name: "TypeScript",       keywords: ["typescript"] },
+      { name: "Node.js / Express",keywords: ["node.js", "express"] },
+      { name: "JavaScript",       keywords: ["javascript", "js"] },
+      { name: "Tailwind CSS",     keywords: ["tailwind"] },
+      { name: "PHP",              keywords: ["php"] },
+      { name: "Java",             keywords: ["java"] },
     ],
   },
   {
-    category: "Tools & Systems",
+    category: "Data & Analytics",
     skills: [
-      { name: "Git / GitHub", level: 88 },
-      { name: "Linux / Shell", level: 65 },
-      { name: "Java", level: 70 },
-      { name: "C / C++", level: 60 },
-      { name: "Figma", level: 68 },
+      { name: "SQL / PostgreSQL",    keywords: ["postgresql", "sql", "mysql", "sqlite"] },
+      { name: "Data Visualization",  keywords: ["data visualization", "visualization", "dashboard"] },
+      { name: "Data Science",        keywords: ["data science", "data engineering", "business understanding", "model analysis"] },
+      { name: "EDA",                 keywords: ["exploratory data analysis", "eda", "hypothesis"] },
+      { name: "Pandas / NumPy",      keywords: ["pandas", "numpy"] },
+      { name: "MongoDB",             keywords: ["mongodb", "supabase", "database", "nosql"] },
+    ],
+  },
+  {
+    category: "Tools & Technologies",
+    skills: [
+      { name: "Git / GitHub",  keywords: ["git"] },
+      { name: "Linux / Shell", keywords: ["unix", "linux", "shell", "cli", "bash", "task automation"] },
+      { name: "Docker",        keywords: ["docker", "container"] },
+      { name: "Security",      keywords: ["jwt", "rbac", "helmet", "gdpr", "security", "authentication"] },
+      { name: "Figma",         keywords: ["figma"] },
+      { name: "REST / API",    keywords: ["rest", "api", "http", "nodemailer"] },
+      { name: "CI/CD",         keywords: ["ci/cd", "pipeline", "microservices"] },
     ],
   },
 ];
+
+function computeSkillScores() {
+  const projectTechs: string[] = projetos.flatMap((p) =>
+    (p.tecnologias ?? []).map((t) => t.toLowerCase())
+  );
+  const certSkills: string[] = certificados.flatMap((c) =>
+    (c.skills ?? []).map((s: string) => s.toLowerCase())
+  );
+
+  return SKILL_CATEGORIES.map(({ category, skills }) => {
+    const scored = skills.map(({ name, keywords }) => {
+      let pts = 0;
+      for (const kw of keywords) {
+        pts += projectTechs.filter((t) => t.includes(kw)).length * 3;
+        pts += certSkills.filter((s) => s.includes(kw)).length * 1;
+      }
+      return { name, pts };
+    });
+    const maxPts = Math.max(...scored.map((s) => s.pts), 1);
+    const withPercent = scored.map(({ name, pts }) => ({
+      name,
+      percent: pts === 0 ? 30 : Math.min(95, Math.round(40 + (pts / maxPts) * 55)),
+    }));
+    return { category, skills: withPercent };
+  });
+}
 
 const timeline = [
   {
@@ -62,9 +105,10 @@ const timeline = [
 ] as const;
 
 export default function HomePage() {
-  const projetosMostrar = projetos.filter((p) => p.destaque).slice(0, 4);
+  const skillData = computeSkillScores();
+  const projetosMostrar = projetos.filter((p) => p.destaque).slice(0, 3);
   const projetosFallback =
-    projetosMostrar.length > 0 ? projetosMostrar : projetos.slice(0, 4);
+    projetosMostrar.length > 0 ? projetosMostrar : projetos.slice(0, 3);
   const artigosRecentes = [...artigos]
     .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
     .slice(0, 3);
@@ -297,19 +341,115 @@ export default function HomePage() {
         id="projects"
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">
-              FEATURED PROJECTS
-            </div>
-            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
-              MY LATEST WORK
-            </h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-8">
+            FEATURED PROJECTS
           </div>
 
-          <ProjectsCarousel projetos={projetosFallback} />
+          <div className="space-y-8">
+            {projetosFallback.map((projeto) => (
+              <div
+                key={projeto.slug}
+                className="group border border-sky-900/40 rounded-2xl bg-[#0c1827] hover:border-cyan-500/30 transition-all duration-300 overflow-hidden shadow-xl"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-5 min-h-[380px]">
+                  {/* LEFT */}
+                  <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">
+                          {new Date(projeto.data).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+                        </span>
+                        {projeto.destaque && (
+                          <span className="font-mono text-[10px] text-cyan-400 border border-cyan-400/25 bg-cyan-400/8 px-2.5 py-0.5 rounded-full tracking-widest uppercase">
+                            ★ FEATURED
+                          </span>
+                        )}
+                      </div>
+                      <h2 className="font-bold text-cyan-400 text-2xl md:text-3xl mb-2 leading-tight">
+                        {projeto.nome}
+                      </h2>
+                      {projeto.resumo && (
+                        <p className="text-zinc-300 text-sm leading-relaxed mb-6 max-w-lg">
+                          {projeto.resumo}
+                        </p>
+                      )}
+                      {projeto.conquistas?.length > 0 && (
+                        <div className="mb-6">
+                          <div className="flex items-center gap-2 mb-3">
+                            <svg className="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                            <span className="font-mono text-[10px] text-cyan-400 tracking-[0.3em] uppercase font-bold">Key Achievements</span>
+                          </div>
+                          <ul className="space-y-2">
+                            {projeto.conquistas.map((c, i) => (
+                              <li key={i} className="flex items-start gap-2 text-zinc-300 text-xs leading-relaxed">
+                                <svg className="w-3.5 h-3.5 text-cyan-400 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                </svg>
+                                {c}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      {projeto.tecnologias?.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 mb-6">
+                          {projeto.tecnologias.map((tech) => (
+                            <span key={tech} className="font-mono text-[10px] text-zinc-300 border border-zinc-600/50 bg-zinc-800/50 px-3 py-1 rounded-full tracking-wide">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <div className="flex flex-wrap gap-3">
+                        {projeto.url && (
+                          <a
+                            href={projeto.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-xs text-zinc-950 bg-cyan-400 hover:bg-cyan-300 px-6 py-2.5 rounded-full font-bold tracking-widest uppercase transition-colors flex items-center gap-2"
+                          >
+                            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            CODE
+                          </a>
+                        )}
+                        <Link
+                          href={`/projetos/${projeto.slug}`}
+                          className="font-mono text-xs text-zinc-300 border border-zinc-600/50 hover:border-cyan-400/40 hover:text-cyan-300 px-6 py-2.5 rounded-full tracking-widest uppercase transition-colors"
+                        >
+                          DETAILS →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  {/* RIGHT — image */}
+                  <div className="md:col-span-2 relative min-h-[200px] md:min-h-0 overflow-hidden">
+                    {projeto.imagem ? (
+                      <Image
+                        src={projeto.imagem}
+                        alt={projeto.nome}
+                        fill
+                        className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-zinc-950 flex items-center justify-center">
+                        <span className="font-mono text-xs text-zinc-700 tracking-widest">NO IMAGE</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-linear-to-r from-[#0c1827]/70 via-transparent to-transparent" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-10">
             <Link
               href="/projetos"
               className="font-mono text-xs text-zinc-500 hover:text-emerald-400 tracking-[0.25em] transition-colors duration-200"
@@ -366,55 +506,21 @@ export default function HomePage() {
         id="skills"
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">
-              EXPERTISE
-            </div>
-            <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
-              SKILLS &amp; TOOLS
-            </h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-2">
+            SKILLS &amp; EXPERTISE
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {skillGroups.map((group) => {
-              const gradients: Record<string, { from: string; to: string; bar: string }> = {
-                'Data & AI': { from: '#34d399', to: '#22d3ee', bar: 'linear-gradient(90deg,#34d399,#22d3ee)' },
-                'Web Development': { from: '#60a5fa', to: '#34d399', bar: 'linear-gradient(90deg,#60a5fa,#34d399)' },
-                'Tools & Systems': { from: '#c084fc', to: '#f472b6', bar: 'linear-gradient(90deg,#c084fc,#f472b6)' },
-              }
-              const g = gradients[group.category] ?? { from: '#34d399', to: '#34d399', bar: 'linear-gradient(90deg,#34d399,#34d399)' }
-              return (
-              <div key={group.category}>
-                <h3
-                  className="font-mono font-bold text-sm tracking-[0.15em] mb-6 pb-3 border-b border-white/10"
-                  style={{ background: `linear-gradient(90deg,${g.from},${g.to})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-                >
-                  {group.category}
-                </h3>
-                <div className="flex flex-col gap-5">
-                  {group.skills.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-1.5">
-                        <span className="font-mono text-xs text-zinc-300">
-                          {skill.name}
-                        </span>
-                        <span className="font-mono text-xs text-zinc-500">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                        <div
-                          className="h-2 rounded-full"
-                          style={{ width: `${skill.level}%`, background: g.bar }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              )
-            })}
+          <p className="font-mono text-zinc-600 text-[11px] tracking-wide mb-8">
+            Percentages computed from technologies used across projects and certifications.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {skillData.map((cat) => (
+              <SkillCategoryCard
+                key={cat.category}
+                category={cat.category}
+                skills={cat.skills}
+              />
+            ))}
           </div>
         </div>
       </section>
