@@ -157,42 +157,36 @@ export default function HomePage() {
         className="relative min-h-screen flex flex-col items-center overflow-hidden pt-24 md:pt-28 pb-0"
       >
         {/* SYSTEM ONLINE */}
-        <div className="flex items-center gap-2.5 px-5 py-2 border border-emerald-400/40 rounded-full font-mono text-xs tracking-[0.25em] text-emerald-400 mb-8 bg-emerald-400/5 z-10 animate-fade-in">
+        <div className="flex items-center gap-2.5 px-5 py-2 border border-emerald-400/20 rounded-full font-mono text-xs tracking-[0.25em] text-emerald-400 mb-8 bg-emerald-400/3 z-10 animate-fade-in">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           SYSTEM ONLINE
         </div>
 
-        {/* Circular profile photo */}
-        <div className="relative z-10 mb-0">
-          {/* Ambient glow */}
-          <div className="absolute inset-0 w-full h-full rounded-full bg-emerald-500/20 blur-3xl scale-150 pointer-events-none" />
-          <div className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full ring-2 ring-emerald-400/60 ring-offset-4 ring-offset-zinc-950 overflow-hidden shadow-2xl shadow-emerald-500/30">
+        {/* Profile photo + full-sphere globe */}
+        <div className="relative z-10 mb-6 flex items-center justify-center w-[300px] h-[300px] md:w-[360px] md:h-[360px]">
+          {/* Globe canvas — full orbiting sphere around the photo */}
+          <div className="absolute inset-0 pointer-events-none">
+            <GlobeDome3D />
+          </div>
+          {/* Soft ambient glow */}
+          <div className="absolute inset-0 rounded-full bg-emerald-500/6 blur-3xl scale-125 pointer-events-none" />
+          {/* Photo — centered on top of globe */}
+          <div className="relative z-10 w-36 h-36 md:w-44 md:h-44 rounded-full ring-2 ring-emerald-300/20 ring-offset-4 ring-offset-zinc-950 overflow-hidden shadow-xl shadow-emerald-500/10">
             <Image
               src="/perfil.jpg"
               alt="Rúben Martins"
               fill
-              sizes="(max-width: 768px) 176px, (max-width: 1024px) 224px, 256px"
+              sizes="(max-width: 768px) 144px, 176px"
               className="object-cover"
               priority
             />
           </div>
         </div>
 
-        {/* 3-D Globe dome — full-width, sits right below photo */}
-        <div
-          className="relative w-full pointer-events-none select-none z-0 overflow-hidden"
-          style={{ height: "280px", marginTop: "-55px" }}
-        >
-          <div style={{ position: 'absolute', top: '-160px', left: 0, right: 0, height: '440px' }}>
-            <GlobeDome3D />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-zinc-950 to-transparent" />
-        </div>
-
         {/* Content below globe */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-16 pb-24 w-full max-w-4xl mx-auto">
+        <div className="relative z-10 flex flex-col items-center text-center px-6 mt-2 pb-24 w-full max-w-4xl mx-auto">
           {/* Huge name */}
-          <h1 className="font-mono font-bold text-white leading-[0.85] tracking-tight text-[clamp(3rem,9vw,8.5rem)] mb-4">
+          <h1 className="font-mono font-bold text-white leading-[0.9] tracking-tight text-[clamp(1.8rem,5vw,4rem)] mb-4">
             RÚBEN MARTINS
           </h1>
 
@@ -208,7 +202,7 @@ export default function HomePage() {
             className="mb-10 w-full max-w-xl lg:max-w-2xl rounded-lg text-left"
             style={{
               background: 'rgba(10,10,15,0.75)',
-              border: '1px solid rgba(52,211,153,0.3)',
+              border: '1px solid rgba(52,211,153,0.15)',
               padding: '1rem 1.25rem',
             }}
           >
@@ -294,9 +288,9 @@ export default function HomePage() {
                 <div
                   className="absolute w-5 h-5 rounded-full z-10 -left-2.75 top-1"
                   style={{
-                    backgroundColor: "rgb(52, 211, 153)",
+                    backgroundColor: "rgb(110, 231, 183)",
                     boxShadow:
-                      "rgba(52, 211, 153, 0.5) 0px 0px 15px, rgba(52, 211, 153, 0.25) 0px 0px 30px",
+                      "rgba(110, 231, 183, 0.3) 0px 0px 12px, rgba(110, 231, 183, 0.12) 0px 0px 24px",
                     border: "3px solid #08090c",
                   }}
                 />
@@ -346,9 +340,10 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em]">FEATURED PROJECTS</div>
-          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
+            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+            FEATURED PROJECTS
+          </h2>
 
           <div className="space-y-8">
             {projetosFallback.map((projeto) => (
@@ -469,9 +464,10 @@ export default function HomePage() {
       ================================================ */}
       <section className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em]">CREDIBILITY</div>
-          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
+            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+            CREDIBILITY
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((h, i) => {
@@ -506,9 +502,12 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-2">SKILLS &amp; EXPERTISE</div>
-            <p className="font-mono text-zinc-600 text-[11px] tracking-wide">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-3 flex items-center gap-4 uppercase tracking-widest">
+              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+              SKILLS &amp; EXPERTISE
+            </h2>
+            <p className="font-mono text-zinc-600 text-[11px] tracking-wide pl-6">
               Percentages computed from technologies used across projects and certifications.
             </p>
           </div>
@@ -530,9 +529,10 @@ export default function HomePage() {
       {artigosRecentes.length > 0 && (
         <section className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-8 text-center">
-              <div className="font-mono text-xs text-emerald-400 tracking-[0.3em]">ARTICLES</div>
-            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
+              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+              ARTICLES
+            </h2>
 
             <div className="flex flex-col gap-px">
               {artigosRecentes.map((artigo, i) => (

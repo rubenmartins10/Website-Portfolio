@@ -3,44 +3,45 @@ import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-function DomeMesh() {
+function SphereMesh() {
   const groupRef = useRef<THREE.Group>(null)
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.12
+      groupRef.current.rotation.y += delta * 0.09
     }
   })
 
   return (
-    <group ref={groupRef} position={[0, 0.5, 0]}>
-      {/* Lower hemisphere (bowl) — rotation.x = Math.PI flips upper hemisphere */}
-      <mesh rotation={[Math.PI, 0, 0]}>
-        <sphereGeometry args={[4, 44, 22, 0, Math.PI * 2, 0, Math.PI / 2]} />
+    <group ref={groupRef}>
+      {/* Full sphere wireframe */}
+      <mesh>
+        <sphereGeometry args={[1.75, 28, 14]} />
         <meshBasicMaterial
-          color="#34d399"
+          color="#6ee7b7"
           wireframe
           transparent
-          opacity={0.28}
+          opacity={0.13}
           side={THREE.DoubleSide}
         />
       </mesh>
 
-      {/* Equator ring — brighter */}
+      {/* Equator ring */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[4, 0.012, 4, 120]} />
-        <meshBasicMaterial color="#34d399" transparent opacity={0.55} />
+        <torusGeometry args={[1.75, 0.007, 4, 90]} />
+        <meshBasicMaterial color="#6ee7b7" transparent opacity={0.38} />
       </mesh>
 
-      {/* Inner glow disc at equator */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[4, 60]} />
-        <meshBasicMaterial
-          color="#34d399"
-          transparent
-          opacity={0.04}
-          side={THREE.DoubleSide}
-        />
+      {/* Tilted orbit ring */}
+      <mesh rotation={[Math.PI / 5, 0, Math.PI / 9]}>
+        <torusGeometry args={[1.75, 0.005, 4, 90]} />
+        <meshBasicMaterial color="#6ee7b7" transparent opacity={0.20} />
+      </mesh>
+
+      {/* Second tilted orbit ring */}
+      <mesh rotation={[-Math.PI / 6, Math.PI / 4, 0]}>
+        <torusGeometry args={[1.75, 0.004, 4, 90]} />
+        <meshBasicMaterial color="#6ee7b7" transparent opacity={0.14} />
       </mesh>
     </group>
   )
@@ -49,13 +50,12 @@ function DomeMesh() {
 export default function GlobeDome3D() {
   return (
     <Canvas
-      camera={{ position: [0, 2.5, 8.5], fov: 55 }}
-      onCreated={({ camera }) => camera.lookAt(0, -0.8, 0)}
+      camera={{ position: [0, 0, 4.6], fov: 50 }}
       gl={{ alpha: true, antialias: true }}
       style={{ background: 'transparent', width: '100%', height: '100%' }}
     >
       <Suspense fallback={null}>
-        <DomeMesh />
+        <SphereMesh />
       </Suspense>
     </Canvas>
   )
