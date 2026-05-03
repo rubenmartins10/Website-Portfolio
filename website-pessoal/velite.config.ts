@@ -26,6 +26,7 @@ const projetos = defineCollection({
     tecnologias: s.array(s.string()).default([]),
     destaque: s.boolean().default(false),
     resumo: s.string().max(300).optional(),
+    conquistas: s.array(s.string()).default([]),
     slug: s.path(),
     descricao: s.mdx()
   })

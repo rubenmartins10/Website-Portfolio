@@ -16,28 +16,30 @@ function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setAnimated(true); },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div ref={ref} className="rounded-2xl border border-white/5 bg-white/2 p-6 hover:border-emerald-400/20 transition-colors">
-      <h3 className="font-mono text-sm text-emerald-400 font-bold mb-6">{category}</h3>
+    <div ref={ref} className="mb-10">
+      <h3 className="font-mono text-sm text-emerald-400 tracking-[0.25em] uppercase mb-5 pb-2 border-b border-white/6">
+        {category}
+      </h3>
       <div className="space-y-4">
-        {skills.map(({ name, percent }) => (
+        {skills.map(({ name, percent }, idx) => (
           <div key={name}>
             <div className="flex items-center justify-between mb-1.5">
               <span className="font-mono text-xs text-zinc-300">{name}</span>
               <span className="font-mono text-xs text-zinc-500 tabular-nums">{percent}%</span>
             </div>
-            <div className="h-0.5 bg-white/8 rounded-full overflow-hidden">
+            <div className="h-px bg-white/8 rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-700 ease-out"
                 style={{
                   width: animated ? `${percent}%` : "0%",
-                  transitionDelay: "100ms",
+                  transitionDelay: `${idx * 70}ms`,
                   background: "linear-gradient(90deg, #34d399, #6ee7b7)",
                 }}
               />
@@ -50,3 +52,4 @@ function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
 }
 
 export default SkillCategoryCard;
+

@@ -39,16 +39,16 @@ export default function GreenTrail() {
       mouseY = e.clientY;
 
       // Spawn a few particles per move
-      for (let i = 0; i < 3; i++) {
-        const life = 40 + Math.random() * 30;
+      for (let i = 0; i < 5; i++) {
+        const life = 50 + Math.random() * 40;
         particles.push({
-          x: mouseX + (Math.random() - 0.5) * 6,
-          y: mouseY + (Math.random() - 0.5) * 6,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8 - 0.4,
+          x: mouseX + (Math.random() - 0.5) * 8,
+          y: mouseY + (Math.random() - 0.5) * 8,
+          vx: (Math.random() - 0.5) * 1.2,
+          vy: (Math.random() - 0.5) * 1.2 - 0.5,
           life,
           maxLife: life,
-          size: 1.5 + Math.random() * 2,
+          size: 2.5 + Math.random() * 3.5,
         });
       }
     };
