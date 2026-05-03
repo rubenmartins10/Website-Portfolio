@@ -1,0 +1,42 @@
+---
+nome: Incorrupt — Tamper-Proof Digital Evidence Auditing System
+data: 2025-09-01
+url: https://github.com/rubenmartins10
+imagem: /projetos/incorrupt/imagem.png
+galeria: []
+tecnologias:
+  - Node.js
+  - Go
+  - MongoDB
+  - Docker
+  - IPFS
+  - Microservices
+  - Cryptography
+  - Consensus Algorithms
+destaque: false
+resumo: Sistema descentralizado de auditoria de evidências digitais à prova de adulteração — usando IPFS para armazenamento imutável e um mecanismo de consenso entre nós de auditoria isolados.
+conquistas:
+  - Armazenamento imutável via IPFS com hash chain criptográfico para deteção de adulteração
+  - Mecanismo de consenso entre 3 nós de auditoria isolados sem ponto central de falha
+  - Verificação matemática da integridade de evidências em cada camada do sistema
+  - Orquestração de microserviços com Docker para isolamento total dos nós
+---
+
+O **Incorrupt** é um sistema descentralizado de gestão e auditoria de evidências digitais, concebido para garantir que nenhum dado possa ser alterado sem deteção imediata.
+
+## Arquitetura
+
+O sistema utiliza **IPFS (InterPlanetary File System)** como camada de armazenamento distribuído e imutável. Cada evidência submetida gera um hash criptográfico que é encadeado na sequência anterior, formando uma *hash chain* à semelhança de uma blockchain, mas otimizada para auditoria forense.
+
+## Mecanismo de Consenso
+
+Três nós de auditoria completamente isolados entre si verificam de forma independente a integridade de cada evidência. O consenso entre eles é matematicamente obrigatório — qualquer divergência deteta imediatamente uma possível adulteração, sem depender de uma autoridade central.
+
+## Stack Técnico
+
+- **Node.js** — API gateway e orquestração de fluxos
+- **Go** — serviços de auditoria de alta performance
+- **MongoDB** — metadados e registos de auditoria
+- **Docker** — containerização e isolamento dos nós
+- **IPFS** — armazenamento distribuído imutável
+- **Microserviços** — arquitetura desacoplada e escalável

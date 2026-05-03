@@ -1,0 +1,21 @@
+titulo: Supervised Learning with Scikit-Learn
+emissor: DataCamp
+imagem: /certificados/supervised-learning-scikit-learn/imagem.png
+data: 2026-04-01
+aprendizado: >-
+  Aprendi a construir, treinar e avaliar modelos de aprendizagem supervisionada
+  com a biblioteca Scikit-Learn. Cobri algoritmos de classificação e regressão,
+  incluindo árvores de decisão, florestas aleatórias, SVMs e regressão logística,
+  bem como técnicas de validação cruzada, tuning de hiperparâmetros e métricas
+  de avaliação de modelos.
+skills:
+  - Machine Learning
+  - Scikit-Learn
+  - Python
+  - Classification
+  - Regression
+  - Cross-Validation
+  - Feature Engineering
+  - Model Evaluation
+ficheiro: /certificados/supervised-learning-scikit-learn/ficheiro.pdf
+categoria: data-ai

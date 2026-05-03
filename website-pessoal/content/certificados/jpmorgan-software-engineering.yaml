@@ -1,0 +1,19 @@
+titulo: Software Engineering Job Simulation
+emissor: JPMorgan Chase & Co.
+imagem: /certificados/jpmorgan-software-engineering/imagem.png
+data: 2026-03-17
+aprendizado: >-
+  Participei numa simulação prática de engenharia de software da JPMorgan Chase
+  através da plataforma Forage. Trabalhei com interfaces de dados financeiros
+  reais, configurei feeds de dados para visualização em tempo real e apliquei
+  boas práticas de desenvolvimento de software em ambiente empresarial.
+skills:
+  - Software Engineering
+  - Financial Data Interfaces
+  - Python
+  - React
+  - Git
+  - Agile
+  - REST APIs
+ficheiro: /certificados/jpmorgan-software-engineering/ficheiro.pdf
+categoria: software-engineering

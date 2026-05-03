@@ -94,13 +94,15 @@ const timeline = [
   {
     role: "Freelance Full-Stack Developer",
     company: "MeClinic — Urgências Dentárias 24h",
-    location: "Vila Nova de Gaia",
-    period: "Sep 2025 – Present",
+    location: "Vila Nova de Gaia, Portugal",
+    period: "Sep 2025 – May 2026",
     highlights: [
-      "Developed a full-stack SaaS platform currently in use for internal clinic operations — reducing average stock update time by ~60%.",
-      "Built inventory control with barcode scanner support, real-time low-stock alerts, appointment scheduling and patient management.",
-      "Integrated billing & checkout, automated consumption reports and RBAC with GDPR compliance.",
-      "Architecture: three-tier model with JWT authentication, ACID transactional integrity. Stack: React, Node.js, PostgreSQL, REST API.",
+      "Engineered a production-grade full-stack clinical management platform now deployed and used daily by clinical staff for inventory, appointments, billing and patient records.",
+      "Automated physical stock control via USB barcode scanner with real-time low-stock alerts, reducing average inventory update time by approximately 60%.",
+      "Implemented an integrated billing and checkout flow with atomic SQL transactions, ensuring inventory deductions and invoice generation are always consistent.",
+      "Secured the platform with JWT authentication, Role-Based Access Control, GDPR-compliant patient data handling, bcrypt hashing, rate limiting and HTTPS/TLS encryption.",
+      "Delivered automated weekly consumption reports and a real-time KPI dashboard providing management with actionable data without any manual aggregation.",
+      "Architected a modular three-tier SPA (React, Node.js, PostgreSQL) designed for scalability and future SaaS commercialisation across multiple clinics.",
     ],
   },
 ] as const;
@@ -217,11 +219,14 @@ export default function HomePage() {
             </div>
             <p className="text-zinc-300 text-sm leading-relaxed font-mono">
               <span className="text-emerald-400 mr-1">&gt;</span>
-              Computer Engineering finalist in Trofa, Portugal. Focused on{" "}
+              Computer Engineering finalist in Porto, Portugal. Production experience delivering a{" "}
               <strong className="text-emerald-400 font-semibold">
-                Data, AI &amp; ML
+                full-stack SaaS platform
               </strong>
-              , building systems that solve real problems.
+              {" "}for a real client — 60% faster stock management. Specializing in{" "}
+              <strong className="text-emerald-400 font-semibold">
+                AI, ML &amp; Full-Stack
+              </strong>.
             </p>
           </div>
 

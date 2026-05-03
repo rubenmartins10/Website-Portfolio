@@ -1,1 +1,65 @@
-[{"nome":"Aplicação de Gestão de Inventário - MeClinic","data":"2026-04-08T00:00:00.000Z","url":"https://github.com/rubenmartins10/WebApp-MeClinic","imagem":"/projetos/aplicacao-de-gestao-de-inventario-me-clinic/imagem.png","galeria":["/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/0.png","/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/1.png","/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/2.png","/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/3.png"],"tecnologias":["React 19","Context API","React Router 7","Node.js","Express 5","PostgreSQL","JWT","RBAC","Nodemailer","Helmet.js","JavaScript","jsPDF + pdfkit-table"],"destaque":true,"resumo":"Plataforma SaaS para gestão de clínicas médicas — desde agendamento de consultas a faturação automática, inventário por código de barras e relatórios semanais. GDPR-compliant.","conquistas":["Plataforma GDPR-compliant com controlo de acessos RBAC por função","Inventário com leitura de código de barras e geração automática de PDF","Relatórios analíticos semanais enviados automaticamente por email","Autenticação JWT com Helmet.js e proteção de rotas por perfil"],"slug":"projetos/aplicacao-de-gestao-de-inventario-me-clinic","descricao":"const{Fragment:a,jsx:e,jsxs:o}=arguments[0];function _createMdxContent(n){const i={em:\"em\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...n.components};return o(a,{children:[o(i.p,{children:[\"O \",e(i.strong,{children:\"MeClinic\"}),\" é uma plataforma SaaS (\",e(i.em,{children:\"Software as a Service\"}),') moderna e abrangente, desenhada especificamente para a gestão profissional de clínicas e consultórios médicos. Funciona como um verdadeiro \"ERP médico\" tudo-em-um, com o objetivo principal de digitalizar, centralizar e otimizar toda a operação diária de uma unidade de saúde.']}),\"\\n\",e(i.p,{children:e(i.strong,{children:\"Principais Pilares e Funcionalidades:\"})}),\"\\n\",o(i.ul,{children:[\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Gestão Clínica e Operacional:\"}),\" O núcleo do sistema permite o cadastro exaustivo de pacientes, mantendo um histórico médico detalhado e seguro. A operação diária é orquestrada através de um calendário inteligente focado na gestão e agendamento de consultas.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Controlo Administrativo e Financeiro:\"}),\" A plataforma automatiza a faturação, sendo capaz de gerar faturas detalhadas em formato PDF. Adicionalmente, integra um módulo avançado de inventário que suporta a leitura de códigos de barras, facilitando o rastreamento e o controlo de \",e(i.em,{children:\"stock\"}),\" de materiais clínicos.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Inteligência de Negócio (Relatórios):\"}),\" O sistema processa os dados da clínica para gerar relatórios analíticos financeiros e operacionais semanais, que são despachados de forma totalmente automática por email para a gestão.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Experiência do Utilizador (UX):\"}),\" A interface foi construída com foco na usabilidade moderna, oferecendo suporte para múltiplos idiomas e um \",e(i.em,{children:\"dark mode\"}),\" nativo, garantindo conforto visual durante longos turnos de trabalho.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Conformidade e Segurança (RGPD):\"}),\" Dado o tratamento de dados de saúde sensíveis, a plataforma é \",e(i.em,{children:\"GDPR-compliant\"}),\". Todo o acesso é blindado por autenticação robusta e um sistema de controlo de acessos rigoroso baseado nas funções de cada utilizador (médico, rececionista, administrador).\"]}),\"\\n\"]})]})}return{default:function(a={}){const{wrapper:o}=a.components||{};return o?e(o,{...a,children:e(_createMdxContent,{...a})}):_createMdxContent(a)}};"}]
+[
+  {
+    "nome": "Aplicação de Gestão de Inventário - MeClinic",
+    "data": "2026-04-08T00:00:00.000Z",
+    "url": "https://github.com/rubenmartins10/WebApp-MeClinic",
+    "imagem": "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/imagem.png",
+    "galeria": [
+      "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/0.png",
+      "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/1.png",
+      "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/2.png",
+      "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/3.png"
+    ],
+    "tecnologias": [
+      "React 19",
+      "Context API",
+      "React Router 7",
+      "Node.js",
+      "Express 5",
+      "PostgreSQL",
+      "JWT",
+      "RBAC",
+      "Nodemailer",
+      "Helmet.js",
+      "JavaScript",
+      "jsPDF + pdfkit-table"
+    ],
+    "destaque": true,
+    "resumo": "Plataforma SaaS para gestão de clínicas médicas — desde agendamento de consultas a faturação automática, inventário por código de barras e relatórios semanais. GDPR-compliant.",
+    "conquistas": [
+      "Plataforma GDPR-compliant com controlo de acessos RBAC por função",
+      "Inventário com leitura de código de barras e geração automática de PDF",
+      "Relatórios analíticos semanais enviados automaticamente por email",
+      "Autenticação JWT com Helmet.js e proteção de rotas por perfil"
+    ],
+    "slug": "projetos/aplicacao-de-gestao-de-inventario-me-clinic",
+    "descricao": "const{Fragment:a,jsx:e,jsxs:o}=arguments[0];function _createMdxContent(n){const i={em:\"em\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...n.components};return o(a,{children:[o(i.p,{children:[\"O \",e(i.strong,{children:\"MeClinic\"}),\" é uma plataforma SaaS (\",e(i.em,{children:\"Software as a Service\"}),') moderna e abrangente, desenhada especificamente para a gestão profissional de clínicas e consultórios médicos. Funciona como um verdadeiro \"ERP médico\" tudo-em-um, com o objetivo principal de digitalizar, centralizar e otimizar toda a operação diária de uma unidade de saúde.']}),\"\\n\",e(i.p,{children:e(i.strong,{children:\"Principais Pilares e Funcionalidades:\"})}),\"\\n\",o(i.ul,{children:[\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Gestão Clínica e Operacional:\"}),\" O núcleo do sistema permite o cadastro exaustivo de pacientes, mantendo um histórico médico detalhado e seguro. A operação diária é orquestrada através de um calendário inteligente focado na gestão e agendamento de consultas.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Controlo Administrativo e Financeiro:\"}),\" A plataforma automatiza a faturação, sendo capaz de gerar faturas detalhadas em formato PDF. Adicionalmente, integra um módulo avançado de inventário que suporta a leitura de códigos de barras, facilitando o rastreamento e o controlo de \",e(i.em,{children:\"stock\"}),\" de materiais clínicos.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Inteligência de Negócio (Relatórios):\"}),\" O sistema processa os dados da clínica para gerar relatórios analíticos financeiros e operacionais semanais, que são despachados de forma totalmente automática por email para a gestão.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Experiência do Utilizador (UX):\"}),\" A interface foi construída com foco na usabilidade moderna, oferecendo suporte para múltiplos idiomas e um \",e(i.em,{children:\"dark mode\"}),\" nativo, garantindo conforto visual durante longos turnos de trabalho.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Conformidade e Segurança (RGPD):\"}),\" Dado o tratamento de dados de saúde sensíveis, a plataforma é \",e(i.em,{children:\"GDPR-compliant\"}),\". Todo o acesso é blindado por autenticação robusta e um sistema de controlo de acessos rigoroso baseado nas funções de cada utilizador (médico, rececionista, administrador).\"]}),\"\\n\"]})]})}return{default:function(a={}){const{wrapper:o}=a.components||{};return o?e(o,{...a,children:e(_createMdxContent,{...a})}):_createMdxContent(a)}};"
+  },
+  {
+    "nome": "Incorrupt — Tamper-Proof Digital Evidence Auditing System",
+    "data": "2025-09-01T00:00:00.000Z",
+    "url": "https://github.com/rubenmartins10",
+    "imagem": "/projetos/incorrupt/imagem.png",
+    "galeria": [],
+    "tecnologias": [
+      "Node.js",
+      "Go",
+      "MongoDB",
+      "Docker",
+      "IPFS",
+      "Microservices",
+      "Cryptography",
+      "Consensus Algorithms"
+    ],
+    "destaque": false,
+    "resumo": "Sistema descentralizado de auditoria de evidências digitais à prova de adulteração — usando IPFS para armazenamento imutável e um mecanismo de consenso entre nós de auditoria isolados.",
+    "conquistas": [
+      "Armazenamento imutável via IPFS com hash chain criptográfico para deteção de adulteração",
+      "Mecanismo de consenso entre 3 nós de auditoria isolados sem ponto central de falha",
+      "Verificação matemática da integridade de evidências em cada camada do sistema",
+      "Orquestração de microserviços com Docker para isolamento total dos nós"
+    ],
+    "slug": "projetos/incorrupt-tamper-proof-evidence-auditing",
+    "descricao": "const{Fragment:e,jsx:n,jsxs:a}=arguments[0];function _createMdxContent(i){const r={em:\"em\",h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...i.components};return a(e,{children:[a(r.p,{children:[\"O \",n(r.strong,{children:\"Incorrupt\"}),\" é um sistema descentralizado de gestão e auditoria de evidências digitais, concebido para garantir que nenhum dado possa ser alterado sem deteção imediata.\"]}),\"\\n\",n(r.h2,{children:\"Arquitetura\"}),\"\\n\",a(r.p,{children:[\"O sistema utiliza \",n(r.strong,{children:\"IPFS (InterPlanetary File System)\"}),\" como camada de armazenamento distribuído e imutável. Cada evidência submetida gera um hash criptográfico que é encadeado na sequência anterior, formando uma \",n(r.em,{children:\"hash chain\"}),\" à semelhança de uma blockchain, mas otimizada para auditoria forense.\"]}),\"\\n\",n(r.h2,{children:\"Mecanismo de Consenso\"}),\"\\n\",n(r.p,{children:\"Três nós de auditoria completamente isolados entre si verificam de forma independente a integridade de cada evidência. O consenso entre eles é matematicamente obrigatório — qualquer divergência deteta imediatamente uma possível adulteração, sem depender de uma autoridade central.\"}),\"\\n\",n(r.h2,{children:\"Stack Técnico\"}),\"\\n\",a(r.ul,{children:[\"\\n\",a(r.li,{children:[n(r.strong,{children:\"Node.js\"}),\" — API gateway e orquestração de fluxos\"]}),\"\\n\",a(r.li,{children:[n(r.strong,{children:\"Go\"}),\" — serviços de auditoria de alta performance\"]}),\"\\n\",a(r.li,{children:[n(r.strong,{children:\"MongoDB\"}),\" — metadados e registos de auditoria\"]}),\"\\n\",a(r.li,{children:[n(r.strong,{children:\"Docker\"}),\" — containerização e isolamento dos nós\"]}),\"\\n\",a(r.li,{children:[n(r.strong,{children:\"IPFS\"}),\" — armazenamento distribuído imutável\"]}),\"\\n\",a(r.li,{children:[n(r.strong,{children:\"Microserviços\"}),\" — arquitetura desacoplada e escalável\"]}),\"\\n\"]})]})}return{default:function(e={}){const{wrapper:a}=e.components||{};return a?n(a,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+  }
+]

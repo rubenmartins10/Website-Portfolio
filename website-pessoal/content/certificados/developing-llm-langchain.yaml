@@ -1,0 +1,21 @@
+titulo: Developing LLM Applications with LangChain
+emissor: DataCamp
+imagem: /certificados/developing-llm-langchain/imagem.png
+data: 2026-05-01
+aprendizado: >-
+  Aprendi a construir aplicações baseadas em Large Language Models utilizando o
+  framework LangChain. Explorei chains, prompts templates, agentes, memória
+  conversacional e integração com APIs de modelos como OpenAI. Desenvolvi
+  competências em Retrieval-Augmented Generation (RAG) e orquestração de fluxos
+  de LLMs para casos de uso reais.
+skills:
+  - LangChain
+  - LLMs
+  - Prompt Engineering
+  - GenAI
+  - NLP
+  - Python
+  - RAG
+  - OpenAI API
+ficheiro: /certificados/developing-llm-langchain/ficheiro.pdf
+categoria: data-ai

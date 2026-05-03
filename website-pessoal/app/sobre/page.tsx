@@ -159,6 +159,42 @@ export default function SobrePage() {
           </div>
         </section>
 
+        {/* Education */}
+        <section className="mb-24">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-10 flex items-center gap-4 uppercase tracking-widest">
+            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+            EDUCATION
+          </h2>
+          <div className="bg-emerald-950/30 backdrop-blur-sm border border-emerald-800/20 rounded-2xl p-8">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-5">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-1">Bachelor&apos;s Degree in Computer Engineering</h3>
+                <p className="font-mono text-sm font-semibold tracking-widest uppercase text-emerald-400">
+                  Universidade Lusófona — Centro Universitário Porto
+                </p>
+                <p className="font-mono text-xs text-zinc-500 mt-0.5">Porto, Portugal</p>
+              </div>
+              <span className="font-mono text-xs text-zinc-400 border border-white/10 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0">
+                Sep 2023 – May 2026 (Expected)
+              </span>
+            </div>
+            <ul className="space-y-2.5 text-zinc-300 text-sm">
+              <li className="flex gap-3">
+                <span className="text-emerald-400 shrink-0 mt-0.5">✦</span>
+                <span><strong className="text-white">Relevant coursework:</strong> Algorithms & Data Structures, Distributed Systems, Software Engineering, Computer Networks, Databases, Operating Systems, Object-Oriented Programming.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-emerald-400 shrink-0 mt-0.5">✦</span>
+                <span><strong className="text-white">Final Year Project:</strong> MeClinic — a full-stack clinical management platform built in partnership with a real dental clinic, now in daily production use.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-emerald-400 shrink-0 mt-0.5">✦</span>
+                <span><strong className="text-white">Languages:</strong> Portuguese (Native) · English B2/C1 · Spanish (Conversational)</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
         {/* CTA */}
         <section>
           <div className="rounded-2xl border border-emerald-400/15 bg-emerald-400/3 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
