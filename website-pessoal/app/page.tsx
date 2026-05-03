@@ -165,7 +165,7 @@ export default function HomePage() {
         {/* Profile photo + full-sphere globe */}
         <div className="relative z-10 mb-6 flex items-center justify-center w-[300px] h-[300px] md:w-[360px] md:h-[360px]">
           {/* Globe canvas — full orbiting sphere around the photo */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none" style={{ margin: '-40px' }}>
             <GlobeDome3D />
           </div>
           {/* Soft ambient glow */}

@@ -162,7 +162,7 @@ export default function Navbar() {
             EMAIL
           </a>
           <a
-            href="https://linkedin.com/in/ruben-martins"
+            href="https://www.linkedin.com/in/ruben-martins10"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-xs text-zinc-500 hover:text-emerald-400 tracking-[0.2em] transition-colors duration-200"

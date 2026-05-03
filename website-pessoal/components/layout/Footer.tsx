@@ -14,8 +14,8 @@ const SOCIALS = [
   },
   {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/\nruben-martins',
-    href: 'https://linkedin.com/in/ruben-martins',
+    value: 'linkedin.com/in/\nruben-martins10',
+    href: 'https://www.linkedin.com/in/ruben-martins10',
     color: 'bg-blue-500/15 text-blue-400',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

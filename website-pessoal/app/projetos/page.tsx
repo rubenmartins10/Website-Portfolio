@@ -18,14 +18,12 @@ export default function ProjetosPage() {
       <StarfieldCanvas />
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28 w-full">
         {/* Header */}
-        <header className="mb-20 text-center">
-          <h1 className="font-black text-white text-4xl md:text-6xl mb-4">
-            <span className="text-cyan-400">Featured</span> Projects
+        <header className="mb-20">
+          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">PROJECTS</div>
+          <h1 className="text-3xl md:text-5xl font-black text-white mb-0 flex items-center gap-4 uppercase tracking-widest">
+            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+            FEATURED PROJECTS
           </h1>
-          <div className="w-14 h-0.5 bg-cyan-400 mx-auto mb-5" />
-          <p className="text-zinc-500 text-sm md:text-base">
-            Swipe to explore my latest work
-          </p>
         </header>
 
         {projetosOrdenados.length === 0 ? (
