@@ -168,7 +168,7 @@ export default function SobrePage() {
               {
                 period: "2022 – Present",
                 title: "BSc in Computer Engineering",
-                place: "Instituto Politécnico",
+                place: "Universidade Lusófona do Porto",
                 status: "Ongoing",
               },
             ].map((item, i) => (
