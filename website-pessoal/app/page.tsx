@@ -75,7 +75,7 @@ export default function HomePage() {
       label: "EDUCATION",
       title: "Computer Engineering",
       description:
-        "Final year at Universidade do Minho — specializing in AI, Data & Software Engineering.",
+        "Final year at Universidade Lusófona do Porto — specializing in AI, Data & Software Engineering.",
     },
     {
       icon: "📜",
