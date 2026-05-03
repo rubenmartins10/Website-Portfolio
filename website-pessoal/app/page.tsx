@@ -4,10 +4,13 @@ import { Metadata } from "next";
 import { projetos, artigos, certificados } from "@/.velite";
 import StarfieldCanvas from "@/components/home/StarfieldCanvas";
 import TypewriterText from "@/components/home/TypewriterText";
+import GlobeDome3D from "@/components/home/GlobeDome3D";
+import ProjectsCarousel from "@/components/projetos/ProjectsCarousel";
 
 export const metadata: Metadata = {
   title: "Rúben Martins | Junior Engineer",
-  description: "Rúben Martins' professional portfolio — Junior Engineer specializing in Data, AI & ML.",
+  description:
+    "Rúben Martins' professional portfolio — Junior Engineer specializing in Data, AI & ML.",
 };
 
 const skillGroups = [
@@ -60,7 +63,8 @@ const timeline = [
 
 export default function HomePage() {
   const projetosMostrar = projetos.filter((p) => p.destaque).slice(0, 4);
-  const projetosFallback = projetosMostrar.length > 0 ? projetosMostrar : projetos.slice(0, 4);
+  const projetosFallback =
+    projetosMostrar.length > 0 ? projetosMostrar : projetos.slice(0, 4);
   const artigosRecentes = [...artigos]
     .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
     .slice(0, 3);
@@ -70,25 +74,29 @@ export default function HomePage() {
       icon: "🎓",
       label: "EDUCATION",
       title: "Computer Engineering",
-      description: "Final year at Universidade do Minho — specializing in AI, Data & Software Engineering.",
+      description:
+        "Final year at Universidade do Minho — specializing in AI, Data & Software Engineering.",
     },
     {
       icon: "📜",
       label: "CERTIFICATIONS",
       title: `${certificados.length}+ Certificates`,
-      description: "IBM, Forage & Coursera certified in AI, ML, Data Science and Python.",
+      description:
+        "IBM, Forage & Coursera certified in AI, ML, Data Science and Python.",
     },
     {
       icon: "💼",
       label: "PROJECTS",
       title: `${projetosFallback.length}+ Live Projects`,
-      description: "Full-stack SaaS and data engineering projects built for real use cases.",
+      description:
+        "Full-stack SaaS and data engineering projects built for real use cases.",
     },
     {
       icon: "🌐",
       label: "STACK",
       title: "Full Stack + AI",
-      description: "Python, React, Node.js, PostgreSQL, TensorFlow — end-to-end.",
+      description:
+        "Python, React, Node.js, PostgreSQL, TensorFlow — end-to-end.",
     },
   ];
 
@@ -97,147 +105,170 @@ export default function HomePage() {
       <StarfieldCanvas />
 
       {/* ================================================
-          HERO — centered, photo + globe, huge name
+          HERO — photo sitting on globe dome
       ================================================ */}
-      <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-20 pb-10">
-
+      <section
+        id="home"
+        className="relative min-h-screen flex flex-col items-center overflow-hidden pt-24 md:pt-28 pb-0"
+      >
         {/* SYSTEM ONLINE */}
-        <div className="flex items-center gap-2.5 px-5 py-2 border border-emerald-400/40 rounded-full font-mono text-xs tracking-[0.25em] text-emerald-400 mb-10 bg-emerald-400/5 z-10">
+        <div className="flex items-center gap-2.5 px-5 py-2 border border-emerald-400/40 rounded-full font-mono text-xs tracking-[0.25em] text-emerald-400 mb-8 bg-emerald-400/5 z-10 animate-fade-in">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           SYSTEM ONLINE
         </div>
 
-        {/* Photo + globe visual */}
-        <div className="relative flex flex-col items-center z-10">
-          {/* Ambient glow behind photo */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-
-          {/* Circular profile photo */}
-          <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full ring-2 ring-emerald-400/50 ring-offset-4 ring-offset-black overflow-hidden z-10 mx-auto shadow-2xl shadow-emerald-500/20">
+        {/* Circular profile photo */}
+        <div className="relative z-10 mb-0">
+          {/* Ambient glow */}
+          <div className="absolute inset-0 w-full h-full rounded-full bg-emerald-500/20 blur-3xl scale-150 pointer-events-none" />
+          <div className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full ring-2 ring-emerald-400/60 ring-offset-4 ring-offset-zinc-950 overflow-hidden shadow-2xl shadow-emerald-500/30">
             <Image
               src="/perfil.jpg"
               alt="Rúben Martins"
               fill
-              sizes="(max-width: 768px) 192px, 224px"
+              sizes="(max-width: 768px) 176px, (max-width: 1024px) 224px, 256px"
               className="object-cover"
               priority
             />
           </div>
+        </div>
 
-          {/* Wireframe globe — positioned below photo with overlap */}
-          <div className="-mt-16 w-[340px] md:w-[420px] pointer-events-none select-none">
-            <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" className="w-full">
-              {/* Main sphere outline */}
-              <ellipse cx="210" cy="110" rx="196" ry="105" fill="none" stroke="#34d399" strokeOpacity="0.40" strokeWidth="0.9"/>
-              {/* Latitude lines */}
-              <ellipse cx="210" cy="82"  rx="178" ry="21"  fill="none" stroke="#34d399" strokeOpacity="0.28" strokeWidth="0.65"/>
-              <ellipse cx="210" cy="59"  rx="145" ry="15"  fill="none" stroke="#34d399" strokeOpacity="0.20" strokeWidth="0.55"/>
-              <ellipse cx="210" cy="40"  rx="98"  ry="10"  fill="none" stroke="#34d399" strokeOpacity="0.14" strokeWidth="0.45"/>
-              <ellipse cx="210" cy="26"  rx="46"  ry="6"   fill="none" stroke="#34d399" strokeOpacity="0.09" strokeWidth="0.35"/>
-              <ellipse cx="210" cy="138" rx="178" ry="21"  fill="none" stroke="#34d399" strokeOpacity="0.25" strokeWidth="0.65"/>
-              <ellipse cx="210" cy="162" rx="145" ry="15"  fill="none" stroke="#34d399" strokeOpacity="0.17" strokeWidth="0.55"/>
-              <ellipse cx="210" cy="180" rx="98"  ry="10"  fill="none" stroke="#34d399" strokeOpacity="0.11" strokeWidth="0.45"/>
-              <ellipse cx="210" cy="194" rx="46"  ry="6"   fill="none" stroke="#34d399" strokeOpacity="0.07" strokeWidth="0.35"/>
-              {/* Longitude arcs */}
-              <ellipse cx="210" cy="110" rx="52"  ry="105" fill="none" stroke="#34d399" strokeOpacity="0.24" strokeWidth="0.7"/>
-              <ellipse cx="210" cy="110" rx="105" ry="105" fill="none" stroke="#34d399" strokeOpacity="0.18" strokeWidth="0.6"/>
-              <ellipse cx="210" cy="110" rx="158" ry="105" fill="none" stroke="#34d399" strokeOpacity="0.13" strokeWidth="0.5"/>
-            </svg>
+        {/* 3-D Globe dome — full-width, sits right below photo */}
+        <div
+          className="relative w-screen pointer-events-none select-none z-0 overflow-hidden"
+          style={{ height: "280px", marginTop: "-55px" }}
+        >
+          <div style={{ position: 'absolute', top: '-160px', left: 0, right: 0, height: '440px' }}>
+            <GlobeDome3D />
           </div>
+          {/* Fade-out gradient so dome blends into bg */}
+          <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-zinc-950 to-transparent" />
         </div>
 
-        {/* Huge name */}
-        <h1 className="relative z-10 font-mono font-bold text-center text-white leading-[0.85] tracking-tight text-[clamp(3.2rem,10vw,8rem)] -mt-10 mb-4">
-          RÚBEN MARTINS
-        </h1>
+        {/* Content below globe */}
+        <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-16 pb-24 w-full max-w-4xl mx-auto">
+          {/* Huge name */}
+          <h1 className="font-mono font-bold text-white leading-[0.85] tracking-tight text-[clamp(3rem,9vw,8.5rem)] mb-4">
+            RÚBEN MARTINS
+          </h1>
 
-        {/* Typewriter role */}
-        <h2 className="relative z-10 font-mono font-bold text-emerald-400 tracking-[0.3em] text-base md:text-lg mb-8 h-7">
-          <TypewriterText texts={["JUNIOR ENGINEER", "DATA SPECIALIST", "AI ENTHUSIAST"]} />
-        </h2>
+          {/* Typewriter role */}
+          <h2 className="font-mono font-bold text-emerald-400 tracking-[0.3em] text-sm md:text-base lg:text-lg mb-8 h-7">
+            <TypewriterText
+              texts={["JUNIOR ENGINEER", "DATA SPECIALIST", "AI ENTHUSIAST"]}
+            />
+          </h2>
 
-        {/* Bio — NEURAL_CORE style */}
-        <div className="relative z-10 max-w-xl mx-auto text-center mb-10">
-          <div className="font-mono text-[10px] text-zinc-600 tracking-[0.2em] mb-2">NEURAL_CORE // BIO_LOADER</div>
-          <p className="text-zinc-400 text-sm leading-relaxed">
-            <span className="text-emerald-400">&gt;</span>{" "}
-            Computer Engineering finalist in Trofa, Portugal. Focused on{" "}
-            <strong className="text-emerald-400 font-semibold">Data, AI &amp; ML</strong>,
-            building systems that solve real problems.
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 mb-10 text-center">
-          {[
-            { value: `${projetos.length}+`, label: "PROJECTS" },
-            { value: `${certificados.length}`, label: "CERTIFICATIONS" },
-            { value: "3+", label: "YEARS CODING" },
-            { value: "2", label: "TECH AREAS" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="font-mono font-bold text-4xl md:text-5xl text-white mb-1">{s.value}</div>
-              <div className="font-mono text-[10px] text-zinc-500 tracking-[0.2em]">{s.label}</div>
+          {/* Bio — terminal box */}
+          <div
+            className="mb-10 w-full max-w-xl lg:max-w-2xl rounded-lg text-left"
+            style={{
+              background: 'rgba(10,10,15,0.75)',
+              border: '1px solid rgba(52,211,153,0.3)',
+              padding: '1rem 1.25rem',
+            }}
+          >
+            {/* macOS traffic lights */}
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block" />
+              <span className="ml-2 font-mono text-zinc-500 text-[10px] tracking-[0.2em]">
+                NEURAL_CORE // BIO_LOADER
+              </span>
             </div>
-          ))}
-        </div>
+            <p className="text-zinc-300 text-sm leading-relaxed font-mono">
+              <span className="text-emerald-400 mr-1">&gt;</span>
+              Computer Engineering finalist in Trofa, Portugal. Focused on{" "}
+              <strong className="text-emerald-400 font-semibold">
+                Data, AI &amp; ML
+              </strong>
+              , building systems that solve real problems.
+            </p>
+          </div>
 
-        {/* CTAs */}
-        <div className="relative z-10 flex gap-4 flex-wrap justify-center mb-16">
-          <Link
-            href="#projects"
-            className="font-mono text-sm font-bold tracking-[0.15em] px-8 py-3.5 bg-emerald-400 text-black hover:bg-emerald-300 transition-all duration-200 rounded"
-          >
-            VIEW MY WORK
-          </Link>
-          <Link
-            href="/sobre"
-            className="font-mono text-sm font-bold tracking-[0.15em] px-8 py-3.5 border border-zinc-600 text-white hover:border-emerald-400/60 hover:text-emerald-400 transition-all duration-200 rounded"
-          >
-            ABOUT ME
-          </Link>
-        </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 lg:gap-20 mb-12 w-full">
+            {[
+              { value: `${projetos.length}+`, label: "PROJECTS", color: "text-white" },
+              { value: `${certificados.length}`, label: "CERTIFICATIONS", color: "text-emerald-400" },
+              { value: "3+", label: "YEARS CODING", color: "text-purple-400" },
+              { value: "2", label: "TECH AREAS", color: "text-white" },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className={`font-mono font-bold text-4xl md:text-5xl lg:text-6xl mb-1 ${s.color}`}>
+                  {s.value}
+                </div>
+                <div className="font-mono text-[10px] text-zinc-500 tracking-[0.2em]">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
 
-        {/* Scroll */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-[10px] text-zinc-600 tracking-[0.25em] animate-bounce text-center">
-          SCROLL ↓
+          {/* CTAs */}
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Link
+              href="#projects"
+              className="font-mono text-sm font-bold tracking-[0.15em] px-8 py-3.5 bg-emerald-400 text-black hover:bg-emerald-300 transition-all duration-200 rounded"
+            >
+              VIEW MY WORK
+            </Link>
+            <a
+              href="/RubenMartins_CV.pdf"
+              download
+              className="font-mono text-sm font-bold tracking-[0.15em] px-8 py-3.5 border border-zinc-600 text-white hover:border-emerald-400/60 hover:text-emerald-400 transition-all duration-200 rounded"
+            >
+              DOWNLOAD CV
+            </a>
+          </div>
+
+          {/* Scroll hint */}
+          <div className="mt-14 font-mono text-[10px] text-zinc-600 tracking-[0.25em] animate-bounce">
+            SCROLL ↓
+          </div>
         </div>
       </section>
 
       {/* ================================================
           CAREER IMPACT
       ================================================ */}
-      <section id="experience" className="relative z-10 py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5">
-        <div className="max-w-6xl mx-auto">
-          {/* Heading with left accent bar — same as reference */}
+      <section
+        id="experience"
+        className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
+      >
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-16 flex items-center gap-4 uppercase tracking-widest">
             <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
             CAREER IMPACT
           </h2>
 
-          {/* Vertical timeline */}
           <div className="relative border-l-2 border-zinc-800 ml-4 md:ml-8">
             {timeline.map((entry) => (
               <div key={entry.role} className="mb-12 relative pl-8 md:pl-12">
                 {/* Glowing dot */}
                 <div
-                  className="absolute w-5 h-5 rounded-full z-10 -left-[11px] top-1"
+                  className="absolute w-5 h-5 rounded-full z-10 -left-2.75 top-1"
                   style={{
                     backgroundColor: "rgb(52, 211, 153)",
-                    boxShadow: "rgba(52, 211, 153, 0.5) 0px 0px 15px, rgba(52, 211, 153, 0.25) 0px 0px 30px",
+                    boxShadow:
+                      "rgba(52, 211, 153, 0.5) 0px 0px 15px, rgba(52, 211, 153, 0.25) 0px 0px 30px",
                     border: "3px solid #08090c",
                   }}
                 />
 
-                {/* Card */}
                 <div className="bg-zinc-900/50 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/5 hover:-translate-y-1 transition-transform duration-300">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-1">{entry.role}</h3>
+                      <h3 className="text-2xl font-bold text-white mb-1">
+                        {entry.role}
+                      </h3>
                       <p className="font-mono text-sm font-semibold tracking-widest uppercase text-emerald-400">
                         {entry.company}
                       </p>
-                      <p className="font-mono text-xs text-zinc-500 mt-0.5">{entry.location}</p>
+                      <p className="font-mono text-xs text-zinc-500 mt-0.5">
+                        {entry.location}
+                      </p>
                     </div>
                     <span className="font-mono text-xs text-zinc-400 border border-white/10 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 mt-2 md:mt-0">
                       {entry.period}
@@ -246,7 +277,9 @@ export default function HomePage() {
                   <ul className="space-y-3 mt-4 text-zinc-300">
                     {entry.highlights.map((h) => (
                       <li key={h} className="flex gap-3 text-sm md:text-base">
-                        <span className="text-emerald-400 shrink-0 mt-1">✦</span>
+                        <span className="text-emerald-400 shrink-0 mt-1">
+                          ✦
+                        </span>
                         <span>{h}</span>
                       </li>
                     ))}
@@ -261,87 +294,21 @@ export default function HomePage() {
       {/* ================================================
           FEATURED PROJECTS
       ================================================ */}
-      <section id="projects" className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
+      <section
+        id="projects"
+        className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
+      >
+        <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">FEATURED PROJECTS</div>
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">
+              FEATURED PROJECTS
+            </div>
             <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
               MY LATEST WORK
             </h2>
           </div>
 
-          <div className="flex flex-col gap-14">
-            {projetosFallback.map((projeto) => (
-              <div
-                key={projeto.slug}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center rounded-2xl border border-white/5 bg-white/[0.02] p-8 hover:border-emerald-400/20 transition-all duration-300"
-              >
-                {/* Left: details */}
-                <div className="flex flex-col">
-                  <h3 className="font-mono font-bold text-xl md:text-2xl text-emerald-400 mb-2 leading-tight">
-                    {projeto.nome}
-                  </h3>
-                  {projeto.resumo && (
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-6">{projeto.resumo}</p>
-                  )}
-
-                  {/* Tech tags */}
-                  {projeto.tecnologias.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {projeto.tecnologias.slice(0, 6).map((tag) => (
-                        <span key={tag} className="font-mono text-[10px] text-zinc-500 border border-zinc-700/60 px-2.5 py-1 rounded tracking-wide">
-                          {tag}
-                        </span>
-                      ))}
-                      {projeto.tecnologias.length > 6 && (
-                        <span className="font-mono text-[10px] text-zinc-600 border border-zinc-800 px-2.5 py-1 rounded">
-                          +{projeto.tecnologias.length - 6}
-                        </span>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Links */}
-                  <div className="flex gap-4 mt-auto">
-                    <Link
-                      href={`/${projeto.slug}`}
-                      className="flex items-center gap-2 font-mono text-xs text-emerald-400 border border-emerald-400/30 px-4 py-2 rounded hover:bg-emerald-400/10 transition-all duration-200"
-                    >
-                      View Details →
-                    </Link>
-                    {projeto.url && (
-                      <a
-                        href={projeto.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 font-mono text-xs text-zinc-400 border border-zinc-700 px-4 py-2 rounded hover:border-zinc-500 transition-all duration-200"
-                      >
-                        Live Demo ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right: image */}
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-zinc-950 border border-white/5">
-                  {projeto.imagem ? (
-                    <Image
-                      src={projeto.imagem}
-                      alt={projeto.nome}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-mono text-zinc-700 text-xs tracking-widest">NO PREVIEW</span>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent pointer-events-none" />
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProjectsCarousel projetos={projetosFallback} />
 
           <div className="mt-12 text-center">
             <Link
@@ -357,28 +324,38 @@ export default function HomePage() {
       {/* ================================================
           HIGHLIGHTS / CREDIBILITY
       ================================================ */}
-      <section className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">CREDIBILITY</div>
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">
+              CREDIBILITY
+            </div>
             <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
               HIGHLIGHTS
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {highlights.map((h) => (
+            {highlights.map((h, i) => {
+              const borderColors = ['border-l-yellow-500', 'border-l-cyan-400', 'border-l-purple-500', 'border-l-green-500']
+              return (
               <div
                 key={h.label}
-                className="flex flex-col gap-3 p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-emerald-400/20 transition-all duration-300"
+                className={`flex flex-col gap-3 p-6 rounded-2xl border border-white/5 border-l-4 ${borderColors[i % borderColors.length]} bg-white/2 hover:border-emerald-400/20 hover:-translate-y-2 transition-all duration-300`}
               >
                 <span className="text-2xl">{h.icon}</span>
-                <span className="font-mono text-[10px] text-emerald-400 tracking-[0.2em]">{h.label}</span>
-                <h3 className="font-mono font-bold text-white text-sm leading-tight">{h.title}</h3>
-                <p className="text-zinc-500 text-xs leading-relaxed">{h.description}</p>
+                <span className="font-mono text-[10px] text-emerald-400 tracking-[0.2em]">
+                  {h.label}
+                </span>
+                <h3 className="font-mono font-bold text-white text-sm leading-tight">
+                  {h.title}
+                </h3>
+                <p className="text-zinc-500 text-xs leading-relaxed">
+                  {h.description}
+                </p>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -386,39 +363,59 @@ export default function HomePage() {
       {/* ================================================
           SKILLS & EXPERTISE
       ================================================ */}
-      <section id="skills" className="relative z-10 py-28 px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
+      <section
+        id="skills"
+        className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
+      >
+        <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center">
-            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">EXPERTISE</div>
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">
+              EXPERTISE
+            </div>
             <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
               SKILLS &amp; TOOLS
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {skillGroups.map((group) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {skillGroups.map((group) => {
+              const gradients: Record<string, { from: string; to: string; bar: string }> = {
+                'Data & AI': { from: '#34d399', to: '#22d3ee', bar: 'linear-gradient(90deg,#34d399,#22d3ee)' },
+                'Web Development': { from: '#60a5fa', to: '#34d399', bar: 'linear-gradient(90deg,#60a5fa,#34d399)' },
+                'Tools & Systems': { from: '#c084fc', to: '#f472b6', bar: 'linear-gradient(90deg,#c084fc,#f472b6)' },
+              }
+              const g = gradients[group.category] ?? { from: '#34d399', to: '#34d399', bar: 'linear-gradient(90deg,#34d399,#34d399)' }
+              return (
               <div key={group.category}>
-                <h3 className="font-mono font-bold text-sm text-emerald-400 tracking-[0.15em] mb-6 pb-3 border-b border-emerald-400/20">
+                <h3
+                  className="font-mono font-bold text-sm tracking-[0.15em] mb-6 pb-3 border-b border-white/10"
+                  style={{ background: `linear-gradient(90deg,${g.from},${g.to})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+                >
                   {group.category}
                 </h3>
                 <div className="flex flex-col gap-5">
                   {group.skills.map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between mb-1.5">
-                        <span className="font-mono text-xs text-zinc-300">{skill.name}</span>
-                        <span className="font-mono text-xs text-zinc-500">{skill.level}%</span>
+                        <span className="font-mono text-xs text-zinc-300">
+                          {skill.name}
+                        </span>
+                        <span className="font-mono text-xs text-zinc-500">
+                          {skill.level}%
+                        </span>
                       </div>
-                      <div className="h-0.5 bg-zinc-800 rounded-full">
+                      <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
                         <div
-                          className="h-0.5 bg-emerald-400 rounded-full"
-                          style={{ width: `${skill.level}%` }}
+                          className="h-2 rounded-full"
+                          style={{ width: `${skill.level}%`, background: g.bar }}
                         />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -427,10 +424,12 @@ export default function HomePage() {
           RECENT ARTICLES
       ================================================ */}
       {artigosRecentes.length > 0 && (
-        <section className="relative z-10 py-28 px-6 border-t border-white/5">
-          <div className="max-w-5xl mx-auto">
+        <section className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
             <div className="mb-16 text-center">
-              <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">ARTICLES</div>
+              <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">
+                ARTICLES
+              </div>
               <h2 className="font-mono font-bold text-3xl md:text-5xl text-white tracking-tight leading-tight">
                 RECENT WRITING
               </h2>
@@ -452,15 +451,22 @@ export default function HomePage() {
                         {artigo.titulo}
                       </h3>
                       {artigo.resumo && (
-                        <p className="text-zinc-500 text-sm line-clamp-1">{artigo.resumo}</p>
+                        <p className="text-zinc-500 text-sm line-clamp-1">
+                          {artigo.resumo}
+                        </p>
                       )}
                     </div>
                   </div>
                   <div className="flex items-center gap-4 shrink-0">
                     <span className="font-mono text-xs text-zinc-600">
-                      {new Date(artigo.data).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                      {new Date(artigo.data).toLocaleDateString("en-US", {
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </span>
-                    <span className="font-mono text-xs text-emerald-400/40 group-hover:text-emerald-400 transition-colors duration-200">&rarr;</span>
+                    <span className="font-mono text-xs text-emerald-400/40 group-hover:text-emerald-400 transition-colors duration-200">
+                      &rarr;
+                    </span>
                   </div>
                 </Link>
               ))}
@@ -481,17 +487,52 @@ export default function HomePage() {
       {/* ================================================
           CONTACT CTA
       ================================================ */}
-      <section id="contact" className="relative z-10 py-40 px-6 border-t border-white/5">
+      <section
+        id="contact"
+        className="relative z-10 py-40 px-6 sm:px-8 border-t border-white/5"
+      >
         <div className="max-w-3xl mx-auto text-center">
-          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-6">CONTACT</div>
+          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-6">
+            CONTACT
+          </div>
           <h2 className="font-mono font-bold text-[clamp(2rem,6vw,4rem)] text-white tracking-tight leading-tight mb-6">
-            LET&apos;S BUILD<br />
+            LET&apos;S BUILD
+            <br />
             <span className="text-emerald-400">SOMETHING GREAT.</span>
           </h2>
           <p className="text-zinc-400 text-sm mb-10 max-w-md mx-auto leading-relaxed">
-            Available for freelance projects, internship opportunities and collaborations.
-            Don&apos;t hesitate to reach out.
+            Available for freelance projects, internship opportunities and
+            collaborations. Don&apos;t hesitate to reach out.
           </p>
+
+          {/* Social cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+            {[
+              { label: 'EMAIL', value: 'rubendavidsilvamartins@gmail.com', href: 'mailto:rubendavidsilvamartins@gmail.com', icon: '✉', color: 'from-emerald-500/20 to-emerald-500/5' },
+              { label: 'LINKEDIN', value: '/in/ruben-martins', href: 'https://linkedin.com/in/ruben-martins', icon: 'in', color: 'from-blue-500/20 to-blue-500/5' },
+              { label: 'GITHUB', value: '/rubendavid', href: 'https://github.com/rubendavid', icon: '⌥', color: 'from-purple-500/20 to-purple-500/5' },
+              { label: 'LOCATION', value: 'Trofa, Portugal', href: '#', icon: '◎', color: 'from-pink-500/20 to-pink-500/5' },
+            ].map((card) => (
+              <a
+                key={card.label}
+                href={card.href}
+                target={card.href.startsWith('http') ? '_blank' : undefined}
+                rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`group flex flex-col items-center gap-3 p-5 rounded-2xl border border-white/5 bg-linear-to-b ${card.color} hover:border-emerald-400/30 hover:-translate-y-1 transition-all duration-300`}
+              >
+                <span className="text-2xl text-emerald-400 group-hover:scale-110 transition-transform duration-200">
+                  {card.icon}
+                </span>
+                <span className="font-mono text-[10px] text-zinc-500 tracking-[0.2em]">
+                  {card.label}
+                </span>
+                <span className="font-mono text-xs text-zinc-300 text-center truncate w-full">
+                  {card.value}
+                </span>
+              </a>
+            ))}
+          </div>
+
           <div className="flex gap-4 justify-center flex-wrap">
             <a
               href="mailto:rubendavidsilvamartins@gmail.com"
