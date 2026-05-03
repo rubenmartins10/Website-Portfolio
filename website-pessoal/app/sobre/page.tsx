@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import StarfieldCanvas from "@/components/home/StarfieldCanvas";
-import SkillBar from "@/components/ui/SkillBar";
+import SkillCategoryCard from "@/components/ui/SkillBar";
 import { projetos, certificados } from "#site/content";
 
 export const metadata: Metadata = {
@@ -10,80 +10,84 @@ export const metadata: Metadata = {
   description: "Learn more about my background and the technologies I work with.",
 };
 
-// ── Skill categories: keywords for matching + fixed display tags ──────────────
+// ── Skill categories with individual skills and their keyword matchers ────────
 const SKILL_CATEGORIES = [
   {
-    label: "AI & Machine Learning",
-    keywords: ["python", "machine learning", "deep learning", "keras", "tensorflow", "pytorch",
-      "scikit", "pandas", "numpy", "nlp", "natural language", "computer vision",
-      "neural", "data analysis", "predictive", "recommender", "mlops", "reinforcement",
-      "artificial intelligence", "generative", "llm", "model deployment",
-      "machine learning lifecycle", "experiment tracking", "feature stores", "ml"],
-    displaySkills: ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "Keras", "MLOps", "NLP", "Computer Vision"],
+    category: "AI & Machine Learning",
+    skills: [
+      { name: "Python",              keywords: ["python"] },
+      { name: "Machine Learning",    keywords: ["machine learning", "ml", "predictive", "scikit", "regression", "classification"] },
+      { name: "Deep Learning",       keywords: ["deep learning", "neural", "keras", "tensorflow", "pytorch"] },
+      { name: "Data Analysis",       keywords: ["data analysis", "exploratory data analysis", "eda", "pandas", "numpy", "mathematical modeling"] },
+      { name: "NLP",                 keywords: ["natural language processing", "nlp", "chatbot", "text"] },
+      { name: "Computer Vision",     keywords: ["computer vision", "image", "opencv"] },
+      { name: "MLOps",               keywords: ["mlops", "model deployment", "experiment tracking", "ci/cd", "machine learning lifecycle"] },
+    ],
   },
   {
-    label: "Web Development",
-    keywords: ["react", "next.js", "typescript", "javascript", "node.js", "express",
-      "php", "java", "tailwind", "html", "css", "context api", "react router",
-      "redux", "graphql", "rest", "websocket", "web", "frontend", "backend"],
-    displaySkills: ["React", "Next.js", "TypeScript", "Node.js", "Express", "JavaScript", "Tailwind CSS"],
+    category: "Web Development",
+    skills: [
+      { name: "React / Next.js",     keywords: ["react", "next.js", "nextjs"] },
+      { name: "TypeScript",          keywords: ["typescript"] },
+      { name: "Node.js / Express",   keywords: ["node.js", "express"] },
+      { name: "JavaScript",          keywords: ["javascript", "js"] },
+      { name: "Tailwind CSS",        keywords: ["tailwind"] },
+      { name: "PHP",                 keywords: ["php"] },
+      { name: "Java",                keywords: ["java"] },
+    ],
   },
   {
-    label: "Data & Analytics",
-    keywords: ["postgresql", "sql", "mongodb", "supabase", "mysql", "sqlite", "database",
-      "data visualization", "analytics", "data science", "data engineering",
-      "etl", "pipeline", "cloud computing", "cluster computing", "microservices"],
-    displaySkills: ["PostgreSQL", "SQL", "Python", "Data Science", "Pandas", "NumPy", "Data Visualization"],
+    category: "Data & Analytics",
+    skills: [
+      { name: "SQL / PostgreSQL",    keywords: ["postgresql", "sql", "mysql", "sqlite"] },
+      { name: "Data Visualization",  keywords: ["data visualization", "visualization", "dashboard"] },
+      { name: "Data Science",        keywords: ["data science", "data engineering", "business understanding", "model analysis"] },
+      { name: "EDA",                 keywords: ["exploratory data analysis", "eda", "hypothesis"] },
+      { name: "Pandas / NumPy",      keywords: ["pandas", "numpy"] },
+      { name: "MongoDB",             keywords: ["mongodb", "supabase", "database", "nosql"] },
+    ],
   },
   {
-    label: "Tools & Technologies",
-    keywords: ["git", "docker", "figma", "jwt", "rbac", "helmet", "linux", "unix",
-      "bash", "nginx", "aws", "azure", "shell", "cli", "jspdf", "pdf",
-      "security", "ci/cd", "task automation", "shell scripting", "process automation",
-      "model deployment", "microservices", "nodemailer"],
-    displaySkills: ["Git", "Docker", "Unix / CLI", "JWT", "REST API", "CI/CD", "Figma"],
+    category: "Tools & Technologies",
+    skills: [
+      { name: "Git / GitHub",        keywords: ["git"] },
+      { name: "Linux / Shell",       keywords: ["unix", "linux", "shell", "cli", "bash", "task automation"] },
+      { name: "Docker",              keywords: ["docker", "container"] },
+      { name: "Security",            keywords: ["jwt", "rbac", "helmet", "gdpr", "security", "authentication"] },
+      { name: "Figma",               keywords: ["figma"] },
+      { name: "REST / API",          keywords: ["rest", "api", "http", "nodemailer"] },
+      { name: "CI/CD",               keywords: ["ci/cd", "pipeline", "microservices"] },
+    ],
   },
 ];
 
 function computeSkillScores() {
-  const scores: Record<string, number> = {};
-  for (const cat of SKILL_CATEGORIES) scores[cat.label] = 0;
+  // Gather all project tecnologias + cert skills into one pool
+  const projectTechs: string[] = projetos.flatMap((p) => (p.tecnologias ?? []).map((t) => t.toLowerCase()));
+  const certSkills: string[] = certificados.flatMap((c) => (c.skills ?? []).map((s) => s.toLowerCase()));
 
-  // Project technologies — each match = 3 pts
-  for (const projeto of projetos) {
-    for (const tech of projeto.tecnologias ?? []) {
-      const t = tech.toLowerCase();
-      for (const cat of SKILL_CATEGORIES) {
-        if (cat.keywords.some((kw) => t.includes(kw))) {
-          scores[cat.label] += 3;
-        }
+  return SKILL_CATEGORIES.map(({ category, skills }) => {
+    const scored = skills.map(({ name, keywords }) => {
+      let pts = 0;
+      for (const kw of keywords) {
+        pts += projectTechs.filter((t) => t.includes(kw)).length * 3;
+        pts += certSkills.filter((s) => s.includes(kw)).length * 1;
       }
-    }
-  }
+      return { name, pts };
+    });
 
-  // Certification skills — each match = 1 pt
-  for (const cert of certificados) {
-    for (const skill of cert.skills ?? []) {
-      const s = skill.toLowerCase();
-      for (const cat of SKILL_CATEGORIES) {
-        if (cat.keywords.some((kw) => s.includes(kw))) {
-          scores[cat.label] += 1;
-        }
-      }
-    }
-  }
+    const maxPts = Math.max(...scored.map((s) => s.pts), 1);
+    const withPercent = scored.map(({ name, pts }) => ({
+      name,
+      percent: pts === 0 ? 30 : Math.min(95, Math.round(40 + (pts / maxPts) * 55)),
+    }));
 
-  // Normalise: highest score → 95%, rest proportional, minimum 28%
-  const maxScore = Math.max(...Object.values(scores), 1);
-  const result: Record<string, number> = {};
-  for (const [label, score] of Object.entries(scores)) {
-    result[label] = Math.min(95, Math.round(28 + (score / maxScore) * 67));
-  }
-  return result;
+    return { category, skills: withPercent };
+  });
 }
 
 export default function SobrePage() {
-  const scores = computeSkillScores();
+  const skillData = computeSkillScores();
 
   return (
     <>
@@ -145,13 +149,12 @@ export default function SobrePage() {
           <p className="font-mono text-zinc-600 text-[11px] tracking-wide mb-8">
             Percentages computed from technologies used across projects and certifications.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {SKILL_CATEGORIES.map((cat) => (
-              <SkillBar
-                key={cat.label}
-                label={cat.label}
-                percent={scores[cat.label]}
-                skills={cat.displaySkills}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {skillData.map((cat) => (
+              <SkillCategoryCard
+                key={cat.category}
+                category={cat.category}
+                skills={cat.skills}
               />
             ))}
           </div>
