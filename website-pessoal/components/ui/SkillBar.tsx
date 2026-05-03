@@ -34,7 +34,7 @@ function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
   return (
     <div
       ref={ref}
-      className="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 hover:border-emerald-400/25 transition-colors"
+      className="rounded-2xl border border-emerald-900/40 bg-[#071810]/80 p-6 hover:border-emerald-500/30 transition-colors"
     >
       <h3 className="font-mono text-sm font-bold text-emerald-400 mb-6">{category}</h3>
       <div className="space-y-4">
