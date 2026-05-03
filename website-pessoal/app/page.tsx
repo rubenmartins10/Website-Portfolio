@@ -342,8 +342,8 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
-          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-8">
-            FEATURED PROJECTS
+          <div className="text-center mb-8">
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em]">FEATURED PROJECTS</div>
           </div>
 
           <div className="space-y-8">
@@ -507,12 +507,12 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
-          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-2">
-            SKILLS &amp; EXPERTISE
+          <div className="text-center mb-8">
+            <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-2">SKILLS &amp; EXPERTISE</div>
+            <p className="font-mono text-zinc-600 text-[11px] tracking-wide">
+              Percentages computed from technologies used across projects and certifications.
+            </p>
           </div>
-          <p className="font-mono text-zinc-600 text-[11px] tracking-wide mb-8">
-            Percentages computed from technologies used across projects and certifications.
-          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {skillData.map((cat) => (
               <SkillCategoryCard

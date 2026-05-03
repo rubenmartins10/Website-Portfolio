@@ -130,15 +130,14 @@ export default function SobrePage() {
             </p>
           </div>
 
-          <div className="md:col-span-2">
-            <div className="relative w-full aspect-4/5 rounded-2xl overflow-hidden border border-white/7 bg-zinc-900 ring-1 ring-white/4">
+          <div className="md:col-span-2 flex items-start justify-center md:justify-start">
+            <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden ring-2 ring-emerald-400/40 ring-offset-4 ring-offset-zinc-950 shadow-2xl shadow-emerald-500/20 shrink-0">
               <Image
                 src="/perfil.jpg"
                 alt="Rúben Martins"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             </div>
           </div>
         </div>
