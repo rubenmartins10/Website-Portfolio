@@ -9,6 +9,13 @@ type SkillCategoryCardProps = {
   skills: SkillEntry[];
 };
 
+const GRADIENTS: Record<string, string> = {
+  "AI & Machine Learning": "from-emerald-400 to-cyan-400",
+  "Web Development":       "from-cyan-400 to-blue-400",
+  "Data & Analytics":      "from-teal-400 to-emerald-400",
+  "Tools & Technologies":  "from-violet-500 to-fuchsia-500",
+};
+
 function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
   const [animated, setAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -16,11 +23,13 @@ function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setAnimated(true); },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  const gradient = GRADIENTS[category] ?? "from-emerald-400 to-cyan-400";
 
   return (
     <div
@@ -33,15 +42,14 @@ function SkillCategoryCard({ category, skills }: SkillCategoryCardProps) {
           <div key={name}>
             <div className="flex items-center justify-between mb-1.5">
               <span className="font-mono text-xs text-zinc-300">{name}</span>
-              <span className="font-mono text-xs font-bold text-emerald-400 tabular-nums">{percent}%</span>
+              <span className="font-mono text-xs font-bold text-zinc-400 tabular-nums">{percent}%</span>
             </div>
-            <div className="h-0.5 bg-white/6 rounded-full overflow-hidden">
+            <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
               <div
-                className="h-full rounded-full transition-all duration-700 ease-out"
+                className={`h-full rounded-full bg-gradient-to-r ${gradient} transition-all duration-700 ease-out`}
                 style={{
                   width: animated ? `${percent}%` : "0%",
                   transitionDelay: `${idx * 60}ms`,
-                  background: "linear-gradient(90deg, #34d399, #6ee7b7)",
                 }}
               />
             </div>

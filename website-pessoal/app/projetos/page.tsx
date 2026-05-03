@@ -18,15 +18,13 @@ export default function ProjetosPage() {
       <StarfieldCanvas />
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28 w-full">
         {/* Header */}
-        <header className="mb-20">
-          <div className="font-mono text-xs text-emerald-400 tracking-[0.3em] mb-4">PORTFOLIO</div>
-          <h1 className="font-mono font-black text-white text-3xl md:text-5xl uppercase tracking-widest mb-6 flex items-center gap-4">
-            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
-            MY PROJECTS
+        <header className="mb-20 text-center">
+          <h1 className="font-black text-white text-4xl md:text-6xl mb-4">
+            <span className="text-cyan-400">Featured</span> Projects
           </h1>
-          <p className="text-zinc-400 text-sm md:text-base max-w-2xl leading-relaxed font-mono">
-            Real-world applications, full-stack systems and technical challenges.
-            Click a project to see the gallery, technologies and full details.
+          <div className="w-14 h-0.5 bg-cyan-400 mx-auto mb-5" />
+          <p className="text-zinc-500 text-sm md:text-base">
+            Swipe to explore my latest work
           </p>
         </header>
 
