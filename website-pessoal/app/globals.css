@@ -30,7 +30,9 @@
   --accent-dim: rgba(52, 211, 153, 0.12);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+}
 
 html {
   scroll-behavior: smooth;
