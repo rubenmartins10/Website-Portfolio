@@ -38,7 +38,7 @@ export default function ProjetosGrid({ projetos }: { projetos: Projeto[] }) {
         {projetos.map((projeto) => (
           <div
             key={projeto.slug}
-            className="group border border-emerald-900/40 rounded-2xl bg-[#071810] hover:border-emerald-500/30 transition-all duration-300 overflow-hidden shadow-xl"
+            className="group border border-emerald-800/40 rounded-2xl bg-emerald-950/80 backdrop-blur-sm hover:border-emerald-500/40 transition-all duration-300 overflow-hidden shadow-xl"
           >
             <div className="grid grid-cols-1 md:grid-cols-5 min-h-[420px]">
               {/* LEFT — content */}
@@ -152,7 +152,7 @@ export default function ProjetosGrid({ projetos }: { projetos: Projeto[] }) {
                     <span className="font-mono text-xs text-zinc-700 tracking-widest">NO IMAGE</span>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-linear-to-r from-[#071810]/70 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-r from-emerald-950/80 via-transparent to-transparent" />
               </div>
             </div>
           </div>

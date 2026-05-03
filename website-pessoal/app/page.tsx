@@ -300,7 +300,7 @@ export default function HomePage() {
                   }}
                 />
 
-                <div className="bg-zinc-900/50 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/5 hover:-translate-y-1 transition-transform duration-300">
+                <div className="bg-emerald-950/40 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-emerald-800/20 hover:-translate-y-1 transition-transform duration-300">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1">
@@ -350,7 +350,7 @@ export default function HomePage() {
             {projetosFallback.map((projeto) => (
               <div
                 key={projeto.slug}
-                className="group border border-emerald-900/40 rounded-2xl bg-[#071810] hover:border-emerald-500/30 transition-all duration-300 overflow-hidden shadow-xl"
+                className="group border border-emerald-800/40 rounded-2xl bg-emerald-950/80 backdrop-blur-sm hover:border-emerald-500/40 transition-all duration-300 overflow-hidden shadow-xl"
               >
                 <div className="grid grid-cols-1 md:grid-cols-5 min-h-[380px]">
                   {/* LEFT */}
@@ -442,7 +442,7 @@ export default function HomePage() {
                         <span className="font-mono text-xs text-zinc-700 tracking-widest">NO IMAGE</span>
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-linear-to-r from-[#071810]/70 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-r from-emerald-950/80 via-transparent to-transparent" />
                   </div>
                 </div>
               </div>
@@ -475,7 +475,7 @@ export default function HomePage() {
               return (
               <div
                 key={h.label}
-                className={`flex flex-col gap-3 p-6 rounded-2xl border border-l-4 ${borderColors[i % borderColors.length]} border-emerald-900/30 bg-[#071810]/60 hover:border-emerald-500/20 hover:-translate-y-2 transition-all duration-300`}
+                className={`flex flex-col gap-3 p-6 rounded-2xl border border-l-4 ${borderColors[i % borderColors.length]} border-emerald-800/30 bg-emerald-950/50 backdrop-blur-sm hover:border-emerald-500/20 hover:-translate-y-2 transition-all duration-300`}
               >
                 <span className="text-2xl">{h.icon}</span>
                 <span className="font-mono text-[10px] text-emerald-400 tracking-[0.2em]">
