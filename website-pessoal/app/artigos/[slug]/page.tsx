@@ -48,7 +48,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
             <span key={tag} className="badge badge-zinc">{tag}</span>
           ))}
           <time className="text-xs text-zinc-600">
-            {new Date(artigo.data).toLocaleDateString("pt-PT", { day: "numeric", month: "long", year: "numeric" })}
+            {new Date(artigo.data).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
           </time>
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">{artigo.titulo}</h1>

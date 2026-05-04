@@ -40,7 +40,7 @@ export default function CertificadoCard({ certificado, onClick }: CertificadoCar
         </h3>
         <p className="text-zinc-400 text-sm">{certificado.instituicao}</p>
         <time className="text-zinc-500 text-xs mt-3 block">
-          {new Date(certificado.data).toLocaleDateString('pt-PT')}
+          {new Date(certificado.data).toLocaleDateString('en-US')}
         </time>
       </div>
     </div>

@@ -12,77 +12,77 @@ export default config({
       },
   collections: {
     artigos: collection({
-      label: 'Artigos',
+      label: 'Articles',
       slugField: 'titulo',
       path: 'content/artigos/*',
       format: { contentField: 'conteudo' },
       schema: {
-        titulo: fields.slug({ name: { label: 'Título' } }),
-        data: fields.date({ label: 'Data', defaultValue: { kind: 'today' } }),
-        resumo: fields.text({ label: 'Resumo', multiline: true, defaultValue: '' }),
+        titulo: fields.slug({ name: { label: 'Title' } }),
+        data: fields.date({ label: 'Date', defaultValue: { kind: 'today' } }),
+        resumo: fields.text({ label: 'Summary', multiline: true, defaultValue: '' }),
         tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tags' }),
-        publicado: fields.checkbox({ label: 'Publicado', defaultValue: true }),
-        conteudo: fields.mdx({ label: 'Conteúdo' }),
+        publicado: fields.checkbox({ label: 'Published', defaultValue: true }),
+        conteudo: fields.mdx({ label: 'Content' }),
       },
     }),
     projetos: collection({
-      label: 'Projetos',
+      label: 'Projects',
       slugField: 'nome',
       path: 'content/projetos/*',
       format: { contentField: 'descricao' },
       schema: {
-        nome: fields.slug({ name: { label: 'Nome do Projeto' } }),
-        data: fields.date({ label: 'Data de Conclusão' }),
-        url: fields.text({ label: 'Link do GitHub (Repositório)', defaultValue: '' }),
+        nome: fields.slug({ name: { label: 'Project Name' } }),
+        data: fields.date({ label: 'Completion Date' }),
+        url: fields.text({ label: 'GitHub Link (Repository)', defaultValue: '' }),
         
-        // IMAGEM DE CAPA PRINCIPAL
+        // MAIN COVER IMAGE
         imagem: fields.image({
-          label: 'Capa do Projeto (Principal)',
+          label: 'Project Cover (Main)',
           directory: 'public/projetos',
           publicPath: '/projetos/',
         }),
 
-        // NOVO: GALERIA DE FOTOS EXTRA
+        // EXTRA PHOTO GALLERY
         galeria: fields.array(
           fields.image({
-            label: 'Fotografia de Exposição',
+            label: 'Gallery Photo',
             directory: 'public/projetos',
             publicPath: '/projetos/',
           }),
           {
-            label: 'Galeria de Fotos (Opcional)',
-            itemLabel: props => props.value ? 'Foto Adicionada' : 'Nova Foto'
+            label: 'Photo Gallery (Optional)',
+            itemLabel: props => props.value ? 'Photo Added' : 'New Photo'
           }
         ),
 
-        tecnologias: fields.array(fields.text({ label: 'Tecnologia' }), { label: 'Stack Tecnológica' }),
-        destaque: fields.checkbox({ label: 'Destaque na Home', defaultValue: false }),
-        resumo: fields.text({ label: 'Resumo do Projeto', multiline: true, defaultValue: '' }),
-        conquistas: fields.array(fields.text({ label: 'Conquista' }), { label: 'Conquistas/Funcionalidades', itemLabel: props => props.value || 'Nova Conquista' }),
-        descricao: fields.mdx({ label: 'Descrição Detalhada' }),
+        tecnologias: fields.array(fields.text({ label: 'Technology' }), { label: 'Tech Stack' }),
+        destaque: fields.checkbox({ label: 'Featured on Home', defaultValue: false }),
+        resumo: fields.text({ label: 'Project Summary', multiline: true, defaultValue: '' }),
+        conquistas: fields.array(fields.text({ label: 'Achievement' }), { label: 'Achievements / Features', itemLabel: props => props.value || 'New Achievement' }),
+        descricao: fields.mdx({ label: 'Detailed Description' }),
       },
     }),
     certificados: collection({
-      label: 'Certificações',
+      label: 'Certifications',
       slugField: 'titulo',
       path: 'content/certificados/*',
       schema: {
-        titulo: fields.slug({ name: { label: 'Nome do Certificado' } }),
-        emissor: fields.text({ label: 'Entidade Emissora', defaultValue: '' }),
+        titulo: fields.slug({ name: { label: 'Certificate Name' } }),
+        emissor: fields.text({ label: 'Issuing Organization', defaultValue: '' }),
         imagem: fields.image({
-          label: 'Imagem ou Logo da Instituição',
+          label: 'Institution Image or Logo',
           directory: 'public/certificados',
           publicPath: '/certificados/',
         }),
-        data: fields.date({ label: 'Data de Emissão' }),
-        aprendizado: fields.text({ label: 'O que aprendi no curso', multiline: true, defaultValue: '' }),
-        skills: fields.array(fields.text({ label: 'Skill (ex: React, Python)' }), {
-          label: 'Skills Adquiridas',
+        data: fields.date({ label: 'Issue Date' }),
+        aprendizado: fields.text({ label: 'What I learned in this course', multiline: true, defaultValue: '' }),
+        skills: fields.array(fields.text({ label: 'Skill (e.g. React, Python)' }), {
+          label: 'Skills Acquired',
           itemLabel: props => props.value
         }),
-        link: fields.text({ label: 'Link de Verificação (Opcional)', defaultValue: '' }),
+        link: fields.text({ label: 'Verification Link (Optional)', defaultValue: '' }),
         ficheiro: fields.file({
-          label: 'Ficheiro do Certificado (PDF)',
+          label: 'Certificate File (PDF)',
           directory: 'public/certificados',
           publicPath: '/certificados/',
         }),

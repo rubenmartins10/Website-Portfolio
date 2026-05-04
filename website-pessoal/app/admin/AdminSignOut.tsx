@@ -7,7 +7,7 @@ export default function AdminSignOut() {
       onClick={() => signOut({ callbackUrl: "/" })}
       className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
     >
-      Sair
+      Sign Out
     </button>
   )
 }

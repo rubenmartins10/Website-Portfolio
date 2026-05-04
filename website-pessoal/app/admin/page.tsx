@@ -26,7 +26,7 @@ export default async function AdminPage() {
 
   const firstName = session.user?.name?.split(" ")[0] || "Admin";
   const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Bom dia" : hour < 18 ? "Boa tarde" : "Boa noite";
+  const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 
   return (
     <div className="min-h-screen bg-[#07080b] text-white">
@@ -74,7 +74,7 @@ export default async function AdminPage() {
               {greeting}, {firstName} 👋
             </h1>
             <p className="text-zinc-500 text-sm mt-0.5">
-              {new Date().toLocaleDateString("pt-PT", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+              {new Date().toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
             </p>
           </div>
           <Link
@@ -84,7 +84,7 @@ export default async function AdminPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
             </svg>
-            Abrir Editor
+            Open Editor
           </Link>
         </div>
 
@@ -95,7 +95,7 @@ export default async function AdminPage() {
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Projetos</p>
+                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Projects</p>
                 <p className="text-4xl font-black text-white">{projetos.length}</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center shrink-0">
@@ -106,10 +106,10 @@ export default async function AdminPage() {
             </div>
             <div className="flex gap-2 mt-auto">
               <Link href="/keystatic/collections/projetos" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.06] transition-all tracking-wide">
-                VER TODOS
+                VIEW ALL
               </Link>
               <Link href="/keystatic/collections/projetos/create" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-emerald-400 hover:text-emerald-300 rounded-lg bg-emerald-400/8 hover:bg-emerald-400/12 border border-emerald-400/20 transition-all tracking-wide">
-                + CRIAR
+                + CREATE
               </Link>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default async function AdminPage() {
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Artigos</p>
+                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Articles</p>
                 <p className="text-4xl font-black text-white">{artigos.length}</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-blue-400/10 border border-blue-400/20 flex items-center justify-center shrink-0">
@@ -129,10 +129,10 @@ export default async function AdminPage() {
             </div>
             <div className="flex gap-2 mt-auto">
               <Link href="/keystatic/collections/artigos" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.06] transition-all tracking-wide">
-                VER TODOS
+                VIEW ALL
               </Link>
               <Link href="/keystatic/collections/artigos/create" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-blue-400 hover:text-blue-300 rounded-lg bg-blue-400/8 hover:bg-blue-400/12 border border-blue-400/20 transition-all tracking-wide">
-                + CRIAR
+                + CREATE
               </Link>
             </div>
           </div>
@@ -141,7 +141,7 @@ export default async function AdminPage() {
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Certificações</p>
+                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Certifications</p>
                 <p className="text-4xl font-black text-white">{certificados.length}</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center shrink-0">
@@ -152,10 +152,10 @@ export default async function AdminPage() {
             </div>
             <div className="flex gap-2 mt-auto">
               <Link href="/keystatic/collections/certificados" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.06] transition-all tracking-wide">
-                VER TODOS
+                VIEW ALL
               </Link>
               <Link href="/keystatic/collections/certificados/create" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-purple-400 hover:text-purple-300 rounded-lg bg-purple-400/8 hover:bg-purple-400/12 border border-purple-400/20 transition-all tracking-wide">
-                + CRIAR
+                + CREATE
               </Link>
             </div>
           </div>
@@ -170,15 +170,15 @@ export default async function AdminPage() {
             <div className="px-5 py-4 border-b border-white/[0.05] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Projetos</h2>
+                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Projects</h2>
               </div>
               <Link href="/keystatic/collections/projetos" className="font-mono text-[10px] text-zinc-500 hover:text-emerald-400 transition-colors tracking-wide">
-                VER TODOS →
+                VIEW ALL →
               </Link>
             </div>
             <div className="divide-y divide-white/[0.04]">
               {recentProjetos.length === 0 ? (
-                <p className="text-zinc-600 text-xs text-center py-8">Sem projetos ainda.</p>
+                <p className="text-zinc-600 text-xs text-center py-8">No projects yet.</p>
               ) : recentProjetos.map(p => (
                 <div key={p.slug} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
                   <div className="flex items-center gap-2.5 min-w-0">
@@ -190,7 +190,7 @@ export default async function AdminPage() {
                   </div>
                   <div className="flex items-center gap-3 shrink-0 ml-2">
                     <time className="text-[10px] text-zinc-600 font-mono">
-                      {new Date(p.data).toLocaleDateString("pt-PT", { month: "short", year: "2-digit" })}
+                      {new Date(p.data).toLocaleDateString("en-US", { month: "short", year: "2-digit" })}
                     </time>
                     <Link href={`/keystatic/collections/projetos/${p.slug}`} className="text-[10px] font-mono text-zinc-600 hover:text-emerald-400 transition-colors">
                       EDITAR
@@ -206,19 +206,19 @@ export default async function AdminPage() {
             <div className="px-5 py-4 border-b border-white/[0.05] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-blue-400" />
-                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Artigos</h2>
+                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Articles</h2>
               </div>
               <Link href="/keystatic/collections/artigos" className="font-mono text-[10px] text-zinc-500 hover:text-blue-400 transition-colors tracking-wide">
-                VER TODOS →
+                VIEW ALL →
               </Link>
             </div>
             <div className="divide-y divide-white/[0.04]">
               {recentArtigos.length === 0 ? (
-                <p className="text-zinc-600 text-xs text-center py-8">Sem artigos ainda.</p>
+                <p className="text-zinc-600 text-xs text-center py-8">No articles yet.</p>
               ) : recentArtigos.map(a => (
                 <div key={a.slug} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <span className={`shrink-0 w-1.5 h-1.5 rounded-full ${a.publicado ? "bg-emerald-400" : "bg-zinc-600"}`} title={a.publicado ? "Publicado" : "Rascunho"} />
+                    <span className={`shrink-0 w-1.5 h-1.5 rounded-full ${a.publicado ? "bg-emerald-400" : "bg-zinc-600"}`} title={a.publicado ? "Published" : "Draft"} />
                     <span className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{a.titulo}</span>
                   </div>
                   <div className="flex items-center gap-3 shrink-0 ml-2">
@@ -239,10 +239,10 @@ export default async function AdminPage() {
             <div className="px-5 py-4 border-b border-white/[0.05] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-purple-400" />
-                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Certificações</h2>
+                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Certifications</h2>
               </div>
               <Link href="/keystatic/collections/certificados" className="font-mono text-[10px] text-zinc-500 hover:text-purple-400 transition-colors tracking-wide">
-                VER TODOS →
+                VIEW ALL →
               </Link>
             </div>
             <div className="divide-y divide-white/[0.04]">
@@ -265,10 +265,10 @@ export default async function AdminPage() {
         {/* ── Quick Links ── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: "Ver Site", href: "/", icon: "🌐", desc: "Homepage pública" },
-            { label: "Projetos", href: "/projetos", icon: "💼", desc: "Página de projetos" },
-            { label: "Artigos", href: "/artigos", icon: "📝", desc: "Blog público" },
-            { label: "Certificações", href: "/certificados", icon: "🏅", desc: "Página de certs" },
+            { label: "View Site", href: "/", icon: "🌐", desc: "Public homepage" },
+            { label: "Projects", href: "/projetos", icon: "💼", desc: "Projects page" },
+            { label: "Articles", href: "/artigos", icon: "📝", desc: "Public blog" },
+            { label: "Certifications", href: "/certificados", icon: "🏅", desc: "Certs page" },
           ].map(link => (
             <Link
               key={link.href}

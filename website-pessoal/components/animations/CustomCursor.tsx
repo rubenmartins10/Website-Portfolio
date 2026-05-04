@@ -69,7 +69,7 @@ export default function CustomCursor() {
     >
       <svg viewBox="0 0 40 40" className="w-full h-full overflow-visible drop-shadow-md">
         
-        {/* As "faíscas" / Brilho */}
+        {/* Sparkles / Glow */}
         <g>
           <line x1="8" y1="8" x2="2" y2="2" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round" className="burst-line" />
           <line x1="10" y1="6" x2="8" y2="0" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round" className="burst-line" />
