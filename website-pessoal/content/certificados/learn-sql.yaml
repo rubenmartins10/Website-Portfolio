@@ -1,12 +1,12 @@
 titulo: Learn SQL Course
 emissor: Codecademy
-imagem: /certificados/learn-sql/imagem.png
+imagem: /certificados/learn-sql/imagem.jpg
 data: 2026-04-01
 aprendizado: >-
-  Completei o curso de SQL da Codecademy, cobrindo desde consultas básicas
-  até conceitos avançados: SELECT, JOIN, subqueries, agregações, índices,
-  transações e gestão de bases de dados relacionais. Aplicável diretamente
-  ao desenvolvimento backend com PostgreSQL e MySQL.
+  Completei o curso de SQL da Codecademy, cobrindo desde consultas básicas até
+  conceitos avançados: SELECT, JOIN, subqueries, agregações, índices, transações
+  e gestão de bases de dados relacionais. Aplicável diretamente ao
+  desenvolvimento backend com PostgreSQL e MySQL.
 skills:
   - SQL
   - PostgreSQL
@@ -14,5 +14,4 @@ skills:
   - Queries
   - Joins
   - Aggregations
-ficheiro: /certificados/learn-sql/ficheiro.pdf
 categoria: database

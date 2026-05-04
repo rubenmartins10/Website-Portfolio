@@ -1,17 +1,17 @@
 titulo: Learn Python 3
 emissor: Codecademy
-imagem: /certificados/learn-python-3/imagem.png
+imagem: /certificados/learn-python-3/imagem.jpg
 data: 2026-04-01
 aprendizado: >-
   Completei o curso completo de Python 3 da Codecademy, consolidando fundamentos
   da linguagem: tipos de dados, estruturas de controlo, funções, programação
-  orientada a objetos, manipulação de ficheiros e módulos da biblioteca standard.
-  Desenvolveu a base para aplicações de ciência de dados e desenvolvimento backend.
+  orientada a objetos, manipulação de ficheiros e módulos da biblioteca
+  standard. Desenvolveu a base para aplicações de ciência de dados e
+  desenvolvimento backend.
 skills:
   - Python
   - Object-Oriented Programming
   - Data Structures
   - Functions
   - File Handling
-ficheiro: /certificados/learn-python-3/ficheiro.pdf
 categoria: software-engineering
