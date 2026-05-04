@@ -43,7 +43,7 @@ const certificados = defineCollection({
     skills: s.array(s.string()).default([]),
     data: s.isodate(),
     link: s.string().optional(),
-    ficheiro: s.string(),
+    ficheiro: s.string().optional(),
     categoria: s.enum([
       'software-engineering', 'frontend', 'backend', 'mobile', 
       'cloud-devops', 'data-ai', 'cybersecurity', 'networks', 'database'

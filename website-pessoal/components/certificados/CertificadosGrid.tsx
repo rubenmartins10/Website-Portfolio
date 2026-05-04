@@ -11,7 +11,7 @@ type Certificado = {
   skills: string[];
   data: string;
   link?: string;
-  ficheiro: string;
+  ficheiro?: string;
   categoria: string;
   slug: string;
 };
