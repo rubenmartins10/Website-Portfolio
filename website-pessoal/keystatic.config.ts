@@ -57,6 +57,8 @@ export default config({
 
         tecnologias: fields.array(fields.text({ label: 'Tecnologia' }), { label: 'Stack Tecnológica' }),
         destaque: fields.checkbox({ label: 'Destaque na Home', defaultValue: false }),
+        resumo: fields.text({ label: 'Resumo do Projeto', multiline: true, defaultValue: '' }),
+        conquistas: fields.array(fields.text({ label: 'Conquista' }), { label: 'Conquistas/Funcionalidades', itemLabel: props => props.value || 'Nova Conquista' }),
         descricao: fields.mdx({ label: 'Descrição Detalhada' }),
       },
     }),

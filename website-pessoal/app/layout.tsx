@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/layout/Navbar";
-import CustomCursor from "../components/animations/CustomCursor";
-import GreenTrail from "../components/animations/GreenTrail";
+import ConditionalShell from "../components/layout/ConditionalShell";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceMono = Space_Mono({
@@ -25,16 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark overflow-x-hidden">
       <body className={`${inter.variable} ${spaceMono.variable} bg-zinc-950 text-zinc-100 min-h-screen flex flex-col overflow-x-hidden`}>
-        {/* Cursor importado normalmente. Como tem 'use client' lá dentro, o GSAP só corre no browser! */}
-        <CustomCursor />
-        <GreenTrail />
-        
-        <Navbar />
-        
-        <main className="flex-1 flex flex-col">
+        <ConditionalShell>
           {children}
-        </main>
-        
+        </ConditionalShell>
       </body>
     </html>
   );
