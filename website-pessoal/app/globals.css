@@ -93,6 +93,9 @@ body {
 @keyframes spin-slow {
   to { transform: rotate(360deg); }
 }
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
 @keyframes terminal-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -113,6 +116,11 @@ body {
 .pulse-glow         { animation: pulse-glow 2.5s ease-in-out infinite; }
 .animate-terminal-blink { animation: terminal-blink 1s step-end infinite; }
 .animate-float      { animation: float 4s ease-in-out infinite; }
+
+/* Duration utility for loading screen */
+.duration-600 {
+  transition-duration: 600ms;
+}
 
 /* ═══════════════════════ TYPOGRAPHY ═══════════════════════ */
 .text-gradient {

@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import Navbar from './Navbar'
 import CustomCursor from '../animations/CustomCursor'
 import GreenTrail from '../animations/GreenTrail'
+import LoadingScreen from '../home/LoadingScreen'
 
 export default function ConditionalShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -10,6 +11,7 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
 
   return (
     <>
+      {!isKeystatic && <LoadingScreen />}
       {!isKeystatic && <CustomCursor />}
       {!isKeystatic && <GreenTrail />}
       {!isKeystatic && <Navbar />}

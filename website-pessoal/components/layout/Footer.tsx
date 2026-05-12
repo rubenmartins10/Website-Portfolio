@@ -64,7 +64,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full border-t border-white/[0.06] mt-24 relative overflow-hidden">
-      {/* Ambient green glow — replicates the cursor trail feel */}
+      {/* Ambient green glows */}
       <div className="absolute -top-32 left-1/4 w-96 h-96 rounded-full bg-emerald-500/6 blur-[100px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full bg-emerald-400/5 blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-40 rounded-full bg-emerald-600/4 blur-[60px] pointer-events-none" />
@@ -88,7 +88,7 @@ export default function Footer() {
               href={href}
               target={href.startsWith('mailto') ? undefined : '_blank'}
               rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-white/5 bg-white/2 hover:border-emerald-400/20 hover:bg-white/4 transition-all duration-300 text-center"
+              className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-white/5 bg-white/2 hover:border-emerald-400/20 hover:bg-white/4 hover:-translate-y-1 transition-all duration-300 text-center"
             >
               <div className={`w-14 h-14 rounded-full flex items-center justify-center ${color} overflow-hidden`}>
                 <span className="icon-spin">{icon}</span>
@@ -100,23 +100,26 @@ export default function Footer() {
         </div>
 
         {/* CTA Card */}
-        <div className="rounded-2xl border border-white/6 bg-white/2 p-10 md:p-14 text-center">
-          {/* Paper plane icon */}
-          <div className="flex justify-center mb-6">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-10 h-10 text-emerald-400">
+        <div className="rounded-2xl border border-white/6 bg-white/2 p-10 md:p-14 text-center relative overflow-hidden">
+          {/* Background glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] rounded-full bg-emerald-500/5 blur-[80px] pointer-events-none" />
+          
+          {/* Paper plane icon — floating animation */}
+          <div className="flex justify-center mb-6 relative z-10">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-10 h-10 text-emerald-400 animate-float">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
             </svg>
           </div>
-          <h3 className="font-mono font-black text-white text-xl md:text-2xl uppercase tracking-widest mb-3">
+          <h3 className="font-mono font-black text-white text-xl md:text-2xl uppercase tracking-widest mb-3 relative z-10">
             READY TO BUILD SOMETHING AMAZING?
           </h3>
-          <p className="text-zinc-500 text-sm max-w-lg mx-auto leading-relaxed mb-8">
+          <p className="text-zinc-500 text-sm max-w-lg mx-auto leading-relaxed mb-8 relative z-10">
             I&apos;m actively seeking opportunities where I can apply my skills to solve real-world problems.
             Whether it&apos;s a full-time position, freelance project or collaboration — I&apos;d love to hear from you!
           </p>
           <a
             href="mailto:rubendavidsilvamartins@gmail.com"
-            className="inline-flex items-center gap-2 font-mono text-xs text-zinc-950 bg-emerald-400 hover:bg-emerald-300 px-8 py-3.5 rounded-full font-bold tracking-widest uppercase transition-colors"
+            className="relative z-10 inline-flex items-center gap-2 font-mono text-xs text-zinc-950 bg-emerald-400 hover:bg-emerald-300 px-8 py-3.5 rounded-full font-bold tracking-widest uppercase transition-all duration-200 hover:shadow-[0_8px_30px_rgba(52,211,153,0.3)]"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

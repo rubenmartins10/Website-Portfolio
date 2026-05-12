@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { projetos, artigos, certificados } from "@/.velite";
@@ -8,6 +8,8 @@ import GlobeDome3D from "@/components/home/GlobeDome3D";
 import SkillCategoryCard from "@/components/ui/SkillBar";
 import ProjectsCarousel from "@/components/home/ProjectsCarousel";
 import Footer from "@/components/layout/Footer";
+import BioGenerator from "@/components/home/BioGenerator";
+import ScrollSection from "@/components/animations/ScrollSection";
 
 export const metadata: Metadata = {
   title: "Rúben Martins | Junior Engineer",
@@ -97,6 +99,7 @@ const timeline = [
     company: "MeClinic — Urgências Dentárias 24h",
     location: "Vila Nova de Gaia, Portugal",
     period: "Sep 2025 – May 2026",
+    color: "emerald" as const,
     highlights: [
       "Engineered a production-grade full-stack clinical management platform now deployed and used daily by clinical staff for inventory, appointments, billing and patient records.",
       "Automated physical stock control via USB barcode scanner with real-time low-stock alerts, reducing average inventory update time by approximately 60%.",
@@ -107,6 +110,20 @@ const timeline = [
     ],
   },
 ] as const;
+
+const TIMELINE_COLORS = {
+  emerald: {
+    dot: 'rgb(110, 231, 183)',
+    dotGlow: 'rgba(110, 231, 183, 0.3)',
+    dotGlow2: 'rgba(110, 231, 183, 0.12)',
+    card: 'bg-emerald-950/40',
+    cardBorder: 'border-emerald-800/20',
+    cardHoverBorder: 'hover:border-emerald-500/30',
+    accent: 'text-emerald-400',
+    glow: 'bg-emerald-400/8',
+    glow2: 'bg-emerald-500/10',
+  },
+};
 
 export default function HomePage() {
   const skillData = computeSkillScores();
@@ -122,6 +139,7 @@ export default function HomePage() {
       title: "Computer Engineering",
       description:
         "Final year at Universidade Lusófona do Porto — specializing in AI, Data & Software Engineering.",
+      borderColor: "border-l-yellow-500",
     },
     {
       icon: "📜",
@@ -129,6 +147,7 @@ export default function HomePage() {
       title: `${certificados.length}+ Certificates`,
       description:
         "IBM, Forage & Coursera certified in AI, ML, Data Science and Python.",
+      borderColor: "border-l-cyan-400",
     },
     {
       icon: "💼",
@@ -136,6 +155,7 @@ export default function HomePage() {
       title: `${projetosFallback.length}+ Live Projects`,
       description:
         "Full-stack SaaS and data engineering projects built for real use cases.",
+      borderColor: "border-l-purple-500",
     },
     {
       icon: "🌐",
@@ -143,7 +163,15 @@ export default function HomePage() {
       title: "Full Stack + AI",
       description:
         "Python, React, Node.js, PostgreSQL, TensorFlow — end-to-end.",
+      borderColor: "border-l-green-500",
     },
+  ];
+
+  const stats = [
+    { value: `${projetos.length}+`, label: "PROJECTS", color: "text-white", glowColor: "shadow-white/5" },
+    { value: `${certificados.length}`, label: "CERTIFICATIONS", color: "text-emerald-400", glowColor: "shadow-emerald-500/10" },
+    { value: "3+", label: "YEARS CODING", color: "text-purple-400", glowColor: "shadow-purple-500/10" },
+    { value: "2", label: "TECH AREAS", color: "text-white", glowColor: "shadow-white/5" },
   ];
 
   return (
@@ -151,27 +179,24 @@ export default function HomePage() {
       <StarfieldCanvas />
 
       {/* ================================================
-          HERO — photo sitting on globe dome
+          HERO
       ================================================ */}
       <section
         id="home"
         className="relative min-h-screen flex flex-col items-center overflow-hidden pt-24 md:pt-28 pb-0"
       >
-        {/* SYSTEM ONLINE */}
+        {/* SYSTEM ONLINE badge */}
         <div className="flex items-center gap-2.5 px-5 py-2 border border-emerald-400/20 rounded-full font-mono text-xs tracking-[0.25em] text-emerald-400 mb-8 bg-emerald-400/3 z-10 animate-fade-in">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           SYSTEM ONLINE
         </div>
 
-        {/* Profile photo + full-sphere globe */}
+        {/* Profile photo + globe */}
         <div className="relative z-10 mb-6 flex items-center justify-center w-[300px] h-[300px] md:w-[360px] md:h-[360px]">
-          {/* Globe canvas — full orbiting sphere around the photo */}
           <div className="absolute inset-0 pointer-events-none" style={{ margin: '-40px' }}>
             <GlobeDome3D />
           </div>
-          {/* Soft ambient glow */}
           <div className="absolute inset-0 rounded-full bg-emerald-500/6 blur-3xl scale-125 pointer-events-none" />
-          {/* Photo — centered on top of globe */}
           <div className="relative z-10 w-36 h-36 md:w-44 md:h-44 rounded-full ring-2 ring-emerald-300/20 ring-offset-4 ring-offset-zinc-950 overflow-hidden shadow-xl shadow-emerald-500/10">
             <Image
               src="/perfil.jpg"
@@ -186,7 +211,7 @@ export default function HomePage() {
 
         {/* Content below globe */}
         <div className="relative z-10 flex flex-col items-center text-center px-6 mt-2 pb-24 w-full max-w-4xl mx-auto">
-          {/* Huge name */}
+          {/* Name */}
           <h1 className="font-mono font-bold text-white leading-[0.9] tracking-tight text-[clamp(1.8rem,5vw,4rem)] mb-4">
             RÚBEN MARTINS
           </h1>
@@ -198,47 +223,19 @@ export default function HomePage() {
             />
           </h2>
 
-          {/* Bio — terminal box */}
-          <div
-            className="mb-10 w-full max-w-xl lg:max-w-2xl rounded-lg text-left"
-            style={{
-              background: 'rgba(10,10,15,0.75)',
-              border: '1px solid rgba(52,211,153,0.15)',
-              padding: '1rem 1.25rem',
-            }}
-          >
-            {/* macOS traffic lights */}
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 inline-block" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block" />
-              <span className="ml-2 font-mono text-zinc-500 text-[10px] tracking-[0.2em]">
-                NEURAL_CORE // BIO_LOADER
-              </span>
-            </div>
-            <p className="text-zinc-300 text-sm leading-relaxed font-mono">
-              <span className="text-emerald-400 mr-1">&gt;</span>
-              Computer Engineering finalist in Porto, Portugal. Production experience delivering a{" "}
-              <strong className="text-emerald-400 font-semibold">
-                full-stack SaaS platform
-              </strong>
-              {" "}for a real client — 60% faster stock management. Specializing in{" "}
-              <strong className="text-emerald-400 font-semibold">
-                AI, ML &amp; Full-Stack
-              </strong>.
-            </p>
+          {/* Bio Generator — replaces static terminal box */}
+          <div className="mb-10 w-full flex justify-center">
+            <BioGenerator />
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 lg:gap-20 mb-12 w-full">
-            {[
-              { value: `${projetos.length}+`, label: "PROJECTS", color: "text-white" },
-              { value: `${certificados.length}`, label: "CERTIFICATIONS", color: "text-emerald-400" },
-              { value: "3+", label: "YEARS CODING", color: "text-purple-400" },
-              { value: "2", label: "TECH AREAS", color: "text-white" },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <div className={`font-mono font-bold text-4xl md:text-5xl lg:text-6xl mb-1 ${s.color}`}>
+          {/* Stats cards — glassmorphism style */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-12 w-full max-w-2xl">
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                className={`text-center py-5 px-3 rounded-xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm hover:border-emerald-400/20 hover:bg-white/[0.04] transition-all duration-300 shadow-lg ${s.glowColor}`}
+              >
+                <div className={`font-mono font-bold text-3xl md:text-4xl mb-1 ${s.color}`}>
                   {s.value}
                 </div>
                 <div className="font-mono text-[10px] text-zinc-500 tracking-[0.2em]">
@@ -252,7 +249,7 @@ export default function HomePage() {
           <div className="flex gap-4 flex-wrap justify-center">
             <Link
               href="#projects"
-              className="font-mono text-sm font-bold tracking-[0.15em] px-8 py-3.5 bg-emerald-400 text-black hover:bg-emerald-300 transition-all duration-200 rounded"
+              className="font-mono text-sm font-bold tracking-[0.15em] px-8 py-3.5 bg-emerald-400 text-black hover:bg-emerald-300 transition-all duration-200 rounded hover:shadow-[0_8px_30px_rgba(52,211,153,0.3)]"
             >
               VIEW MY WORK
             </Link>
@@ -280,58 +277,65 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-16 flex items-center gap-4 uppercase tracking-widest">
-            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
-            CAREER IMPACT
-          </h2>
+          <ScrollSection>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-16 flex items-center gap-4 uppercase tracking-widest">
+              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+              CAREER IMPACT
+            </h2>
+          </ScrollSection>
 
           <div className="relative border-l-2 border-zinc-800 ml-4 md:ml-8">
-            {timeline.map((entry) => (
-              <div key={entry.role} className="mb-12 relative pl-8 md:pl-12">
-                {/* Glowing dot */}
-                <div
-                  className="absolute w-5 h-5 rounded-full z-10 -left-2.75 top-1"
-                  style={{
-                    backgroundColor: "rgb(110, 231, 183)",
-                    boxShadow:
-                      "rgba(110, 231, 183, 0.3) 0px 0px 12px, rgba(110, 231, 183, 0.12) 0px 0px 24px",
-                    border: "3px solid #08090c",
-                  }}
-                />
+            {timeline.map((entry, entryIdx) => {
+              const colors = TIMELINE_COLORS[entry.color];
+              return (
+                <ScrollSection key={entry.role} delay={entryIdx * 0.15}>
+                  <div className="mb-12 relative pl-8 md:pl-12">
+                    {/* Glowing dot */}
+                    <div
+                      className="absolute w-5 h-5 rounded-full z-10 -left-2.75 top-1"
+                      style={{
+                        backgroundColor: colors.dot,
+                        boxShadow: `${colors.dotGlow} 0px 0px 12px, ${colors.dotGlow2} 0px 0px 24px`,
+                        border: '3px solid #08090c',
+                      }}
+                    />
 
-                <div className="bg-emerald-950/40 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-emerald-800/20 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
-                  {/* Green radial glow — like the blue comet in reference */}
-                  <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-emerald-400/8 blur-3xl pointer-events-none" />
-                  <div className="absolute top-1/2 right-8 w-28 h-28 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white mb-1">
-                        {entry.role}
-                      </h3>
-                      <p className="font-mono text-sm font-semibold tracking-widest uppercase text-emerald-400">
-                        {entry.company}
-                      </p>
-                      <p className="font-mono text-xs text-zinc-500 mt-0.5">
-                        {entry.location}
-                      </p>
-                    </div>
-                    <span className="font-mono text-xs text-zinc-400 border border-white/10 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 mt-2 md:mt-0">
-                      {entry.period}
-                    </span>
-                  </div>
-                  <ul className="space-y-3 mt-4 text-zinc-300">
-                    {entry.highlights.map((h) => (
-                      <li key={h} className="flex gap-3 text-sm md:text-base">
-                        <span className="text-emerald-400 shrink-0 mt-1">
-                          ✦
+                    <div className={`${colors.card} backdrop-blur-md rounded-2xl p-6 md:p-8 border ${colors.cardBorder} ${colors.cardHoverBorder} hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group`}>
+                      {/* Radial glow accents */}
+                      <div className={`absolute -top-10 -right-10 w-52 h-52 rounded-full ${colors.glow} blur-3xl pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
+                      <div className={`absolute top-1/2 right-8 w-28 h-28 rounded-full ${colors.glow2} blur-2xl pointer-events-none`} />
+                      
+                      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2 relative z-10">
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-1">
+                            {entry.role}
+                          </h3>
+                          <p className={`font-mono text-sm font-semibold tracking-widest uppercase ${colors.accent}`}>
+                            {entry.company}
+                          </p>
+                          <p className="font-mono text-xs text-zinc-500 mt-0.5">
+                            {entry.location}
+                          </p>
+                        </div>
+                        <span className="font-mono text-xs text-zinc-400 border border-white/10 px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 mt-2 md:mt-0">
+                          {entry.period}
                         </span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                      </div>
+                      <ul className="space-y-3 mt-4 text-zinc-300 relative z-10">
+                        {entry.highlights.map((h) => (
+                          <li key={h} className="flex gap-3 text-sm md:text-base">
+                            <span className={`${colors.accent} shrink-0 mt-1`}>
+                              ✦
+                            </span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </ScrollSection>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -344,55 +348,66 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
-            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
-            FEATURED PROJECTS
-          </h2>
+          <ScrollSection>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
+              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+              FEATURED PROJECTS
+            </h2>
+          </ScrollSection>
 
-          <ProjectsCarousel projetos={projetosFallback} />
+          <ScrollSection delay={0.1}>
+            <ProjectsCarousel projetos={projetosFallback} />
+          </ScrollSection>
 
-          <div className="mt-8">
-            <Link
-              href="/projetos"
-              className="font-mono text-xs text-zinc-500 hover:text-emerald-400 tracking-[0.25em] transition-colors duration-200"
-            >
-              ALL PROJECTS →
-            </Link>
-          </div>
+          <ScrollSection delay={0.2}>
+            <div className="mt-8">
+              <Link
+                href="/projetos"
+                className="font-mono text-xs text-zinc-500 hover:text-emerald-400 tracking-[0.25em] transition-colors duration-200"
+              >
+                ALL PROJECTS →
+              </Link>
+            </div>
+          </ScrollSection>
         </div>
       </section>
 
       {/* ================================================
-          HIGHLIGHTS / CREDIBILITY
+          CREDIBILITY
       ================================================ */}
       <section className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
-            <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
-            CREDIBILITY
-          </h2>
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-emerald-500/3 blur-[120px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <ScrollSection>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
+              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+              CREDIBILITY
+            </h2>
+          </ScrollSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.map((h, i) => {
-              const borderColors = ['border-l-yellow-500', 'border-l-cyan-400', 'border-l-purple-500', 'border-l-green-500']
-              return (
-              <div
-                key={h.label}
-                className={`flex flex-col gap-3 p-6 rounded-2xl border border-l-4 ${borderColors[i % borderColors.length]} border-emerald-800/30 bg-emerald-950/50 backdrop-blur-sm hover:border-emerald-500/20 hover:-translate-y-2 transition-all duration-300`}
-              >
-                <span className="text-2xl">{h.icon}</span>
-                <span className="font-mono text-[10px] text-emerald-400 tracking-[0.2em]">
-                  {h.label}
-                </span>
-                <h3 className="font-mono font-bold text-white text-sm leading-tight">
-                  {h.title}
-                </h3>
-                <p className="text-zinc-500 text-xs leading-relaxed">
-                  {h.description}
-                </p>
-              </div>
-              )
-            })}
+            {highlights.map((h, i) => (
+              <ScrollSection key={h.label} delay={i * 0.1}>
+                <div
+                  className={`flex flex-col gap-3 p-6 rounded-2xl border border-l-4 ${h.borderColor} border-emerald-800/30 bg-emerald-950/50 backdrop-blur-sm hover:border-emerald-500/20 hover:-translate-y-2 transition-all duration-300 group h-full`}
+                >
+                  <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{h.icon}</span>
+                  <span className="font-mono text-[10px] text-emerald-400 tracking-[0.2em]">
+                    {h.label}
+                  </span>
+                  <h3 className="font-mono font-bold text-white text-sm leading-tight">
+                    {h.title}
+                  </h3>
+                  <p className="text-zinc-500 text-xs leading-relaxed">
+                    {h.description}
+                  </p>
+                </div>
+              </ScrollSection>
+            ))}
           </div>
         </div>
       </section>
@@ -405,22 +420,26 @@ export default function HomePage() {
         className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-3 flex items-center gap-4 uppercase tracking-widest">
-              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
-              SKILLS &amp; EXPERTISE
-            </h2>
-            <p className="font-mono text-zinc-600 text-[11px] tracking-wide pl-6">
-              Percentages computed from technologies used across projects and certifications.
-            </p>
-          </div>
+          <ScrollSection>
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-3 flex items-center gap-4 uppercase tracking-widest">
+                <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+                SKILLS &amp; EXPERTISE
+              </h2>
+              <p className="font-mono text-zinc-600 text-[11px] tracking-wide pl-6">
+                Percentages computed from technologies used across projects and certifications.
+              </p>
+            </div>
+          </ScrollSection>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {skillData.map((cat) => (
-              <SkillCategoryCard
-                key={cat.category}
-                category={cat.category}
-                skills={cat.skills}
-              />
+            {skillData.map((cat, i) => (
+              <ScrollSection key={cat.category} delay={i * 0.1}>
+                <SkillCategoryCard
+                  category={cat.category}
+                  skills={cat.skills}
+                />
+              </ScrollSection>
             ))}
           </div>
         </div>
@@ -432,56 +451,61 @@ export default function HomePage() {
       {artigosRecentes.length > 0 && (
         <section className="relative z-10 py-28 px-6 sm:px-8 lg:px-16 border-t border-white/5">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
-              <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
-              ARTICLES
-            </h2>
+            <ScrollSection>
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-12 flex items-center gap-4 uppercase tracking-widest">
+                <span className="w-2 md:w-3 h-10 md:h-12 bg-emerald-400 block rounded-r-lg shrink-0" />
+                ARTICLES
+              </h2>
+            </ScrollSection>
 
             <div className="flex flex-col gap-px">
               {artigosRecentes.map((artigo, i) => (
-                <Link
-                  key={artigo.slug}
-                  href={`/${artigo.slug}`}
-                  className="group flex items-start justify-between gap-6 py-6 border-b border-white/5 hover:border-emerald-400/20 transition-colors duration-200"
-                >
-                  <div className="flex items-start gap-5 flex-1 min-w-0">
-                    <span className="font-mono text-xs text-zinc-700 mt-1 shrink-0">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="font-mono text-base text-white group-hover:text-emerald-400 transition-colors duration-200 truncate mb-1">
-                        {artigo.titulo}
-                      </h3>
-                      {artigo.resumo && (
-                        <p className="text-zinc-500 text-sm line-clamp-1">
-                          {artigo.resumo}
-                        </p>
-                      )}
+                <ScrollSection key={artigo.slug} delay={i * 0.08}>
+                  <Link
+                    href={`/${artigo.slug}`}
+                    className="group flex items-start justify-between gap-6 py-6 border-b border-white/5 hover:border-emerald-400/20 transition-colors duration-200"
+                  >
+                    <div className="flex items-start gap-5 flex-1 min-w-0">
+                      <span className="font-mono text-xs text-zinc-700 mt-1 shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="font-mono text-base text-white group-hover:text-emerald-400 transition-colors duration-200 truncate mb-1">
+                          {artigo.titulo}
+                        </h3>
+                        {artigo.resumo && (
+                          <p className="text-zinc-500 text-sm line-clamp-1">
+                            {artigo.resumo}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-4 shrink-0">
-                    <span className="font-mono text-xs text-zinc-600">
-                      {new Date(artigo.data).toLocaleDateString("en-US", {
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </span>
-                    <span className="font-mono text-xs text-emerald-400/40 group-hover:text-emerald-400 transition-colors duration-200">
-                      &rarr;
-                    </span>
-                  </div>
-                </Link>
+                    <div className="flex items-center gap-4 shrink-0">
+                      <span className="font-mono text-xs text-zinc-600">
+                        {new Date(artigo.data).toLocaleDateString("en-US", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </span>
+                      <span className="font-mono text-xs text-emerald-400/40 group-hover:text-emerald-400 transition-colors duration-200">
+                        &rarr;
+                      </span>
+                    </div>
+                  </Link>
+                </ScrollSection>
               ))}
             </div>
 
-            <div className="mt-10">
-              <Link
-                href="/artigos"
-                className="font-mono text-xs text-zinc-500 hover:text-emerald-400 tracking-[0.25em] transition-colors duration-200"
-              >
-                ALL ARTICLES →
-              </Link>
-            </div>
+            <ScrollSection delay={0.3}>
+              <div className="mt-10">
+                <Link
+                  href="/artigos"
+                  className="font-mono text-xs text-zinc-500 hover:text-emerald-400 tracking-[0.25em] transition-colors duration-200"
+                >
+                  ALL ARTICLES →
+                </Link>
+              </div>
+            </ScrollSection>
           </div>
         </section>
       )}
