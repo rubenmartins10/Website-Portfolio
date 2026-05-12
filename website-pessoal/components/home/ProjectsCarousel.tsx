@@ -277,18 +277,27 @@ export default function ProjectsCarousel({
               </div>
             </div>
 
-            {/* ── RIGHT — metric or image ── */}
+            {/* ── RIGHT — image with metric overlay ── */}
             <div className="md:col-span-2 relative min-h-[200px] md:min-h-0 overflow-hidden rounded-b-2xl md:rounded-b-none md:rounded-r-2xl">
-              {projeto.imagem &&
-              !projeto.imagem.includes("imagem.png") ? (
+              {projeto.imagem ? (
                 <>
                   <Image
                     src={projeto.imagem}
                     alt={projeto.nome}
                     fill
-                    className="object-cover opacity-70"
+                    className="object-cover opacity-80"
                   />
-                  <div className="absolute inset-0 bg-linear-to-r from-zinc-900/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-r from-emerald-950/90 via-emerald-950/40 to-transparent" />
+                  {/* Floating metric overlay */}
+                  <div className="absolute inset-0 flex items-end justify-end p-6">
+                    <div className={`rounded-xl bg-gradient-to-br ${metric.gradient} border border-white/10 px-5 py-4 backdrop-blur-sm`}>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-lg">{metric.icon}</span>
+                        <span className="font-mono text-2xl font-black text-white">{metric.stat}</span>
+                      </div>
+                      <p className="font-mono text-[10px] text-white/80 tracking-widest uppercase">{metric.label}</p>
+                    </div>
+                  </div>
                 </>
               ) : (
                 <MetricCard metric={metric} />
