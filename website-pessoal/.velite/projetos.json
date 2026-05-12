@@ -1,9 +1,9 @@
 [
   {
-    "nome": "Aplicação de Gestão de Inventário - MeClinic",
+    "nome": "Inventory Management Platform - MeClinic",
     "data": "2026-04-08T00:00:00.000Z",
     "url": "https://github.com/rubenmartins10/WebApp-MeClinic",
-    "imagem": "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/imagem.png",
+    "imagem": "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/showcase.png",
     "galeria": [
       "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/0.png",
       "/projetos/aplicacao-de-gestao-de-inventario-me-clinic/galeria/1.png",
@@ -25,21 +25,21 @@
       "jsPDF + pdfkit-table"
     ],
     "destaque": true,
-    "resumo": "Plataforma SaaS para gestão de clínicas médicas — desde agendamento de consultas a faturação automática, inventário por código de barras e relatórios semanais. GDPR-compliant.",
+    "resumo": "SaaS platform for medical clinic management — from appointment scheduling to automated billing, barcode inventory and weekly reports. GDPR-compliant.",
     "conquistas": [
-      "Plataforma GDPR-compliant com controlo de acessos RBAC por função",
-      "Inventário com leitura de código de barras e geração automática de PDF",
-      "Relatórios analíticos semanais enviados automaticamente por email",
-      "Autenticação JWT com Helmet.js e proteção de rotas por perfil"
+      "GDPR-compliant platform with role-based access control (RBAC)",
+      "Barcode scanner inventory with automatic PDF generation",
+      "Weekly analytical reports sent automatically by email",
+      "JWT authentication with Helmet.js and role-based route protection"
     ],
     "slug": "projetos/aplicacao-de-gestao-de-inventario-me-clinic",
-    "descricao": "const{Fragment:a,jsx:e,jsxs:o}=arguments[0];function _createMdxContent(n){const i={em:\"em\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...n.components};return o(a,{children:[o(i.p,{children:[\"O \",e(i.strong,{children:\"MeClinic\"}),\" é uma plataforma SaaS (\",e(i.em,{children:\"Software as a Service\"}),') moderna e abrangente, desenhada especificamente para a gestão profissional de clínicas e consultórios médicos. Funciona como um verdadeiro \"ERP médico\" tudo-em-um, com o objetivo principal de digitalizar, centralizar e otimizar toda a operação diária de uma unidade de saúde.']}),\"\\n\",e(i.p,{children:e(i.strong,{children:\"Principais Pilares e Funcionalidades:\"})}),\"\\n\",o(i.ul,{children:[\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Gestão Clínica e Operacional:\"}),\" O núcleo do sistema permite o cadastro exaustivo de pacientes, mantendo um histórico médico detalhado e seguro. A operação diária é orquestrada através de um calendário inteligente focado na gestão e agendamento de consultas.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Controlo Administrativo e Financeiro:\"}),\" A plataforma automatiza a faturação, sendo capaz de gerar faturas detalhadas em formato PDF. Adicionalmente, integra um módulo avançado de inventário que suporta a leitura de códigos de barras, facilitando o rastreamento e o controlo de \",e(i.em,{children:\"stock\"}),\" de materiais clínicos.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Inteligência de Negócio (Relatórios):\"}),\" O sistema processa os dados da clínica para gerar relatórios analíticos financeiros e operacionais semanais, que são despachados de forma totalmente automática por email para a gestão.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Experiência do Utilizador (UX):\"}),\" A interface foi construída com foco na usabilidade moderna, oferecendo suporte para múltiplos idiomas e um \",e(i.em,{children:\"dark mode\"}),\" nativo, garantindo conforto visual durante longos turnos de trabalho.\"]}),\"\\n\",o(i.li,{children:[e(i.strong,{children:\"Conformidade e Segurança (RGPD):\"}),\" Dado o tratamento de dados de saúde sensíveis, a plataforma é \",e(i.em,{children:\"GDPR-compliant\"}),\". Todo o acesso é blindado por autenticação robusta e um sistema de controlo de acessos rigoroso baseado nas funções de cada utilizador (médico, rececionista, administrador).\"]}),\"\\n\"]})]})}return{default:function(a={}){const{wrapper:o}=a.components||{};return o?e(o,{...a,children:e(_createMdxContent,{...a})}):_createMdxContent(a)}};"
+    "descricao": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const a={em:\"em\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[i(a.p,{children:[n(a.strong,{children:\"MeClinic\"}),\" is a modern, comprehensive SaaS (\",n(a.em,{children:\"Software as a Service\"}),') platform built specifically for the professional management of medical clinics and practices. It operates as a true all-in-one \"medical ERP\", with the primary goal of digitising, centralising and optimising the entire daily operation of a healthcare facility.']}),\"\\n\",n(a.p,{children:n(a.strong,{children:\"Core Pillars and Features:\"})}),\"\\n\",i(a.ul,{children:[\"\\n\",i(a.li,{children:[n(a.strong,{children:\"Clinical and Operational Management:\"}),\" The core of the system enables thorough patient registration, maintaining a detailed and secure medical history. Daily operations are orchestrated through an intelligent calendar focused on appointment management and scheduling.\"]}),\"\\n\",i(a.li,{children:[n(a.strong,{children:\"Administrative and Financial Control:\"}),\" The platform automates billing, generating detailed invoices in PDF format. It also integrates an advanced inventory module with barcode scanner support, streamlining the tracking and stock control of clinical supplies.\"]}),\"\\n\",i(a.li,{children:[n(a.strong,{children:\"Business Intelligence (Reports):\"}),\" The system processes clinic data to generate weekly financial and operational analytical reports, dispatched fully automatically by email to management.\"]}),\"\\n\",i(a.li,{children:[n(a.strong,{children:\"User Experience (UX):\"}),\" The interface was built with a focus on modern usability, offering multi-language support and a native \",n(a.em,{children:\"dark mode\"}),\", ensuring visual comfort during long work shifts.\"]}),\"\\n\",i(a.li,{children:[n(a.strong,{children:\"Compliance and Security (GDPR):\"}),\" Given the handling of sensitive health data, the platform is \",n(a.em,{children:\"GDPR-compliant\"}),\". All access is secured by robust authentication and a strict role-based access control system covering each user type (doctor, receptionist, administrator).\"]}),\"\\n\"]})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   },
   {
     "nome": "Incorrupt",
     "data": "2025-05-31T00:00:00.000Z",
     "url": "https://github.com/rubenmartins10",
-    "imagem": "/projetos/incorrupt/imagem.png",
+    "imagem": "/projetos/incorrupt/showcase.png",
     "galeria": [],
     "tecnologias": [
       "Node.js",

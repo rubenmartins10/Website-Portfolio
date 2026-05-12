@@ -1,288 +1,177 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { projetos, artigos, certificados } from "@/.velite";
-import AdminSignOut from "./AdminSignOut";
 
-export const metadata = {
-  title: "Admin | Rúben Martins",
-};
+type ContentItem = { slug: string; [key: string]: unknown };
 
-export default async function AdminPage() {
-  const session = await auth();
-  if (!session) redirect("/login");
+function StatCard({ label, count, color, icon, href }: { label: string; count: number; color: string; icon: string; href: string }) {
+  const colors: Record<string, string> = {
+    emerald: "bg-emerald-400/10 border-emerald-400/20 text-emerald-400",
+    blue: "bg-blue-400/10 border-blue-400/20 text-blue-400",
+    purple: "bg-purple-400/10 border-purple-400/20 text-purple-400",
+  };
+  return (
+    <Link href={href} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] p-6 flex flex-col gap-4 transition-all group">
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">{label}</p>
+          <p className="text-4xl font-black text-white">{count}</p>
+        </div>
+        <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${colors[color]}`}>
+          <span className="text-lg">{icon}</span>
+        </div>
+      </div>
+      <div className="flex gap-2 mt-auto">
+        <span className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 group-hover:text-white rounded-lg bg-white/[0.04] border border-white/[0.06] transition-all tracking-wide">
+          MANAGE →
+        </span>
+      </div>
+    </Link>
+  );
+}
 
-  const recentProjetos = [...projetos]
-    .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
-    .slice(0, 5);
+export default function AdminDashboard() {
+  const [projetos, setProjetos] = useState<ContentItem[]>([]);
+  const [artigos, setArtigos] = useState<ContentItem[]>([]);
+  const [certificados, setCertificados] = useState<ContentItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const recentArtigos = [...artigos]
-    .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
-    .slice(0, 5);
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/admin/projetos").then(r => r.json()),
+      fetch("/api/admin/artigos").then(r => r.json()),
+      fetch("/api/admin/certificados").then(r => r.json()),
+    ]).then(([p, a, c]) => {
+      setProjetos(Array.isArray(p) ? p : []);
+      setArtigos(Array.isArray(a) ? a : []);
+      setCertificados(Array.isArray(c) ? c : []);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
 
-  const recentCerts = [...certificados]
-    .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
-    .slice(0, 5);
-
-  const firstName = session.user?.name?.split(" ")[0] || "Admin";
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#07080b] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin" />
+          <p className="font-mono text-xs text-zinc-500 tracking-widest">LOADING...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#07080b] text-white">
-
-      {/* ── Topbar ── */}
+      {/* Topbar */}
       <header className="sticky top-0 z-50 border-b border-white/[0.05] bg-[#07080b]/90 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-          {/* Brand */}
+        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
               </svg>
             </div>
             <span className="font-mono text-xs font-bold tracking-widest text-white uppercase">Admin Panel</span>
           </div>
-
-          {/* Nav */}
-          <div className="flex items-center gap-1 hidden sm:flex">
-            <Link href="/" className="font-mono text-[11px] text-zinc-500 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-all tracking-wide">
-              ← Site
-            </Link>
-            <Link href="/keystatic" className="font-mono text-[11px] text-emerald-400 hover:text-emerald-300 px-3 py-1.5 rounded-lg hover:bg-emerald-400/8 transition-all tracking-wide border border-emerald-400/20">
-              Keystatic CMS ↗
-            </Link>
-          </div>
-
-          {/* User */}
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex flex-col items-end">
-              <span className="text-[11px] text-white font-medium leading-none">{session.user?.name}</span>
-              <span className="text-[10px] text-zinc-500 leading-none mt-0.5">{session.user?.email}</span>
-            </div>
-            <AdminSignOut />
+          <div className="flex items-center gap-2">
+            <Link href="/" className="font-mono text-[11px] text-zinc-500 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-all">← Site</Link>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-6 py-10 space-y-8">
-
-        {/* ── Hero greeting ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-white leading-tight">
-              {greeting}, {firstName} 👋
-            </h1>
-            <p className="text-zinc-500 text-sm mt-0.5">
-              {new Date().toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
-            </p>
-          </div>
-          <Link
-            href="/keystatic"
-            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-zinc-950 text-sm font-bold tracking-wide transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-            </svg>
-            Open Editor
-          </Link>
+        {/* Greeting */}
+        <div>
+          <h1 className="text-2xl font-bold text-white">Content Management 🛠️</h1>
+          <p className="text-zinc-500 text-sm mt-1">Manage your projects, articles, and certifications</p>
         </div>
 
-        {/* ── Stats + Quick Actions ── */}
+        {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-          {/* Projetos */}
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Projects</p>
-                <p className="text-4xl font-black text-white">{projetos.length}</p>
-              </div>
-              <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                </svg>
-              </div>
-            </div>
-            <div className="flex gap-2 mt-auto">
-              <Link href="/keystatic/collections/projetos" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.06] transition-all tracking-wide">
-                VIEW ALL
-              </Link>
-              <Link href="/keystatic/collections/projetos/create" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-emerald-400 hover:text-emerald-300 rounded-lg bg-emerald-400/8 hover:bg-emerald-400/12 border border-emerald-400/20 transition-all tracking-wide">
-                + CREATE
-              </Link>
-            </div>
-          </div>
-
-          {/* Artigos */}
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Articles</p>
-                <p className="text-4xl font-black text-white">{artigos.length}</p>
-              </div>
-              <div className="w-10 h-10 rounded-xl bg-blue-400/10 border border-blue-400/20 flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-              </div>
-            </div>
-            <div className="flex gap-2 mt-auto">
-              <Link href="/keystatic/collections/artigos" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.06] transition-all tracking-wide">
-                VIEW ALL
-              </Link>
-              <Link href="/keystatic/collections/artigos/create" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-blue-400 hover:text-blue-300 rounded-lg bg-blue-400/8 hover:bg-blue-400/12 border border-blue-400/20 transition-all tracking-wide">
-                + CREATE
-              </Link>
-            </div>
-          </div>
-
-          {/* Certificações */}
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-4">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase mb-1">Certifications</p>
-                <p className="text-4xl font-black text-white">{certificados.length}</p>
-              </div>
-              <div className="w-10 h-10 rounded-xl bg-purple-400/10 border border-purple-400/20 flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                </svg>
-              </div>
-            </div>
-            <div className="flex gap-2 mt-auto">
-              <Link href="/keystatic/collections/certificados" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.06] transition-all tracking-wide">
-                VIEW ALL
-              </Link>
-              <Link href="/keystatic/collections/certificados/create" className="flex-1 text-center py-2 text-xs font-mono font-semibold text-purple-400 hover:text-purple-300 rounded-lg bg-purple-400/8 hover:bg-purple-400/12 border border-purple-400/20 transition-all tracking-wide">
-                + CREATE
-              </Link>
-            </div>
-          </div>
-
+          <StatCard label="Projects" count={projetos.length} color="emerald" icon="💼" href="/admin/projetos" />
+          <StatCard label="Articles" count={artigos.length} color="blue" icon="📝" href="/admin/artigos" />
+          <StatCard label="Certifications" count={certificados.length} color="purple" icon="🏅" href="/admin/certificados" />
         </div>
 
-        {/* ── Recent Content ── */}
+        {/* Recent items grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-
-          {/* Projetos recentes */}
+          {/* Recent Projects */}
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
             <div className="px-5 py-4 border-b border-white/[0.05] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Projects</h2>
+                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Recent Projects</h2>
               </div>
-              <Link href="/keystatic/collections/projetos" className="font-mono text-[10px] text-zinc-500 hover:text-emerald-400 transition-colors tracking-wide">
-                VIEW ALL →
-              </Link>
+              <Link href="/admin/projetos" className="font-mono text-[10px] text-zinc-500 hover:text-emerald-400 transition-colors">VIEW ALL →</Link>
             </div>
             <div className="divide-y divide-white/[0.04]">
-              {recentProjetos.length === 0 ? (
-                <p className="text-zinc-600 text-xs text-center py-8">No projects yet.</p>
-              ) : recentProjetos.map(p => (
-                <div key={p.slug} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    {p.destaque
-                      ? <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-amber-400" title="Destaque" />
-                      : <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-zinc-700" />
-                    }
-                    <span className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{p.nome}</span>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0 ml-2">
-                    <time className="text-[10px] text-zinc-600 font-mono">
-                      {new Date(p.data).toLocaleDateString("en-US", { month: "short", year: "2-digit" })}
-                    </time>
-                    <Link href={`/keystatic/collections/projetos/${p.slug}`} className="text-[10px] font-mono text-zinc-600 hover:text-emerald-400 transition-colors">
-                      EDITAR
-                    </Link>
-                  </div>
-                </div>
+              {projetos.slice(0, 5).map(p => (
+                <Link key={p.slug} href={`/admin/projetos/${p.slug}`} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
+                  <span className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{String(p.nome)}</span>
+                  <span className="text-[10px] text-zinc-600 font-mono shrink-0 ml-2">EDIT →</span>
+                </Link>
               ))}
+              {projetos.length === 0 && <p className="text-zinc-600 text-xs text-center py-6">No projects yet</p>}
             </div>
           </div>
 
-          {/* Artigos recentes */}
+          {/* Recent Articles */}
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
             <div className="px-5 py-4 border-b border-white/[0.05] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-blue-400" />
-                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Articles</h2>
+                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Recent Articles</h2>
               </div>
-              <Link href="/keystatic/collections/artigos" className="font-mono text-[10px] text-zinc-500 hover:text-blue-400 transition-colors tracking-wide">
-                VIEW ALL →
-              </Link>
+              <Link href="/admin/artigos" className="font-mono text-[10px] text-zinc-500 hover:text-blue-400 transition-colors">VIEW ALL →</Link>
             </div>
             <div className="divide-y divide-white/[0.04]">
-              {recentArtigos.length === 0 ? (
-                <p className="text-zinc-600 text-xs text-center py-8">No articles yet.</p>
-              ) : recentArtigos.map(a => (
-                <div key={a.slug} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <span className={`shrink-0 w-1.5 h-1.5 rounded-full ${a.publicado ? "bg-emerald-400" : "bg-zinc-600"}`} title={a.publicado ? "Published" : "Draft"} />
-                    <span className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{a.titulo}</span>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0 ml-2">
-                    <span className={`text-[10px] font-mono ${a.publicado ? "text-emerald-500" : "text-zinc-600"}`}>
-                      {a.publicado ? "PUB" : "DRAFT"}
-                    </span>
-                    <Link href={`/keystatic/collections/artigos/${a.slug.replace("artigos/", "")}`} className="text-[10px] font-mono text-zinc-600 hover:text-blue-400 transition-colors">
-                      EDITAR
-                    </Link>
-                  </div>
-                </div>
+              {artigos.slice(0, 5).map(a => (
+                <Link key={a.slug} href={`/admin/artigos/${a.slug}`} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
+                  <span className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{String(a.titulo)}</span>
+                  <span className="text-[10px] text-zinc-600 font-mono shrink-0 ml-2">EDIT →</span>
+                </Link>
               ))}
+              {artigos.length === 0 && <p className="text-zinc-600 text-xs text-center py-6">No articles yet</p>}
             </div>
           </div>
 
-          {/* Certificações recentes */}
+          {/* Recent Certs */}
           <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
             <div className="px-5 py-4 border-b border-white/[0.05] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-purple-400" />
-                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Certifications</h2>
+                <h2 className="font-mono text-[11px] text-white font-bold tracking-widest uppercase">Recent Certs</h2>
               </div>
-              <Link href="/keystatic/collections/certificados" className="font-mono text-[10px] text-zinc-500 hover:text-purple-400 transition-colors tracking-wide">
-                VIEW ALL →
-              </Link>
+              <Link href="/admin/certificados" className="font-mono text-[10px] text-zinc-500 hover:text-purple-400 transition-colors">VIEW ALL →</Link>
             </div>
             <div className="divide-y divide-white/[0.04]">
-              {recentCerts.map(c => (
-                <div key={c.slug} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
-                  <div className="min-w-0">
-                    <p className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{c.titulo}</p>
-                    <p className="text-[10px] text-zinc-600 font-mono mt-0.5 truncate">{c.emissor}</p>
-                  </div>
-                  <Link href={`/keystatic/collections/certificados/${c.slug}`} className="text-[10px] font-mono text-zinc-600 hover:text-purple-400 transition-colors shrink-0 ml-2">
-                    EDITAR
-                  </Link>
-                </div>
+              {certificados.slice(0, 5).map(c => (
+                <Link key={c.slug} href={`/admin/certificados/${c.slug}`} className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02] group transition-colors">
+                  <span className="text-xs text-zinc-300 truncate group-hover:text-white transition-colors">{String(c.titulo)}</span>
+                  <span className="text-[10px] text-zinc-600 font-mono shrink-0 ml-2">EDIT →</span>
+                </Link>
               ))}
+              {certificados.length === 0 && <p className="text-zinc-600 text-xs text-center py-6">No certs yet</p>}
             </div>
           </div>
-
         </div>
 
-        {/* ── Quick Links ── */}
+        {/* Quick Links */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { label: "View Site", href: "/", icon: "🌐", desc: "Public homepage" },
             { label: "Projects", href: "/projetos", icon: "💼", desc: "Projects page" },
             { label: "Articles", href: "/artigos", icon: "📝", desc: "Public blog" },
-            { label: "Certifications", href: "/certificados", icon: "🏅", desc: "Certs page" },
+            { label: "Certs", href: "/certificados", icon: "🏅", desc: "Certs page" },
           ].map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              className="rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 p-4 flex flex-col gap-1 transition-all group"
-            >
+            <Link key={link.href} href={link.href} className="rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 p-4 flex flex-col gap-1 transition-all group">
               <span className="text-xl">{link.icon}</span>
               <span className="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors">{link.label}</span>
               <span className="text-[10px] text-zinc-600 font-mono">{link.desc}</span>
             </Link>
           ))}
         </div>
-
       </div>
     </div>
   );

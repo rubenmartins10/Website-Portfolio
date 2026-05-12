@@ -285,9 +285,9 @@ export default function ProjectsCarousel({
                     src={projeto.imagem}
                     alt={projeto.nome}
                     fill
-                    className="object-cover opacity-80"
+                    className="object-cover opacity-90"
                   />
-                  <div className="absolute inset-0 bg-linear-to-r from-emerald-950/90 via-emerald-950/40 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-r from-[#07080b]/70 via-transparent to-transparent" />
                   {/* Floating metric overlay */}
                   <div className="absolute inset-0 flex items-end justify-end p-6">
                     <div className={`rounded-xl bg-gradient-to-br ${metric.gradient} border border-white/10 px-5 py-4 backdrop-blur-sm`}>

@@ -64,6 +64,25 @@
     "slug": "certificados/data-science-job-simulation"
   },
   {
+    "titulo": "Developing LLM Applications with LangChain",
+    "emissor": "DataCamp",
+    "imagem": "/certificados/developing-llm-langchain/imagem.png",
+    "aprendizado": "Aprendi a construir aplicações baseadas em Large Language Models utilizando o framework LangChain. Explorei chains, prompts templates, agentes, memória conversacional e integração com APIs de modelos como OpenAI. Desenvolvi competências em Retrieval-Augmented Generation (RAG) e orquestração de fluxos de LLMs para casos de uso reais.",
+    "skills": [
+      "LangChain",
+      "LLMs",
+      "Prompt Engineering",
+      "GenAI",
+      "NLP",
+      "Python",
+      "RAG",
+      "OpenAI API"
+    ],
+    "data": "2026-05-01T00:00:00.000Z",
+    "categoria": "data-ai",
+    "slug": "certificados/developing-llm-langchain"
+  },
+  {
     "titulo": "Elements of IA",
     "emissor": "Nova SBE",
     "imagem": "/certificados/elements-of-ia/imagem.png",
@@ -134,6 +153,57 @@
     "slug": "certificados/introduction-to-shell"
   },
   {
+    "titulo": "Software Engineering Job Simulation",
+    "emissor": "JPMorgan Chase & Co.",
+    "imagem": "/certificados/jpmorgan-software-engineering/imagem.png",
+    "aprendizado": "Participei numa simulação prática de engenharia de software da JPMorgan Chase através da plataforma Forage. Trabalhei com interfaces de dados financeiros reais, configurei feeds de dados para visualização em tempo real e apliquei boas práticas de desenvolvimento de software em ambiente empresarial.",
+    "skills": [
+      "Software Engineering",
+      "Financial Data Interfaces",
+      "Python",
+      "React",
+      "Git",
+      "Agile",
+      "REST APIs"
+    ],
+    "data": "2026-03-17T00:00:00.000Z",
+    "categoria": "software-engineering",
+    "slug": "certificados/jpmorgan-software-engineering"
+  },
+  {
+    "titulo": "Learn Python 3",
+    "emissor": "Codecademy",
+    "imagem": "/certificados/learn-python-3/imagem.jpg",
+    "aprendizado": "Completei o curso completo de Python 3 da Codecademy, consolidando fundamentos da linguagem: tipos de dados, estruturas de controlo, funções, programação orientada a objetos, manipulação de ficheiros e módulos da biblioteca standard. Desenvolveu a base para aplicações de ciência de dados e desenvolvimento backend.",
+    "skills": [
+      "Python",
+      "Object-Oriented Programming",
+      "Data Structures",
+      "Functions",
+      "File Handling"
+    ],
+    "data": "2026-04-01T00:00:00.000Z",
+    "categoria": "software-engineering",
+    "slug": "certificados/learn-python-3"
+  },
+  {
+    "titulo": "Learn SQL Course",
+    "emissor": "Codecademy",
+    "imagem": "/certificados/learn-sql/imagem.jpg",
+    "aprendizado": "Completei o curso de SQL da Codecademy, cobrindo desde consultas básicas até conceitos avançados: SELECT, JOIN, subqueries, agregações, índices, transações e gestão de bases de dados relacionais. Aplicável diretamente ao desenvolvimento backend com PostgreSQL e MySQL.",
+    "skills": [
+      "SQL",
+      "PostgreSQL",
+      "Database Design",
+      "Queries",
+      "Joins",
+      "Aggregations"
+    ],
+    "data": "2026-04-01T00:00:00.000Z",
+    "categoria": "database",
+    "slug": "certificados/learn-sql"
+  },
+  {
     "titulo": "Machine Learning with Python",
     "emissor": "FreeCodeCamp",
     "imagem": "/certificados/machine-learning-with-python/imagem.png",
@@ -192,5 +262,24 @@
     "ficheiro": "/certificados/python-basics-test/ficheiro.pdf",
     "categoria": "data-ai",
     "slug": "certificados/python-basics-test"
+  },
+  {
+    "titulo": "Supervised Learning with Scikit-Learn",
+    "emissor": "DataCamp",
+    "imagem": "/certificados/supervised-learning-scikit-learn/imagem.png",
+    "aprendizado": "Aprendi a construir, treinar e avaliar modelos de aprendizagem supervisionada com a biblioteca Scikit-Learn. Cobri algoritmos de classificação e regressão, incluindo árvores de decisão, florestas aleatórias, SVMs e regressão logística, bem como técnicas de validação cruzada, tuning de hiperparâmetros e métricas de avaliação de modelos.",
+    "skills": [
+      "Machine Learning",
+      "Scikit-Learn",
+      "Python",
+      "Classification",
+      "Regression",
+      "Cross-Validation",
+      "Feature Engineering",
+      "Model Evaluation"
+    ],
+    "data": "2026-04-01T00:00:00.000Z",
+    "categoria": "data-ai",
+    "slug": "certificados/supervised-learning-scikit-learn"
   }
 ]
